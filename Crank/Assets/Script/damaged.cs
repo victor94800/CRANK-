@@ -23,7 +23,7 @@ public class damaged : MonoBehaviour {
         if (hit.transform.tag == "enemy" )
         {
             
-            hit.SendMessage("getHit", 10);
+            hit.SendMessage("getHit", dmg);
             
         }
     }

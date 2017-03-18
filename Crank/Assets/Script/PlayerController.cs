@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour {
         // on set les valeur associe a la barre de vie a la vie et a l'apnee;
         life = Life;
         Barredevie.max = life;
+       
         Barredevie.valeur = life;
         Barredapnee.max = apnee;
         anim.SetTime(1);

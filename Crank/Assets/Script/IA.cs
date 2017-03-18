@@ -23,7 +23,7 @@ public class IA : MonoBehaviour
     private bool fight;
     bool follow;
     public bool Attack;
-    private int life;
+    public int life;
     public GameObject COINS;
     public static Vector3 pos;
     Quaternion rtn;
@@ -47,6 +47,7 @@ public class IA : MonoBehaviour
         h = GameObject.Find("Player").transform;
         dirtomain = GameObject.Find("Player").transform.position - transform.position;
         newrotation = Random.Range(0, 361);
+        
        
         
       
@@ -61,7 +62,7 @@ public class IA : MonoBehaviour
         }
 
         Debug.DrawRay(transform.Find("origin").position, transform.forward, Color.red, 1);*/
-        if (dirtomain.magnitude < 0.01f)
+        if (follow == true )//dirtomain.magnitude < 0.01f)
         {
             
             transform.position = Vector3.Lerp(transform.position, h.position, 0.05f);
@@ -115,9 +116,27 @@ public class IA : MonoBehaviour
             transform.Rotate(new Vector3(0, 90, 0));
         }
         
+        
     }
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.name == "Player")
+        {
+            follow = true;
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.transform.name == "Player")
+        {
+            follow = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        follow = false;
+    }
     private void getHit(int nb)
     {
      

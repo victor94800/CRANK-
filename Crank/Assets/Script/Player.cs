@@ -7,31 +7,42 @@ public class Player : MonoBehaviour {
     private float inputH;
     private float inputV;
     public Animator anim;
+    
     public Rigidbody rbody;
     private bool Jump;
-    public  bool attack;
+    
     private bool Attack;
     private bool Attack1;
-    
+    double time;
+    GameObject sword;
 
     // Use this for initialization
     void Start () {
         //animateur 
         anim = GetComponent<Animator>();
+    
         // rigidbody 
         rbody = GetComponent<Rigidbody>();
         Run = false;
         Jump = false;
         Attack = false;
         Attack1 = false;
-        attack = Attack || Attack1;
-       
+        sword = GameObject.Find("PlayerS") ;
+        
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        
+       // print(anim.GetTime());
+        if (anim.GetTime() >= time + 0.20f )
+        {
+           
+            Attack = false;
+            Attack1 = false;
+            sword.GetComponent<BoxCollider>().enabled = false;
+           
+        }
         if (Input.GetKey("joystick button 0"))
         {
             Jump = true;
@@ -42,15 +53,12 @@ public class Player : MonoBehaviour {
         }
         if (Input.GetKey("joystick button 2"))
         {
-
+            sword.GetComponent<BoxCollider>().enabled = true;
+            time = anim.GetTime();
             Attack = true;
-            attack = Attack ;
+           
         }
-        else
-        {
-            Attack = false;
-            attack = Attack ;
-        }
+        
 
         if (Input.GetKey("joystick button 5"))
         {
@@ -63,15 +71,14 @@ public class Player : MonoBehaviour {
         }
         if (Input.GetKey("joystick button 3"))
         {
+            sword.GetComponent<BoxCollider>().enabled = true;
+
             Attack1 = true;
-            attack = Attack || Attack1;
+            time = anim.GetTime();
+
         }
-        else
-        {
-            Attack1 = false;
-            attack = Attack || Attack1;
-        }
-        attack = Attack || Attack1;
+      
+       
         inputH = Input.GetAxis("Horizontal");
         inputV = Input.GetAxis("Vertical");
        
