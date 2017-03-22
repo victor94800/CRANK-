@@ -17,7 +17,7 @@ public class Vision : MonoBehaviour {
 	}
     private void OnCollisionEnter(Collision collision)
     {
-        SendMessage
+        //SendMessage
     }
     private void OnCollisionStay(Collision collision)
     {
