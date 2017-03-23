@@ -96,7 +96,7 @@ public class Player : MonoBehaviour {
         
         if (Run)
         {
-            anim.speed = 3;
+            anim.speed = 2;
            
             moveZ *= 3f;
         }
