@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/scenes/INTRO.unity
+- path: Assets/scenes/menuCrankFonctionnel.unity
   isLoaded: 1
   isActive: 1
