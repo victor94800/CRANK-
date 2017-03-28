@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BlinkingText : MonoBehaviour
 {
-    //public GameObject toactivate;
+    public GameObject toactivate;
     //public GameObject todisable;
     Text flashingText;
 
@@ -22,24 +22,26 @@ public class BlinkingText : MonoBehaviour
     public IEnumerator BlinkText()
     {
 
-        while (!(Input.GetKeyDown(KeyCode.Space) || Input.GetKey("joystick button 7")))
+        while (true)
         {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey("joystick button 7"))
-            {
+            
 
-                flashingText.enabled = false;
-                //toactivate.SetActive(true);
-            }
-            flashingText.text = "";
+               
 
-            yield return new WaitForSeconds(.7f);
+            
+          
+                flashingText.text = "";
 
-            flashingText.text = "Press start/enter!";
-            yield return new WaitForSeconds(.5f);
+                yield return new WaitForSeconds(.7f);
+
+                flashingText.text = "Press start/enter!";
+                yield return new WaitForSeconds(.5f);
+           
             
         }
-    
-        
+
+
+
     }
 
 }
