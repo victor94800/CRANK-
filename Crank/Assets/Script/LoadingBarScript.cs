@@ -53,7 +53,7 @@ public class LoadingBarScript : MonoBehaviour {
     IEnumerator LoadLevelWithRealProgress()
     {
         yield return new WaitForSeconds(1);
-        ao = SceneManager.LoadSceneAsync(levelnumber);
+        ao = SceneManager.LoadSceneAsync(2);
         ao.allowSceneActivation = false;
         while (!ao.isDone)
         {
