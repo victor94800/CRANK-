@@ -4,26 +4,33 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
     private bool Run;
+	public float Speed;
     private float inputH;
     private float inputV;
     public Animator anim;
-    
-    public Rigidbody rbody;
     private bool Jump;
-    
     private bool Attack;
     private bool Attack1;
     double time;
-    GameObject sword;
-
+	double time2;
+	GameObject sword;
+	private CharacterController controller;
+	private float verticalVelocity;
+	public float gravity = 10.0f;
+	public float jumpForce = 5000.0f;
+	public float speed = 10;
+	public float runspeed = 20;
+	private Vector3 moveVector = Vector3.zero;
+	public bool dubble_jump;
+	private bool ddjump = false;
     // Use this for initialization
-    void Start () {
-        //animateur 
-        anim = GetComponent<Animator>();
-    
-        // rigidbody 
-        rbody = GetComponent<Rigidbody>();
-        Run = false;
+	void Start ()
+	{
+		dubble_jump = true;
+		controller = GetComponent<CharacterController>();
+		//animateur 
+		anim = GetComponent<Animator>();
+		Run = false;
         Jump = false;
         Attack = false;
         Attack1 = false;
@@ -34,8 +41,9 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-       // print(anim.GetTime());
-        if (anim.GetTime() >= time + 0.20f )
+		controller = GetComponent<CharacterController>();
+		//actions 
+		if (anim.GetTime() >= time + 0.20f )
         {
            
             Attack = false;
@@ -43,14 +51,7 @@ public class Player : MonoBehaviour {
             sword.GetComponent<BoxCollider>().enabled = false;
            
         }
-        if (Input.GetKey("joystick button 0"))
-        {
-            Jump = true;
-        }
-        else
-        {
-            Jump = false;
-        }
+      
         if (Input.GetKey("joystick button 2"))
         {
             sword.GetComponent<BoxCollider>().enabled = true;
@@ -63,11 +64,14 @@ public class Player : MonoBehaviour {
         if (Input.GetKey("joystick button 5"))
         {
             Run = true;
+			
 
         }
         else
         {
             Run = false;
+			
+			
         }
         if (Input.GetKey("joystick button 3"))
         {
@@ -81,8 +85,6 @@ public class Player : MonoBehaviour {
        
         inputH = Input.GetAxis("Horizontal");
         inputV = Input.GetAxis("Vertical");
-       
-    
         anim.SetFloat("InputH", inputH);
         anim.SetFloat("InputV", inputV);
         anim.SetBool("Run", Run);
@@ -90,24 +92,23 @@ public class Player : MonoBehaviour {
         anim.SetBool("Attack", Attack);
         anim.SetBool("Attack1", Attack1);
 
+       //animation
        
-        float moveZ = inputV * 5f * Time.deltaTime;
-        float moveX = inputH * 100f * Time.deltaTime;
-        
         if (Run)
         {
             anim.speed = 2;
-           
-            moveZ *= 3f;
-        }
+			
+
+		}
         else
         {
             anim.speed = 1;
-        }
+			
+		}
         if (Jump)
         {
             anim.speed = 0.5f;
-            rbody.velocity = new Vector3(0, 30f, 0);
+            
         }
         else if (!Run)
         {
@@ -121,9 +122,52 @@ public class Player : MonoBehaviour {
         {
             anim.speed = 1;
         }
-        rbody.velocity = new Vector3(0, -10f, 0);
-        transform.Translate(new Vector3(0, 0, moveZ));
-        transform.Rotate(new Vector3(0, moveX, 0));
-        
-    }
+		
+
+		if (controller.isGrounded)
+		{
+			Jump = false;
+			anim.SetBool("is grounded", true);
+			dubble_jump = true;
+
+			if (Run)
+			{
+				Speed = runspeed;
+			}
+			else
+			{
+				Speed = speed;
+			}
+			transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * Time.deltaTime * 100, 0));
+			moveVector = new Vector3(0, 0, Input.GetAxis("Vertical"));
+			moveVector = transform.TransformDirection(moveVector);
+			moveVector *= Speed;
+			if (Input.GetKeyDown("joystick button 0"))
+			{
+				moveVector.y = jumpForce;
+				Jump = true;
+			}
+
+		}
+		else
+		{
+			if (Global.dubblejump_allowed == true && dubble_jump == true)
+			{
+				if (Input.GetKeyDown("joystick button 0"))
+				{
+					moveVector.y = jumpForce;
+					dubble_jump = false;
+					Jump = true;
+				}
+			}
+		}
+
+		moveVector.y -= gravity * Time.deltaTime;
+		controller.Move(moveVector * Time.deltaTime);
+		
+		
+
+		
+		
+	}
 }
