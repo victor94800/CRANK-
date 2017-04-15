@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour {
     public int life;
     public int apnee;
     public  int Dmg;
+	
    
     // Use this for initialization
 
