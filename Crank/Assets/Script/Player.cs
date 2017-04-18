@@ -157,7 +157,7 @@ public class Player : MonoBehaviour {
         {
             anim.speed = 1;
         }
-		moveVector = new Vector3();
+		
 		// mouvements de player 
 		if (controller.isGrounded)// le player est il a sol 
 		{
@@ -204,7 +204,7 @@ public class Player : MonoBehaviour {
 				}
 			}
 		}
-
+		
 		moveVector.y -= gravity * Time.deltaTime; // on applique la gravitée au joueur 
 		controller.Move(moveVector * Time.deltaTime); // on effectue les deplacements 
 		
