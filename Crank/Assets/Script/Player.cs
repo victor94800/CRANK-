@@ -3,45 +3,82 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-    private bool Run;
+	// attribut de player 
+	private CharacterController controller;
+
+	// action  de player 
+	private bool Attack = false;
+	private bool Attack1 = false;
+	
+	// deplacemtn de player
+	private bool Run = false ;
 	public float Speed;
     private float inputH;
     private float inputV;
-    public Animator anim;
-    private bool Jump;
-    private bool Attack;
-    private bool Attack1;
-    double time;
-	double time2;
-	GameObject sword;
-	private CharacterController controller;
+	private Vector3 moveVector = Vector3.zero;
+	private bool Jump = false;
+	public bool dubble_jump = true;
+	private bool ddjump = false;
+
+
+	// animation de player 
+	public Animator anim;
+
+	// pysique de player 
 	private float verticalVelocity;
 	public float gravity = 10.0f;
 	public float jumpForce = 5000.0f;
 	public float speed = 10;
 	public float runspeed = 20;
-	private Vector3 moveVector = Vector3.zero;
-	public bool dubble_jump;
-	private bool ddjump = false;
+
+	// game object associer a player
+	GameObject sword;
+	GameObject thundersword;
+	GameObject fireSword;
+
+
+	// autres 
+	double time;
+	double time2;
+
+	// capacites de player a debloquer
+	private bool TunderSword_allowed  = false;
+	private bool fireSword_allowed = false;
+	private bool ddjump_allowed = false ;
+	
+	
+	
+	
+	
+	
     // Use this for initialization
 	void Start ()
 	{
-		dubble_jump = true;
+		// initialisation dest component de player 
 		controller = GetComponent<CharacterController>();
+		
 		//animateur 
 		anim = GetComponent<Animator>();
-		Run = false;
-        Jump = false;
-        Attack = false;
-        Attack1 = false;
+
+		
+        // initialisation des objets associés a player 
         sword = GameObject.Find("PlayerS") ;
+
+		fireSword = GameObject.Find("firesword");
+		fireSword.SetActive(false);
+
+		thundersword = GameObject.Find("thundersword");
+		thundersword.SetActive(false);
+
         
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
+		// update de controller 
 		controller = GetComponent<CharacterController>();
+		
 		//actions 
 		if (anim.GetTime() >= time + 0.20f )
         {
@@ -59,8 +96,6 @@ public class Player : MonoBehaviour {
             Attack = true;
            
         }
-        
-
         if (Input.GetKey("joystick button 5"))
         {
             Run = true;
@@ -82,7 +117,7 @@ public class Player : MonoBehaviour {
 
         }
       
-       
+        // gestion de l'animation en fonction des actions de player 
         inputH = Input.GetAxis("Horizontal");
         inputV = Input.GetAxis("Vertical");
         anim.SetFloat("InputH", inputH);
@@ -123,14 +158,14 @@ public class Player : MonoBehaviour {
             anim.speed = 1;
         }
 		
-
-		if (controller.isGrounded)
+		// mouvements de player 
+		if (controller.isGrounded)// le player est il a sol 
 		{
-			Jump = false;
-			anim.SetBool("is grounded", true);
-			dubble_jump = true;
+			Jump = false; // l'aniamtion saut n'as pas besoin d'etre jouée 
+			anim.SetBool("is grounded", true); // le booleen is grounded de l'animator et mis a true 
+			dubble_jump = true; // le double jump est de nouveau possible 
 
-			if (Run)
+			if (Run) // le joueur est il en train de courrir 
 			{
 				Speed = runspeed;
 			}
@@ -138,22 +173,27 @@ public class Player : MonoBehaviour {
 			{
 				Speed = speed;
 			}
-			transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * Time.deltaTime * 100, 0));
-			moveVector = new Vector3(0, 0, Input.GetAxis("Vertical"));
+
+			transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * Time.deltaTime * 100, 0)); // la rotaion de joueur
+
+			moveVector = new Vector3(0, 0, Input.GetAxis("Vertical")); // le deplacement du joueur 
+
 			moveVector = transform.TransformDirection(moveVector);
-			moveVector *= Speed;
-			if (Input.GetKeyDown("joystick button 0"))
+
+			moveVector *= Speed; // on applique la vitesse de deplacements 
+
+			if (Input.GetKeyDown("joystick button 0")) // si le joueur appuis sur la touche x le personnage vas sauter;
 			{
 				moveVector.y = jumpForce;
 				Jump = true;
 			}
 
 		}
-		else
+		else // le joueur est en l'air 
 		{
-			if (Global.dubblejump_allowed == true && dubble_jump == true)
+			if (ddjump_allowed == true && dubble_jump == true)
 			{
-				if (Input.GetKeyDown("joystick button 0"))
+				if (Input.GetKeyDown("joystick button 0")) // il fait un double saut  
 				{
 					moveVector.y = jumpForce;
 					dubble_jump = false;
@@ -162,8 +202,8 @@ public class Player : MonoBehaviour {
 			}
 		}
 
-		moveVector.y -= gravity * Time.deltaTime;
-		controller.Move(moveVector * Time.deltaTime);
+		moveVector.y -= gravity * Time.deltaTime; // on applique la gravitée au joueur 
+		controller.Move(moveVector * Time.deltaTime); // on effectue les deplacements 
 		
 		
 
