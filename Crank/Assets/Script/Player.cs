@@ -157,7 +157,7 @@ public class Player : MonoBehaviour {
         {
             anim.speed = 1;
         }
-		
+		moveVector = new Vector3();
 		// mouvements de player 
 		if (controller.isGrounded)// le player est il a sol 
 		{
@@ -191,8 +191,11 @@ public class Player : MonoBehaviour {
 		}
 		else // le joueur est en l'air 
 		{
+			
+
 			if (ddjump_allowed == true && dubble_jump == true)
 			{
+				
 				if (Input.GetKeyDown("joystick button 0")) // il fait un double saut  
 				{
 					moveVector.y = jumpForce;
