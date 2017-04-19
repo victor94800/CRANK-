@@ -13,7 +13,15 @@ public class Player_money : MonoBehaviour {
     // Use this for initialization
     void Start ()
 	{
-       
+
+		try
+		{
+			Gamecontroller = GameObject.Find("GameController");
+		}
+		catch
+		{
+			Gamecontroller = null;
+		}
 		if (Gamecontroller != null)
 		{
 			Money = Gamecontroller.GetComponent<GameController>().money;

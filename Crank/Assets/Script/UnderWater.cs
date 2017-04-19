@@ -25,7 +25,7 @@ public class UnderWater : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if(tamera.transform.position.y <= 5f)
+        if(tamera.transform.position.y <= 1f)
        {
 
            h.SetActive(true);

@@ -63,23 +63,36 @@ public class Player : MonoBehaviour {
 		anim = GetComponent<Animator>();
 
 		
-        // initialisation des objets associés a player 
+        // inGitialisation des objets associés a player 
         sword = GameObject.Find("PlayerS") ;
-
-		
+		fireSword = GameObject.Find("firesword");
+		thundersword = GameObject.Find("thundersword");
+		try
+		{
+			Gamecontroller = GameObject.Find("GameController");
+		}
+		catch
+		{
+			Gamecontroller = null;
+		}
 
 		if (Gamecontroller!= null && Gamecontroller.GetComponent<GameController>().pos != Vector3.zero)
 		{
-			this.transform.position = Gamecontroller.GetComponent<GameController>().pos;
-			thundersword.SetActive(Gamecontroller.GetComponent<GameController>().item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "thunder_sword")]);
-			fireSword.SetActive(Gamecontroller.GetComponent<GameController>().item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "fire_sword")]);
+			bool active = Gamecontroller.GetComponent<GameController>().item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "thunder_sword")];
+			this.transform.position = Gamecontroller.GetComponent<GameController>().pos + new Vector3 (0,6,0);
+			thundersword.SetActive(active);
+			print(Gamecontroller.GetComponent<GameController>().item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "thunder_sword")]);
+			print(Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "thunder_sword"));
+			active = Gamecontroller.GetComponent<GameController>().item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "fire_sword")];
+
+			fireSword.SetActive(active);
 		}
 		else
 		{
-			fireSword = GameObject.Find("firesword");
+			
 			fireSword.SetActive(false);
 
-			thundersword = GameObject.Find("thundersword");
+			
 			thundersword.SetActive(false);
 		}
         
