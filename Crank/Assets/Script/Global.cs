@@ -1,18 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Global : MonoBehaviour {
 
-	public static bool dubblejump_allowed = false;
+	
 	// Gameoject utilisés par Global
 	GameObject enemy;
 
+
+
+	//argent du joueur 
+	public int Money;
+	public Text moneytext;
+
 	// list des Enemy crer par GLobal;
 	public static List<GameObject> Enemys;
+
+
 	// Use this for initialization
 	void Start ()
 	{
+		
 		enemy = GameObject.Find("Enemy");
 
 	}
@@ -22,6 +32,14 @@ public class Global : MonoBehaviour {
 	{
 		
 	}
+
+
+
+	
+
+
+
+
 	public class AI
 	{
 		int type;

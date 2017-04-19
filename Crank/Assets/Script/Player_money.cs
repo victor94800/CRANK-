@@ -6,17 +6,30 @@ using UnityEngine;
 public class Player_money : MonoBehaviour {
     public int Money;
     public Text moneytext;
+
+	//controller
+	public GameObject Gamecontroller;
    
     // Use this for initialization
-    void Start () {
-        Money = 0;
-        
-        moneytext.text = "money :" + Money.ToString();
+    void Start ()
+	{
+       
+		if (Gamecontroller != null)
+		{
+			Money = Gamecontroller.GetComponent<GameController>().money;
+		}
+		else
+		{
+			Money = 0;
+		}
+		moneytext.text = "money :" + Money.ToString();
+		
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+	{
+		moneytext.text = "money :" + Money.ToString();
 	}
     public void AddMoney(int a)
     {
@@ -24,4 +37,9 @@ public class Player_money : MonoBehaviour {
         moneytext.text = "money :" + Money.ToString();
        
     }
+	public void lossMOney(int a)
+	{
+		Money -= a;
+		moneytext.text = "money :" + Money.ToString();
+	}
 }

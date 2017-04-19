@@ -16,7 +16,7 @@ public class Mission_1 : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		is_jump = Global.dubblejump_allowed;
+		
 		if (is_jump)
 		{
 			Etuto.SetActive(true);
