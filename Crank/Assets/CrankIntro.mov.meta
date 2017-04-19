@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Crank/Assets/CrankIntro.mov.meta
 guid: eb7db8c571b86a247be6daa05003c173
 timeCreated: 1491076591
+=======
+guid: 30ca3b6f199ca324a924d0101b8763e1
+timeCreated: 1491327519
+>>>>>>> master:Crank/Assets/CrankIntro.mov.meta
 licenseType: Free
 MovieImporter:
   serializedVersion: 1

@@ -9,13 +9,14 @@ public class personcontroller : MonoBehaviour {
     public float gravity = 10.0f;
     public float jumpForce = 5000.0f;
     public float speed = 10;
+	public float runspeed = 20;
     private Vector3 moveVector = new Vector3();
 	// Use this for initialization
 	void Start ()
     {
         controller = GetComponent<CharacterController>();
-
 		
+
 	}
 	
 	// Update is called once per frame
@@ -24,10 +25,9 @@ public class personcontroller : MonoBehaviour {
         if (controller.isGrounded)
         {
             verticalVelocity = -gravity * Time.deltaTime;
-            if (Input.GetKey("joystick button 0") )
+            if (Input.GetKeyDown("joystick button 0") )
             {
-               // GetComponent<Rigidbody>().AddForce(Vector3.up * 200);
-                verticalVelocity = jumpForce;
+                verticalVelocity = jumpForce  ;
             }
 
         }
@@ -36,14 +36,21 @@ public class personcontroller : MonoBehaviour {
             verticalVelocity = -gravity * Time.deltaTime;
 
         }
-        moveVector = Vector3.zero;
-        moveVector.x = Input.GetAxis("Horizontal")* speed;
-        transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") , 0));
-        moveVector.y = verticalVelocity;
-        moveVector.z = Input.GetAxis("Vertical")* speed;
+		if  (Input.GetKeyDown("joystick button 5"))
+		{
+			//moveVector = new Vector3(0, 0, Input.GetAxis("Vertical") * runspeed);
+		}
+		else
+		{
+			//moveVector = new Vector3(0, 0, Input.GetAxis("Vertical") * speed);
+		}
+		moveVector = transform.TransformDirection(moveVector);
         
+        //transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal")*Time.deltaTime*100 , 0));
+        moveVector.y = verticalVelocity;
         controller.Move(moveVector * Time.deltaTime); 
 		
 	}
+	
   
 }

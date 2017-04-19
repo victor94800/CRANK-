@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class damaged : MonoBehaviour {
     public int dmg;
-    Animator anim;
-    
+  
     // Use this for initialization
     void Start ()
     {
-		anim = GameObject.Find("Player").GetComponent<Animator>();
+		
        
     }
 
@@ -19,7 +18,7 @@ public class damaged : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider hit)
     {
-        
+        // dit a l'enemy qu'il a ete fappé 
         if (hit.transform.tag == "enemy" )
         {
             
