@@ -191,8 +191,11 @@ public class Player : MonoBehaviour {
 		}
 		else // le joueur est en l'air 
 		{
+			
+
 			if (ddjump_allowed == true && dubble_jump == true)
 			{
+				
 				if (Input.GetKeyDown("joystick button 0")) // il fait un double saut  
 				{
 					moveVector.y = jumpForce;
@@ -201,7 +204,7 @@ public class Player : MonoBehaviour {
 				}
 			}
 		}
-
+		
 		moveVector.y -= gravity * Time.deltaTime; // on applique la gravitée au joueur 
 		controller.Move(moveVector * Time.deltaTime); // on effectue les deplacements 
 		
