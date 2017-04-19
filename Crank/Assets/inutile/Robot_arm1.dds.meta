@@ -1,8 +1,9 @@
 fileFormatVersion: 2
-guid: 99cdfec3bd322fb4f81271e7e28fa653
-timeCreated: 1492546554
+guid: 9188095ee81db4b4fa02c463a9489dca
+timeCreated: 1492546237
 licenseType: Free
-NativeFormatImporter:
+DDSImporter:
+  isReadable: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
