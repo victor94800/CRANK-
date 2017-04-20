@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/scenes/scene1.unity
-=======
-- path: Assets/scenes/shop.unity
->>>>>>> origin/master
+- path: Assets/scenes/menuCrankFonctionnel.unity
   isLoaded: 1
   isActive: 1

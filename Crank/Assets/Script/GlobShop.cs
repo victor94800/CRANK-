@@ -23,21 +23,33 @@ public class GlobShop : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (money >= 300)
+        if (money >= 300 && isdoublejumpallowed == false)
         {
-            isdoublejumpallowed = true;
+            //isdoublejumpallowed = true;
             button1.interactable = true;
 
         }
-        if (money>=1000)
+		else
+		{
+			button1.interactable = false;
+		}
+        if (money>=1000  && isthunderswordallowed == false)
         {
-            ISfireswordallowed = true;
+            //ISfireswordallowed = true;
             button2.interactable = true;
         }
-        if (money>=2000)
+		else
+		{
+			button2.interactable = false;
+		}
+        if (money>=2000 && isdoublejumpallowed == false)
         {
-            isthunderswordallowed = true;
-            button3.interactable = true;
-        }
+            //isthunderswordallowed = true;
+			button3.interactable = true;
+		}
+		else
+		{
+			button3.interactable = false;
+		}
 	}
 }

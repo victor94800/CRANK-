@@ -25,12 +25,14 @@ public class Player_money : MonoBehaviour {
 		if (Gamecontroller != null)
 		{
 			Money = Gamecontroller.GetComponent<GameController>().money;
+			moneytext.text = "money :" + Money.ToString();
 		}
 		else
 		{
 			Money = 0;
+			moneytext.text = "money :" + Money.ToString();
 		}
-		moneytext.text = "money :" + Money.ToString();
+		//moneytext.text = "money :" + Money.ToString();
 		
 	}
 	

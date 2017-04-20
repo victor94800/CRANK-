@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameController : MonoBehaviour {
 	//varaible
 	// global 
 	public GameObject global;
-
+	public GameObject shop;
 	// player information 
 	public GameObject player;
 	public int life = 100 ;
@@ -32,12 +33,34 @@ public class GameController : MonoBehaviour {
 		try
 		{
 			player = GameObject.Find("Player");
-			global = GameObject.Find("Global");
+			
+			
 
 		}
 		catch
 		{
+			player = null;
+		}
+		try
+		{
+			player = GameObject.Find("Player");
+			global = GameObject.Find("Global");
 
+
+		}
+		catch
+		{
+			global = null;
+		}
+		try
+		{
+			shop = GameObject.Find("GlobShop");
+
+
+		}
+		catch
+		{
+			shop = null;
 		}
 		if (player != null)
 		{
@@ -47,6 +70,14 @@ public class GameController : MonoBehaviour {
 		if (global != null)
 		{
 			money = global.GetComponent<Player_money>().Money;
+		}
+		if (shop != null)
+		{
+			money = shop.GetComponent<ChangeButtonNameWhenCilck>().money;
+			item_allowed[Array.IndexOf(item_name, "fire_sword")] = shop.GetComponent<ChangeButtonNameWhenCilck>().ISfireswordallowed;
+			item_allowed[Array.IndexOf(item_name, "double_jump")] = shop.GetComponent<ChangeButtonNameWhenCilck>().isdoublejumpallowed;
+			item_allowed[Array.IndexOf(item_name, "thunder_sword")] = shop.GetComponent<ChangeButtonNameWhenCilck>().isthunderswordallowed;
+
 		}
 
 		

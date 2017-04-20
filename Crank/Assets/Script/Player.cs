@@ -78,23 +78,16 @@ public class Player : MonoBehaviour {
 
 		if (Gamecontroller!= null && Gamecontroller.GetComponent<GameController>().pos != Vector3.zero)
 		{
-			bool active = Gamecontroller.GetComponent<GameController>().item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "thunder_sword")];
+			
 			this.transform.position = Gamecontroller.GetComponent<GameController>().pos + new Vector3 (0,6,0);
-			thundersword.SetActive(active);
-			print(Gamecontroller.GetComponent<GameController>().item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "thunder_sword")]);
-			print(Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "thunder_sword"));
-			active = Gamecontroller.GetComponent<GameController>().item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "fire_sword")];
-
-			fireSword.SetActive(active);
+			
 		}
-		else
-		{
 			
 			fireSword.SetActive(false);
 
 			
 			thundersword.SetActive(false);
-		}
+		
         
     }
 	
