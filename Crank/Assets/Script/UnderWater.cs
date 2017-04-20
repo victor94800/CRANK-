@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UnderWater : MonoBehaviour {
 	private Transform tamera;
 	GameObject h;
-	private bool isunderwater;
+	public bool isunderwater;
 	private Color Normalcolor;
 	private Color UnderwaterColor;
 
@@ -38,19 +38,21 @@ public class UnderWater : MonoBehaviour {
 	void SetUnderwater()
 	{
 		RenderSettings.fogColor = UnderwaterColor;
-		RenderSettings.fogDensity = 0.06f;
+		RenderSettings.fogDensity = 0.05f;
 	}
-	/*public void OnTriggerEnter(CharacterController other)
+	public void OnTriggerEnter(Collider other)
 	{
 		if (other.transform.name == "Camera")
 		{
 			isunderwater = true;
 		}
-	}*/
+	}
 	public void OnTriggerStay(Collider other)
 	{
+		print("test");
 		if (other.transform.name == "Camera")
 		{
+			
 			isunderwater = true;
 		}
 	}
@@ -58,6 +60,7 @@ public class UnderWater : MonoBehaviour {
 	{
 		if (other.transform.name == "Camera")
 		{
+			
 			isunderwater = false;
 		}
 	}
