@@ -34,6 +34,8 @@ public class player4 : MonoBehaviour {
 	public float jumpForce = 5000.0f;
 	public float speed = 10;
 	public float runspeed = 20;
+	public float rotatespeed;
+	public float sensibility;
 
 	// game object associer a player
 	GameObject sword;
@@ -103,7 +105,7 @@ public class player4 : MonoBehaviour {
 
 		//actions 
 
-		//transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * Time.deltaTime * 100, 0));
+		moveVector = Vector3.zero;
 		// mouvements de player 
 		if (controller.isGrounded)// le player est il a sol 
 		{
@@ -120,45 +122,61 @@ public class player4 : MonoBehaviour {
 			{
 				Speed = speed;
 			}
-
-			//transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * Time.deltaTime * 100, 0)); // la rotaion de joueur
-
-			//moveVector = new Vector3(0, 0, Input.GetAxis("Vertical")); // le deplacement du joueur 
-			if (Input.GetAxis("Horizontal") != 0)
-			{                                                              //raport camera
-				//moveVector = new Vector3(0, 0, Input.GetAxis("Horizontal"));
-				//camera.transform.rotation = Quaternion.Euler(camera.transform.rotation.x, transform.rotation.y, camera.transform.rotation.z);
-
-			}
-			else
+			print(Input.GetAxis("Horizontal2"));
+			/*if (Input.GetAxis("Horizontal2") > 0.5 || Input.GetAxis("Horizontal2") < -0.5 )
 			{
-				//transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain), 10f);
-				//camera.transform.rotation = transform.rotation;
+				transform.Rotate(new Vector3(0f, Input.GetAxis("Horizontal2") * Time.deltaTime * sensibility, 0f));
+			}*/
+			if  (Input.GetAxis("Vertical2") > 0.5 || Input.GetAxis("Vertical2") < -0.5)
+			{
+				
+				transform.Rotate(new Vector3(Input.GetAxis("Horizontal2") * Time.deltaTime * sensibility, 0f, 0f));
 			}
-			//moveVector = transform.TransformDirection(moveVector);
+			if (Input.GetAxis("Vertical") != 0)
+			{
 
-			//moveVector *= Speed; // on applique la vitesse de deplacements 
+				//var target = GameObject.Find("center");
+				//Vector3 newRotation = new Vector3(0, Input.GetAxis("Horizontal2") * Time.deltaTime * sensibility, 0);
+				//this.transform.eulerAngles = new Vector3(0f, Input.GetAxis("Horizontal2") * Time.deltaTime * sensibility, 0f);
+				//transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal2") * Time.deltaTime * 100, 0));
+				//transform.rotation =  Quaternion.Euler(0f,camera.transform.rotation.y,0f);
+				//transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(), 10f);
+				moveVector = new  Vector3(0, 0, Input.GetAxis("Vertical")*Speed); // le deplacement du joueur 
+				//transform.rotation = new Quaternion(0f,transform.rotation.y,0f,0f);
+
+				moveVector = transform.TransformDirection(moveVector);
+
+				//moveVector *= Speed;
+			}// on applique la vitesse de deplacements 
 
 			if (Input.GetKeyDown("joystick button 0")) // si le joueur appuis sur la touche x le personnage vas sauter;
 			{
 
-				//verticalVelocity  = jumpForce;
-				//moveVector.y = jumpForce;
+				verticalVelocity  = jumpForce;
+				moveVector.y = jumpForce;
 			}
 
 		}
-		else
+		else // le joueur n'est pas au sol
 		{
-			//verticalVelocity
-			moveVector.y = -gravity * Time.deltaTime;
+			verticalVelocity  = -gravity * Time.deltaTime;
+			moveVector = new Vector3(0, 0, Input.GetAxis("Vertical") * Speed); // le deplacement du joueur 
+
+
+			moveVector = transform.TransformDirection(moveVector);
 		}
 		//moveVector = Vector3.zero;
-		/*moveVector.x = Input.GetAxis("Horizontal") * 5f;
+		/*if (Input.GetAxis("Horizontal") != 1/*Input.GetAxis("Horizontal") < 0.7 && Input.GetAxis("Horizontal") > -0.7)
+		{
+			moveVector.x = Input.GetAxis("Horizontal") * 5f;
+		}
+		else*/
+		//{
+			transform.RotateAround(camera.transform.position, Vector3.up, Input.GetAxis("Horizontal") * rotatespeed* Time.deltaTime);
+		//}
+		print(controller.isGrounded);
 		moveVector.y = verticalVelocity; // on applique la gravitée au joueur 
-		moveVector.z = Input.GetAxis("Vertical") * 5f;
-		int y = 1;
-		//if (transform.position.)*/
-
+		//moveVector.z = Input.GetAxis("Vertical") * 5f;
 		controller.Move(moveVector * Time.deltaTime); // on effectue les deplacements 
 
 

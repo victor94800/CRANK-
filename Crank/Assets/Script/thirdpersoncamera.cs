@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class thirdpersoncamera : MonoBehaviour {
 	public Transform Lookat;
+	public Transform target;
 	public Transform camTransform;
+
+	private float currentX = 0f;
+	private float currentY = 0f;
 
 	private Camera cam;
 
@@ -25,15 +29,19 @@ public class thirdpersoncamera : MonoBehaviour {
 		if (dirtomain.magnitude > distance || dirtomain.magnitude < distance -2)
 		{
 			Vector3 dir = new Vector3(0, 0, -distance);
-			Quaternion rotation = Quaternion.Euler(0, 0, 0);
-			camTransform.position = Lookat.position + rotation * dir;
+			Quaternion rotation = Quaternion.Euler(currentX, currentY, 0);
+			camTransform.position = target.position + rotation * dir;
 			camTransform.LookAt(Lookat.position);
 		}
 		camTransform.LookAt(Lookat.position);
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		
+		currentY = Input.GetAxis("Horizontal2");
+		target.rotation  = Quaternion.Euler(currentX, currentY, 0);
+
 	}
 }

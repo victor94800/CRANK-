@@ -3,68 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class follow : MonoBehaviour {
-    private Transform Target;
-	public GameObject target;
-    Vector3 dirtomain;
-	public int high = 1;
-	public bool lookat = true;
-	public float speed_follow = 10f;
-	public float distance;
-	public bool following;
-	public int x = 1;
-	public int y = 1 ;
-	public int z = 1;
-	public bool following_under_distance;
-    // Use this for initialization
-    void Start () {
-        Target = target.transform;
-    }
+	public Transform Lookat;
+	public Transform target;
 	
-	// Update is called once per frame
-	void Update ()
-    {
-		dirtomain = target.transform.position - transform.position;
+	public Transform camTransform;
+
+	private Camera cam;
+
+	public float distance;
+	public float follow_speed;
+
+	public Vector3 dirtomain;
+	// Use this for initialization
+	void Start()
+	{
+		camTransform = transform;
+		cam = Camera.main;
+
+
+	}
+	private void LateUpdate()
+	{
+			Lookat = GameObject.Find("playerlookat").transform;
+		    target = GameObject.Find("playerlookat").transform;
+		dirtomain = Lookat.transform.position - transform.position;
 		
-
-
-		if (following_under_distance)
+			Vector3 dir = new Vector3(0, -1, -distance);
+			Quaternion rotation = Quaternion.Euler(0, 0, 0);
+			camTransform.position = target.position + rotation * dir;
+		//camTransform.LookAt(Lookat.position);
+		if (target.GetComponent<CharacterController>().isGrounded)
 		{
-			if (dirtomain.magnitude > distance || dirtomain.magnitude < distance - 3)
-			{
-				transform.position = dirtomain + new Vector3(0, 0, distance);
-			}
-			if (lookat)
-			{
-				transform.LookAt(target.transform);
-				//transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain), speed_follow);
-			}
+			//camTransform.LookAt(Lookat.position);
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain), follow_speed);
 		}
-		else
-		{
 
+	}
 
-			if (following)
-			{
-				
-					
-						//transform.position = new Vector3(Target.transform.position.x, Target.transform.position.y + high, Target.transform.position.z);
-						if (lookat)
-						{
-							transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain), speed_follow);
-						}
-				        transform.position = new Vector3(Target.transform.position.x * x, Target.transform.position.y + high * y, Target.transform.position.z - distance * z);
-			}
-			else
-			{
-				if (Target.transform.position != transform.position)
-				{
-					//transform.position = new Vector3(Target.transform.position.x, Target.transform.position.y + high, Target.transform.position.z);
-					if (lookat)
-					{
-						transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain), speed_follow);
-					}
-				}
-			}
-		}
+	// Update is called once per frame
+	void Update()
+	{
+
 	}
 }
