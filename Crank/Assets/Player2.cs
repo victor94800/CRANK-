@@ -23,7 +23,10 @@ public class Player2 : MonoBehaviour
 	private bool ddjump = false;
 
 
-	
+	public float SPEED = 5;
+	public float WIDTH = 5;
+	public float HEIGH = 5;
+	float timecounter = 0 ;
 
 	// pysique de player 
 	private float verticalVelocity;
@@ -56,6 +59,7 @@ public class Player2 : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
+		
 		// initialisation dest component de player 
 		controller = GetComponent<CharacterController>();
 
@@ -93,8 +97,13 @@ public class Player2 : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		// update de controller 
-		controller = GetComponent<CharacterController>();
+		/* timecounter += Time.deltaTime * speed;
+			float x = Mathf.Cos(timecounter* Input.GetAxis("Horizontal"));
+		    float y = 0;
+			float z = Mathf.Sin(timecounter *Input.GetAxis("Horizontal"));
+		transform.position = new Vector3(x, y, z);*/
+	// update de controller 
+	controller = GetComponent<CharacterController>();
 
 		//actions 
 
@@ -115,16 +124,16 @@ public class Player2 : MonoBehaviour
 				Speed = speed;
 			}
 
-			transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * Time.deltaTime * 100, 0)); // la rotaion de joueur
+			//transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * Time.deltaTime * 100, 0)); // la rotaion de joueur
 			
-				moveVector = new Vector3(0, 0, Input.GetAxis("Vertical")); // le deplacement du joueur 
-																		   if (Input.GetAxis("Vertical") > 0)
+			moveVector = new Vector3(0, 0, Input.GetAxis("Vertical")); // le deplacement du joueur 
+																		 /*  if (Input.GetAxis("Vertical") > 0)
 																		   {															   //raport camera
 																		   if (camera.transform.rotation.y != transform.rotation.y)
 																		   {
 																			   transform.rotation = Quaternion.Euler(transform.rotation.x, camera.transform.rotation.y, transform.rotation.z);
 																		   }
-																		   }
+																		   }*/
 			moveVector = transform.TransformDirection(moveVector);
 
 			moveVector *= Speed; // on applique la vitesse de deplacements 
@@ -152,10 +161,11 @@ public class Player2 : MonoBehaviour
 			}
 		}
 
-		moveVector.y -= gravity * Time.deltaTime; // on applique la gravitée au joueur 
-		controller.Move(moveVector * Time.deltaTime); // on effectue les deplacements 
-
-
+		//moveVector.y -= gravity * Time.deltaTime; // on applique la gravitée au joueur 
+		//moveVector.x = Input.GetAxis("Vertical");
+		//controller.Move(moveVector * Time.deltaTime); // on effectue les deplacements 
+													  //transform.position = new Vector3(transform.position.x , transform.position.y, camera.transform.position.z );
+		transform.RotateAround(camera.transform.position, Vector3.up, Input.GetAxis("Horizontal")*Speed * Time.deltaTime);
 
 
 
