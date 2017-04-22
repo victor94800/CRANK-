@@ -24,8 +24,8 @@ public class follow : MonoBehaviour {
 	}
 	private void LateUpdate()
 	{
-			Lookat = GameObject.Find("playerlookat").transform;
-		    target = GameObject.Find("playerlookat").transform;
+			//Lookat = GameObject.Find("playerlookat").transform;
+		    //target = GameObject.Find("player").transform;
 		dirtomain = Lookat.transform.position - transform.position;
 		
 			Vector3 dir = new Vector3(0, -1, -distance);
@@ -41,8 +41,5 @@ public class follow : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update()
-	{
-
-	}
+	
 }
