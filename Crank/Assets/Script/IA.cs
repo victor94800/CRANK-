@@ -13,7 +13,7 @@ public class IA : MonoBehaviour
 	public Vector3 pos;
 	public bool Attack;
 	bool follow;
-
+	public int gravity;
 
 	// atribut relatif au deplacement de l'ia 
     Vector3 movedirection;
@@ -35,34 +35,37 @@ public class IA : MonoBehaviour
 	Vector3 dirtomain; // distance entre l'ia et le joueur
 	Transform pt;
 
-	
-    
-    
+	CharacterController cc;
+
+	Vector3 mouvedirection; 
+
     void Start()
     {
 		// aniamtion 
-		anim = this.GetComponentInChildren<Animator>();
+		/*anim = this.GetComponentInChildren<Animator>();
 		anim.SetTime(1);
 
 		// initialistation des deplacements 
 		follow = false;
         newrotation = Random.Range(0, 361);
-        dailyrotation = 2;
+        dailyrotation = 2;*/
 
-	
-        
+
+		cc = GetComponent<CharacterController>();
         
        
         // intitailistaton des attribut ou des objets utilisés par l'IA 
-        rtn = COINS.transform.rotation;
+        //rtn = COINS.transform.rotation;
     }
 
     
     void Update()
     {
-
+		//mouvedirection = Vector3.zero;
+		mouvedirection = Vector3.forward * speed;
+		mouvedirection = transform.TransformDirection(mouvedirection);
 		// update des attribut de deplacements 
-        pt = GameObject.Find("Player").transform;
+		pt = GameObject.Find("Player").transform;
         dirtomain = GameObject.Find("Player").transform.position - transform.position;
         newrotation = Random.Range(0, 361);
         
@@ -98,9 +101,8 @@ public class IA : MonoBehaviour
         {
 
            
-            movedirection = Vector3.forward * speed;
-            movedirection = transform.TransformDirection(movedirection);
-            transform.Translate(new Vector3(0, 0, 0.1f));
+            
+           // movedirection = transform.TransformDirection(movedirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0,newrotation,0), 0.5f * Time.deltaTime);
         }
 		// verifie si l'ia est toujour en vie 
@@ -125,7 +127,8 @@ public class IA : MonoBehaviour
 
         // fait attaque ou non l'ia 
         anim.SetBool("Attack", Attack);
-
+		mouvedirection.y -= gravity * Time.deltaTime;
+		cc.Move(mouvedirection * Time.deltaTime);
     }
 
     private void OnCollisionEnter(Collision collision)
