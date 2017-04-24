@@ -227,7 +227,7 @@ public class player4 : MonoBehaviour {
 		//{
 			transform.RotateAround(camera.transform.position, Vector3.up, Input.GetAxis("Horizontal") * rotatespeed* Time.deltaTime);
 		//}
-		print(controller.isGrounded);
+		
 		moveVector.y = verticalVelocity; // on applique la gravitée au joueur 
 		//moveVector.z = Input.GetAxis("Vertical") * 5f;
 		controller.Move(moveVector * Time.deltaTime); // on effectue les deplacements 

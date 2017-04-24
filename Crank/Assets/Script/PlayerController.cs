@@ -3,20 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-    public float speed = 10f ;
-    public float rotationspeed = 10f;
-    public float saut = 1f;
-    private Transform TargetCamera;
+    
+	public GameObject water;
     private float speed2;
-    public float run;
-    private int jump;
+    
     private int time;
-    GameObject l;
-    Animator anim;
+    GameObject barre_apnee;
+    
     GameObject player;
     healthBarre Barredevie ;
-    apnee Barredapnee ;
-    Animation anime;
+    
+    
     public int dmg;
     public int Life;
     public int life;
@@ -33,22 +30,22 @@ public class PlayerController : MonoBehaviour {
     void Start ()
     {
         // on crre une nouvelle barre de vie et d'apnee 
-        Barredapnee = new apnee();
+       
         Barredevie = new healthBarre();
         // on recupere l'objet apnee barre et on la desactive 
-        l = GameObject.Find("apnee barre");
-        l.SetActive(false);
-        // on recupere l'objet Camera associe au player
-        TargetCamera = GameObject.Find("Camera").transform;
+       
+        barre_apnee.SetActive(false);
+		// on recupere l'objet Camera associe au player
+		
         // on initialise l'anim a l'animateur du personnage 
-        anim = this.GetComponent<Animator>();
+        
         // on set les valeur associe a la barre de vie a la vie et a l'apnee;
         life = Life;
         Barredevie.max = life;
        
         Barredevie.valeur = life;
-        Barredapnee.max = apnee;
-        anim.SetTime(1);
+        
+       
         Dmg = dmg;
 
 		if (Gamecontroller != null )
@@ -64,8 +61,8 @@ public class PlayerController : MonoBehaviour {
 			Barredevie.max = life;
 
 			Barredevie.valeur = life;
-			Barredapnee.max = apnee;
-			anim.SetTime(1);
+			
+			
 			Dmg = dmg;
 		}
     }
@@ -73,44 +70,7 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
-       // verifi si la camera est sous l'eau ou non ;
-        if (TargetCamera.transform.position.y <= 5f)
-        {
-            l.SetActive(true);
-            Barredapnee.valeur -= 0.1f;
-        }
-        else
-        {
-           if (Barredapnee.valeur < Barredapnee.max)
-            {
-                Barredapnee.valeur += 1;
-            }
-            else
-            {
-                l.SetActive(false);
-            }
-         }
-
-        if (Input.GetKey("joystick button 1"))
-        {
-            Barredevie.valeur -= dmg;
-        }
-        if (Input.GetKey("joystick button 6"))
-        {
-            Barredevie.valeur += dmg;
-        } 
-
-        if (TargetCamera.transform.position.y <= 5)
-        {
-            speed2 = 0.05f;
-        }
-       else
-        {
-            speed2 = speed;
-        }
-
-        if (Barredapnee.valeur == 0)
+     if (this.GetComponent<playerunderwtaer>().apnee == 0)
         {
             Barredevie.valeur -= dmg;
         }
