@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player : MonoBehaviour {
 	// attribut de player 
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour {
 	// autres 
 	double time;
 	double time2;
+	public GameObject Gamecontroller;
 
 	// capacites de player a debloquer
 	private bool TunderSword_allowed  = false;
@@ -61,15 +63,31 @@ public class Player : MonoBehaviour {
 		anim = GetComponent<Animator>();
 
 		
-        // initialisation des objets associés a player 
+        // inGitialisation des objets associés a player 
         sword = GameObject.Find("PlayerS") ;
-
 		fireSword = GameObject.Find("firesword");
-		fireSword.SetActive(false);
-
 		thundersword = GameObject.Find("thundersword");
-		thundersword.SetActive(false);
+		try
+		{
+			Gamecontroller = GameObject.Find("GameController");
+		}
+		catch
+		{
+			Gamecontroller = null;
+		}
 
+		if (Gamecontroller!= null && Gamecontroller.GetComponent<GameController>().pos != Vector3.zero)
+		{
+			
+			this.transform.position = Gamecontroller.GetComponent<GameController>().pos + new Vector3 (0,6,0);
+			
+		}
+			
+			fireSword.SetActive(false);
+
+			
+			thundersword.SetActive(false);
+		
         
     }
 	
@@ -207,10 +225,10 @@ public class Player : MonoBehaviour {
 		
 		moveVector.y -= gravity * Time.deltaTime; // on applique la gravitée au joueur 
 		controller.Move(moveVector * Time.deltaTime); // on effectue les deplacements 
-		
-		
+
 
 		
-		
+
+
 	}
 }
