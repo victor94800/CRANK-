@@ -174,10 +174,10 @@ public class player4 : MonoBehaviour {
 
 			if (Input.GetKeyDown("joystick button 0")) // si le joueur appuis sur la touche x le personnage vas sauter;
 			{
-					verticalVelocity =  jumpForce;
+				verticalVelocity = jumpForce;
 
-			
 
+			}
 				//var target = GameObject.Find("center");
 				//Vector3 newRotation = new Vector3(0, Input.GetAxis("Horizontal2") * Time.deltaTime * sensibility, 0);
 				//this.transform.eulerAngles = new Vector3(0f, Input.GetAxis("Horizontal2") * Time.deltaTime * sensibility, 0f);
@@ -205,7 +205,7 @@ public class player4 : MonoBehaviour {
 		{
 
 			verticalVelocity  -= gravity * Time.deltaTime;
-			
+			walk = false;
 		}
 
 
@@ -217,7 +217,7 @@ public class player4 : MonoBehaviour {
 
 
 			//moveVector = transform.TransformDirection(moveVector);
-		}
+		
 		//moveVector = Vector3.zero;
 		/*if (Input.GetAxis("Horizontal") != 1/*Input.GetAxis("Horizontal") < 0.7 && Input.GetAxis("Horizontal") > -0.7)
 		{
