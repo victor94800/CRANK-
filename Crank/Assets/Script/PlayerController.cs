@@ -22,9 +22,13 @@ public class PlayerController : MonoBehaviour {
     public int life;
     public int apnee;
     public  int Dmg;
-	
-   
-    // Use this for initialization
+
+
+	// Use this for initialization
+
+
+	// need objects 
+	public GameObject Gamecontroller;
 
     void Start ()
     {
@@ -46,6 +50,24 @@ public class PlayerController : MonoBehaviour {
         Barredapnee.max = apnee;
         anim.SetTime(1);
         Dmg = dmg;
+
+		if (Gamecontroller != null )
+		{
+			life = Gamecontroller.GetComponent<GameController>().life;
+			Barredevie.max = life;
+
+			Barredevie.valeur = life;
+		}
+		else
+		{
+			life = Life;
+			Barredevie.max = life;
+
+			Barredevie.valeur = life;
+			Barredapnee.max = apnee;
+			anim.SetTime(1);
+			Dmg = dmg;
+		}
     }
 
     // Update is called once per frame
