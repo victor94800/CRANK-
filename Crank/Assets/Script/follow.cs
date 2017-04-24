@@ -9,6 +9,7 @@ public class follow : MonoBehaviour {
 	public Transform camTransform;
 
 	private Camera cam;
+	public GameObject water;
 
 	public float distance;
 	public float follow_speed;
@@ -32,7 +33,7 @@ public class follow : MonoBehaviour {
 			Quaternion rotation = Quaternion.Euler(0, 0, 0);
 			camTransform.position = target.position + rotation * dir;
 		//camTransform.LookAt(Lookat.position);
-		if (target.GetComponent<CharacterController>().isGrounded)
+		if (target.GetComponent<CharacterController>().isGrounded || water.GetComponent<UnderWater>().isunderwater)
 		{
 			//camTransform.LookAt(Lookat.position);
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain), follow_speed);
