@@ -148,7 +148,7 @@ public class player4 : MonoBehaviour {
 				Speed = speed;
 			}
 
-			print(Input.GetAxis("Horizontal2"));
+			
 
 			if (Input.GetAxis("Horizontal2") > 0.5 || Input.GetAxis("Horizontal2") < -0.5 )
 			{
@@ -212,7 +212,7 @@ public class player4 : MonoBehaviour {
 		transform.RotateAround(camera.transform.position, Vector3.up, Input.GetAxis("Horizontal") * rotatespeed* Time.deltaTime);
 
 
-			verticalVelocity  = -gravity * Time.deltaTime;
+			
 			//moveVector = new Vector3(0, 0, Input.GetAxis("Vertical") * Speed); // le deplacement du joueur 
 
 

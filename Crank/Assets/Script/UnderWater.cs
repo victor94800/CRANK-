@@ -38,7 +38,7 @@ public class UnderWater : MonoBehaviour {
 		{
 			SetNormal();
 			player.GetComponent<playerunderwtaer>().enabled = false;
-			player.GetComponent<player4>().enabled = true;
+			
 			
 		}
 

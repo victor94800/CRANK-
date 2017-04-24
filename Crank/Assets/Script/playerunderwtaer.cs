@@ -38,6 +38,7 @@ public class playerunderwtaer : MonoBehaviour {
 			playerlookat.transform.Translate(0, 3, 0);
 			swim = false;
 		}
+		this.GetComponent<player4>().enabled = true;
 	}
 	void Start ()
 	{

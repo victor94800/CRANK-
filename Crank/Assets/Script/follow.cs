@@ -35,12 +35,12 @@ public class follow : MonoBehaviour {
 		//camTransform.LookAt(Lookat.position);
 		if (target.GetComponent<CharacterController>().isGrounded || water.GetComponent<UnderWater>().isunderwater)
 		{
-			//camTransform.LookAt(Lookat.position);
+			
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain), follow_speed);
 		}
 
 	}
 
-	// Update is called once per frame
+	
 	
 }
