@@ -147,7 +147,11 @@ public class player4 : MonoBehaviour {
 			{
 				Speed = speed;
 			}
+<<<<<<< HEAD
 		
+=======
+			print(Input.GetAxis("Horizontal2"));
+>>>>>>> origin/master
 			if (Input.GetAxis("Horizontal2") > 0.5 || Input.GetAxis("Horizontal2") < -0.5 )
 			{
 				transform.Rotate(new Vector3(0f, Input.GetAxis("Horizontal2") * Time.deltaTime * sensibility, 0f));
@@ -157,6 +161,7 @@ public class player4 : MonoBehaviour {
 				
 				transform.Rotate(new Vector3(Input.GetAxis("Horizontal2") * Time.deltaTime * sensibility, 0f, 0f));
 			}*/
+<<<<<<< HEAD
 			if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
 			{
 				
@@ -172,11 +177,35 @@ public class player4 : MonoBehaviour {
 			if (Input.GetKeyDown("joystick button 0")) // si le joueur appuis sur la touche x le personnage vas sauter;
 			{
 					verticalVelocity =  jumpForce;
+=======
+			
+
+				//var target = GameObject.Find("center");
+				//Vector3 newRotation = new Vector3(0, Input.GetAxis("Horizontal2") * Time.deltaTime * sensibility, 0);
+				//this.transform.eulerAngles = new Vector3(0f, Input.GetAxis("Horizontal2") * Time.deltaTime * sensibility, 0f);
+				//transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal2") * Time.deltaTime * 100, 0));
+				//transform.rotation =  Quaternion.Euler(0f,camera.transform.rotation.y,0f);
+				//transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(), 10f);
+				moveVector = new  Vector3(0, 0, Input.GetAxis("Vertical")*Speed); // le deplacement du joueur 
+				//transform.rotation = new Quaternion(0f,transform.rotation.y,0f,0f);
+
+				moveVector = transform.TransformDirection(moveVector);
+
+				//moveVector *= Speed;
+			// on applique la vitesse de deplacements 
+
+			if (Input.GetKeyDown("joystick button 0")) // si le joueur appuis sur la touche x le personnage vas sauter;
+			{
+
+				verticalVelocity  = jumpForce;
+				//moveVector.y = jumpForce;
+>>>>>>> origin/master
 			}
 
 		}
 		else // le joueur n'est pas au sol
 		{
+<<<<<<< HEAD
 			verticalVelocity  -= gravity * Time.deltaTime;
 			
 		}
@@ -184,6 +213,27 @@ public class player4 : MonoBehaviour {
 
 		transform.RotateAround(camera.transform.position, Vector3.up, Input.GetAxis("Horizontal") * rotatespeed* Time.deltaTime);
 
+=======
+			verticalVelocity  = -gravity * Time.deltaTime;
+			//moveVector = new Vector3(0, 0, Input.GetAxis("Vertical") * Speed); // le deplacement du joueur 
+
+
+			//moveVector = transform.TransformDirection(moveVector);
+		}
+		//moveVector = Vector3.zero;
+		/*if (Input.GetAxis("Horizontal") != 1/*Input.GetAxis("Horizontal") < 0.7 && Input.GetAxis("Horizontal") > -0.7)
+		{
+			moveVector.x = Input.GetAxis("Horizontal") * 5f;
+		}
+		else*/
+		//{
+			transform.RotateAround(camera.transform.position, Vector3.up, Input.GetAxis("Horizontal") * rotatespeed* Time.deltaTime);
+		//}
+		print(controller.isGrounded);
+		moveVector.y = verticalVelocity; // on applique la gravitée au joueur 
+		//moveVector.z = Input.GetAxis("Vertical") * 5f;
+		controller.Move(moveVector * Time.deltaTime); // on effectue les deplacements 
+>>>>>>> origin/master
 
 		moveVector = Vector3.zero;
 
