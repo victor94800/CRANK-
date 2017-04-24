@@ -225,10 +225,10 @@ public class Player : MonoBehaviour {
 		
 		moveVector.y -= gravity * Time.deltaTime; // on applique la gravitée au joueur 
 		controller.Move(moveVector * Time.deltaTime); // on effectue les deplacements 
-		
-		
+
 
 		
-		
+
+
 	}
 }
