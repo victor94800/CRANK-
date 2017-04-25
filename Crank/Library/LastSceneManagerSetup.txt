@@ -1,4 +1,16 @@
 sceneSetups:
+<<<<<<< HEAD
+<<<<<<< HEAD
+- path: Assets/scenes/Network/Game.unity
+=======
+<<<<<<< HEAD
 - path: Assets/scenes/scene1.unity
+=======
+- path: Assets/scenes/INTRO.unity
+>>>>>>> master
+>>>>>>> origin/Donia
+=======
+- path: Assets/scenes/scene1.unity
+>>>>>>> master
   isLoaded: 1
   isActive: 1
