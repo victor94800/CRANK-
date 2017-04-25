@@ -25,12 +25,12 @@ public class Player_money : MonoBehaviour {
 		if (Gamecontroller != null)
 		{
 			Money = Gamecontroller.GetComponent<GameController>().money;
-			moneytext.text = "money :" + Money.ToString();
+			moneytext.text = Money.ToString();
 		}
 		else
 		{
 			Money = 0;
-			moneytext.text = "money :" + Money.ToString();
+			moneytext.text = Money.ToString();
 		}
 		//moneytext.text = "money :" + Money.ToString();
 		
@@ -39,17 +39,17 @@ public class Player_money : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		moneytext.text = "money :" + Money.ToString();
+		moneytext.text = Money.ToString();
 	}
     public void AddMoney(int a)
     {
         Money += a;
-        moneytext.text = "money :" + Money.ToString();
+        moneytext.text = Money.ToString();
        
     }
 	public void lossMOney(int a)
 	{
 		Money -= a;
-		moneytext.text = "money :" + Money.ToString();
+		moneytext.text = Money.ToString();
 	}
 }
