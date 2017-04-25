@@ -4,47 +4,68 @@ using UnityEngine;
 
 public class IA : MonoBehaviour
 {
-    public float speed;
-    public int dmg;
 
-    private RaycastHit hit;
-    private RaycastHit hit2;
-    private RaycastHit hit3;
-    private RaycastHit hit4;
-    private RaycastHit hit5;
-    CharacterController controller;
+    public float speed;
+    
+	// atribut de l'IA
+	public int life;
+	public int Damage;
+	public Vector3 pos;
+	public bool Attack;
+	bool follow;
+	public int gravity;
+
+	// atribut relatif au deplacement de l'ia 
     Vector3 movedirection;
     float dailyrotation;
     float changerotation;
     private float newrotation;
-    Vector3 dirtomain;
-    Transform h;
-    Animator anim;
-    private bool fight;
-    bool follow;
-    public bool Attack;
-    public int life;
-    public GameObject COINS;
-    public static Vector3 pos;
-    Quaternion rtn;
-    int rotation;
     
+    // animation de l'ia
+    Animator anim;
+   
+    
+    
+
+	// gameobject utilisés par l'ia 
+	public GameObject COINS;
+	Quaternion rtn;
+
+	// player information
+	Vector3 dirtomain; // distance entre l'ia et le joueur
+	Transform pt;
+
+	CharacterController cc;
+
+	Vector3 mouvedirection; 
+
     void Start()
     {
-        follow = false;
+		// aniamtion 
+		/*anim = this.GetComponentInChildren<Animator>();
+		anim.SetTime(1);
+
+		// initialistation des deplacements 
+		follow = false;
         newrotation = Random.Range(0, 361);
-        dailyrotation = 2;
-        life = 50;
-        anim = this.GetComponentInChildren<Animator>();
-        anim.SetTime(1);
-        fight = false;
-        rtn = COINS.transform.rotation;
+        dailyrotation = 2;*/
+
+
+		cc = GetComponent<CharacterController>();
+        
+       
+        // intitailistaton des attribut ou des objets utilisés par l'IA 
+        //rtn = COINS.transform.rotation;
     }
 
     
     void Update()
     {
-        h = GameObject.Find("Player").transform;
+		//mouvedirection = Vector3.zero;
+		mouvedirection = Vector3.forward * speed;
+		mouvedirection = transform.TransformDirection(mouvedirection);
+		// update des attribut de deplacements 
+		pt = GameObject.Find("Player").transform;
         dirtomain = GameObject.Find("Player").transform.position - transform.position;
         newrotation = Random.Range(0, 361);
         
@@ -62,10 +83,10 @@ public class IA : MonoBehaviour
         }
 
         Debug.DrawRay(transform.Find("origin").position, transform.forward, Color.red, 1);*/
-        if (follow == true )//dirtomain.magnitude < 0.01f)
+        if (follow == true )// deplacement en suivant le joueur 
         {
             
-            transform.position = Vector3.Lerp(transform.position, h.position, 0.05f);
+            transform.position = Vector3.Lerp(transform.position, pt.position, 0.05f);
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain), 10f);
             if (dirtomain.magnitude < 1.5) 
             {
@@ -76,23 +97,22 @@ public class IA : MonoBehaviour
                 Attack = false;
             }
         }
-        else
+        else // deplacements aleatoire 
         {
 
            
-            movedirection = Vector3.forward * speed;
-            movedirection = transform.TransformDirection(movedirection);
-            transform.Translate(new Vector3(0, 0, 0.1f));
+            
+           // movedirection = transform.TransformDirection(movedirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0,newrotation,0), 0.5f * Time.deltaTime);
         }
-
+		// verifie si l'ia est toujour en vie 
         if (life <= 0)
         {
-          
-            
-            rotation = Random.Range(2, 7);
-            for (int i = 0; i < rotation; i++)
-            {
+
+
+			int nbcoins = Random.Range(2, 7);
+			for (int i = 0; i < nbcoins; i++)
+			{
                
                 pos = Random.insideUnitSphere * 5 + this.gameObject.transform.position;
                 Transform newGameObj = Instantiate(COINS.transform, pos, rtn) as Transform;
@@ -103,9 +123,12 @@ public class IA : MonoBehaviour
          
             
         }
-        
-        anim.SetBool("Attack", Attack);
+	// action de l'ia or deplacements 
 
+        // fait attaque ou non l'ia 
+        anim.SetBool("Attack", Attack);
+		mouvedirection.y -= gravity * Time.deltaTime;
+		cc.Move(mouvedirection * Time.deltaTime);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -118,8 +141,8 @@ public class IA : MonoBehaviour
         
         
     }
-
-    private void OnTriggerEnter(Collider other)
+	// verifie si l'ia doit suivre ou non je joueur 
+	private void OnTriggerEnter(Collider other)
     {
         if (other.transform.name == "Player")
         {
@@ -137,7 +160,8 @@ public class IA : MonoBehaviour
     {
         follow = false;
     }
-    private void getHit(int nb)
+	// inflige des domages a l'ia 
+	private void getHit(int nb)
     {
      
         life -= nb;
