@@ -14,6 +14,11 @@ public class OpenClosePhone : MonoBehaviour
 	public GameObject enigmes_button;
 	public GameObject player;
 	public GameObject player4;
+    public GameObject intello;
+    public GameObject abilities;
+    public GameObject apnee;
+    public GameObject Money;
+    public GameObject Life;
 	// Update is called once per frame
 	private void Start()
 	{
@@ -36,6 +41,7 @@ public class OpenClosePhone : MonoBehaviour
 			camera2.SetActive(true);
 			player4.GetComponent<player4>().enabled = false;
 			player.SetActive(false);
+            
 			
 		}
         else
@@ -49,6 +55,11 @@ public class OpenClosePhone : MonoBehaviour
 			enigmes_button.SetActive(true);
 			player4.GetComponent<player4>().enabled = true;
 			player.SetActive(true);
+            abilities.SetActive(true);
+            intello.SetActive(false);
+            apnee.SetActive(true);
+            Money.SetActive(true);
+            Life.SetActive(true);
 			
 			
 		}
