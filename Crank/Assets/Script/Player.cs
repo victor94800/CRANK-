@@ -103,7 +103,7 @@ public class Player : MonoBehaviour {
            
             Attack = false;
             Attack1 = false;
-            sword.GetComponent<BoxCollider>().enabled = false;
+            //sword.GetComponent<BoxCollider>().enabled = false;
            
         }
       
@@ -136,7 +136,7 @@ public class Player : MonoBehaviour {
         }
       
         // gestion de l'animation en fonction des actions de player 
-        inputH = Input.GetAxis("Horizontal");
+        /*inputH = Input.GetAxis("Horizontal");
         inputV = Input.GetAxis("Vertical");
         anim.SetFloat("InputH", inputH);
         anim.SetFloat("InputV", inputV);
@@ -175,7 +175,7 @@ public class Player : MonoBehaviour {
         {
             anim.speed = 1;
         }
-		
+		*/
 		// mouvements de player 
 		if (controller.isGrounded)// le player est il a sol 
 		{
