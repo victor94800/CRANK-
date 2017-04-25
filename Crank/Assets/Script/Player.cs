@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Networking;
 
-public class Player : MonoBehaviour {
+public class Player : NetworkBehaviour {
 	// attribut de player 
 	private CharacterController controller;
 
@@ -60,7 +61,7 @@ public class Player : MonoBehaviour {
 		controller = GetComponent<CharacterController>();
 		
 		//animateur 
-		anim = GetComponent<Animator>();
+		/*anim = GetComponent<Animator>();
 
 		
         // inGitialisation des objets associés a player 
@@ -86,7 +87,7 @@ public class Player : MonoBehaviour {
 			fireSword.SetActive(false);
 
 			
-			thundersword.SetActive(false);
+			thundersword.SetActive(false);*/
 		
         
     }
@@ -96,6 +97,9 @@ public class Player : MonoBehaviour {
     {
 		// update de controller 
 		controller = GetComponent<CharacterController>();
+<<<<<<< HEAD
+        if (isLocalPlayer)
+=======
 		
 		//actions 
 		if (anim.GetTime() >= time + 0.20f )
@@ -103,7 +107,7 @@ public class Player : MonoBehaviour {
            
             Attack = false;
             Attack1 = false;
-            sword.GetComponent<BoxCollider>().enabled = false;
+            //sword.GetComponent<BoxCollider>().enabled = false;
            
         }
       
@@ -115,28 +119,128 @@ public class Player : MonoBehaviour {
            
         }
         if (Input.GetKey("joystick button 5"))
+>>>>>>> origin/Sarah
         {
-            Run = true;
-			
+            /*
+            //actions 
+            if (anim.GetTime() >= time + 0.20f )
+            {
 
-        }
-        else
-        {
-            Run = false;
-			
-			
-        }
-        if (Input.GetKey("joystick button 3"))
-        {
-            sword.GetComponent<BoxCollider>().enabled = true;
+                Attack = false;
+                Attack1 = false;
+                sword.GetComponent<BoxCollider>().enabled = false;
 
-            Attack1 = true;
-            time = anim.GetTime();
+            }
 
+            if (Input.GetKey("joystick button 2"))
+            {
+                sword.GetComponent<BoxCollider>().enabled = true;
+                time = anim.GetTime();
+                Attack = true;
+
+            }
+            if (Input.GetKey("joystick button 5"))
+            {
+                Run = true;
+
+
+            }
+            else
+            {
+                Run = false;
+
+
+            }
+            if (Input.GetKey("joystick button 3"))
+            {
+                sword.GetComponent<BoxCollider>().enabled = true;
+
+                Attack1 = true;
+                time = anim.GetTime();
+
+            }
+
+            // gestion de l'animation en fonction des actions de player 
+            inputH = Input.GetAxis("Horizontal");
+            inputV = Input.GetAxis("Vertical");
+            anim.SetFloat("InputH", inputH);
+            anim.SetFloat("InputV", inputV);
+            anim.SetBool("Run", Run);
+            anim.SetBool("Jump", Jump);
+            anim.SetBool("Attack", Attack);
+            anim.SetBool("Attack1", Attack1);
+
+           //animation
+
+            if (Run)
+            {
+                anim.speed = 2;
+
+
+            }
+            else
+            {
+                anim.speed = 1;
+
+            }
+            if (Jump)
+            {
+                anim.speed = 0.5f;
+
+            }
+            else if (!Run)
+            {
+                anim.speed = 1f;
+            }
+            if (Attack)
+            {
+                anim.speed = 2;
+            }
+            else if (!Run)
+            {
+                anim.speed = 1;
+            }
+
+            // mouvements de player 
+            if (controller.isGrounded)// le player est il a sol 
+            {
+                Jump = false; // l'aniamtion saut n'as pas besoin d'etre jouée 
+                anim.SetBool("is grounded", true); // le booleen is grounded de l'animator et mis a true 
+                dubble_jump = true; // le double jump est de nouveau possible 
+
+                if (Run) // le joueur est il en train de courrir 
+                {
+                    Speed = runspeed;
+                }
+                else
+                {
+                    Speed = speed;
+                }
+                */
+            transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * Time.deltaTime * 100, 0)); // la rotaion de joueur
+
+            moveVector = new Vector3(0, 0, Input.GetAxis("Vertical")); // le deplacement du joueur 
+
+            moveVector = transform.TransformDirection(moveVector);
+
+            moveVector *= Speed; // on applique la vitesse de deplacements 
+
+            if (Input.GetKeyDown("joystick button 0")) // si le joueur appuis sur la touche x le personnage vas sauter;
+            {
+                moveVector.y = jumpForce;
+                Jump = true;
+            }
+
+<<<<<<< HEAD
+
+            /*}
+            /*else // le joueur est en l'air 
+            {
+=======
         }
       
         // gestion de l'animation en fonction des actions de player 
-        inputH = Input.GetAxis("Horizontal");
+        /*inputH = Input.GetAxis("Horizontal");
         inputV = Input.GetAxis("Vertical");
         anim.SetFloat("InputH", inputH);
         anim.SetFloat("InputV", inputV);
@@ -175,59 +279,33 @@ public class Player : MonoBehaviour {
         {
             anim.speed = 1;
         }
-		
+		*/
 		// mouvements de player 
 		if (controller.isGrounded)// le player est il a sol 
 		{
 			Jump = false; // l'aniamtion saut n'as pas besoin d'etre jouée 
 			anim.SetBool("is grounded", true); // le booleen is grounded de l'animator et mis a true 
 			dubble_jump = true; // le double jump est de nouveau possible 
-
-			if (Run) // le joueur est il en train de courrir 
-			{
-				Speed = runspeed;
-			}
-			else
-			{
-				Speed = speed;
-			}
-
-			transform.Rotate(new Vector3(0, Input.GetAxis("Horizontal") * Time.deltaTime * 100, 0)); // la rotaion de joueur
-
-			moveVector = new Vector3(0, 0, Input.GetAxis("Vertical")); // le deplacement du joueur 
-
-			moveVector = transform.TransformDirection(moveVector);
-
-			moveVector *= Speed; // on applique la vitesse de deplacements 
-
-			if (Input.GetKeyDown("joystick button 0")) // si le joueur appuis sur la touche x le personnage vas sauter;
-			{
-				moveVector.y = jumpForce;
-				Jump = true;
-			}
-
-		}
-		else // le joueur est en l'air 
-		{
-			
-
-			if (ddjump_allowed == true && dubble_jump == true)
-			{
-				
-				if (Input.GetKeyDown("joystick button 0")) // il fait un double saut  
-				{
-					moveVector.y = jumpForce;
-					dubble_jump = false;
-					Jump = true;
-				}
-			}
-		}
-		
-		moveVector.y -= gravity * Time.deltaTime; // on applique la gravitée au joueur 
-		controller.Move(moveVector * Time.deltaTime); // on effectue les deplacements 
+>>>>>>> origin/Sarah
 
 
-		
+                if (ddjump_allowed == true && dubble_jump == true)
+                {
+
+                    if (Input.GetKeyDown("joystick button 0")) // il fait un double saut  
+                    {
+                        moveVector.y = jumpForce;
+                        dubble_jump = false;
+                        Jump = true;
+                    }
+                }*/
+
+
+            moveVector.y -= gravity * Time.deltaTime; // on applique la gravitée au joueur 
+            controller.Move(moveVector * Time.deltaTime); // on effectue les deplacements 
+
+
+        }
 
 
 	}

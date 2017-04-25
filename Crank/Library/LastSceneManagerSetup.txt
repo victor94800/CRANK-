@@ -1,4 +1,12 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/scenes/scene1.unity
+=======
+<<<<<<< HEAD
+- path: Assets/scenes/Network/MenuRes.unity
+=======
+- path: Assets/scenes/scene1.unity
+>>>>>>> origin/Sarah
+>>>>>>> origin/master
   isLoaded: 1
   isActive: 1

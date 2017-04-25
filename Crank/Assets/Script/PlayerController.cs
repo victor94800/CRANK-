@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     
-	public GameObject water;
+	
     private float speed2;
     
     private int time;
-    GameObject barre_apnee;
+   
     
     GameObject player;
     healthBarre Barredevie ;
@@ -32,18 +32,16 @@ public class PlayerController : MonoBehaviour {
         // on crre une nouvelle barre de vie et d'apnee 
        
         Barredevie = new healthBarre();
+
         // on recupere l'objet apnee barre et on la desactive 
        
-        barre_apnee.SetActive(false);
+     
 		// on recupere l'objet Camera associe au player
 		
         // on initialise l'anim a l'animateur du personnage 
         
         // on set les valeur associe a la barre de vie a la vie et a l'apnee;
-        life = Life;
-        Barredevie.max = life;
-       
-        Barredevie.valeur = life;
+      
         
        
         Dmg = dmg;
@@ -67,18 +65,11 @@ public class PlayerController : MonoBehaviour {
 		}
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-     if (this.GetComponent<playerunderwtaer>().apnee == 0)
-        {
-            Barredevie.valeur -= dmg;
-        }
-        if (Barredevie.valeur == 0 )
-        {
-           // anim.Play("Death1");
-        }
-     }
+	// Update is called once per frame
+	void Update()
+	{
+		
+	}
    
     private void OnTriggerEnter(Collider hit)
         {
