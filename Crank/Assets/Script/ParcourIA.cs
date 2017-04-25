@@ -12,7 +12,7 @@ public class ParcourIA : MonoBehaviour {
 	// atribut de l'IA
 	public int life;
 	public int Damage;
-	public Vector3 pos;
+	
 	Animation anim;
 	// gameobject utilisés par l'ia 
 	public GameObject COINS;
@@ -23,7 +23,8 @@ public class ParcourIA : MonoBehaviour {
 	Transform pt;
 
 	// bolleens relatif aux actions que l'ia peut effectuées
-	private bool Attack = false;
+	public bool Attack = false;
+	public bool ismoving;
 	private bool follow = false;
 
 	public Vector3 mouvevector;
@@ -44,6 +45,7 @@ public class ParcourIA : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
+
 		mouvevector = Vector3.zero;
 		// actualisation de dirtomain
 		dirtomain = GameObject.Find("Player").transform.position - transform.position;
@@ -108,6 +110,7 @@ public class ParcourIA : MonoBehaviour {
 			// verifie si l'ia peut attaquer le joueur
 			if (dirtomain.magnitude < 1.5)
 			{
+				
 				Attack = true;
 				anim.CrossFade("Attack_1");
 			}
