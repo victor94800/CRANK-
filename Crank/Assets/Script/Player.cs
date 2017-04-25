@@ -97,7 +97,29 @@ public class Player : NetworkBehaviour {
     {
 		// update de controller 
 		controller = GetComponent<CharacterController>();
+<<<<<<< HEAD
         if (isLocalPlayer)
+=======
+		
+		//actions 
+		if (anim.GetTime() >= time + 0.20f )
+        {
+           
+            Attack = false;
+            Attack1 = false;
+            //sword.GetComponent<BoxCollider>().enabled = false;
+           
+        }
+      
+        if (Input.GetKey("joystick button 2"))
+        {
+            sword.GetComponent<BoxCollider>().enabled = true;
+            time = anim.GetTime();
+            Attack = true;
+           
+        }
+        if (Input.GetKey("joystick button 5"))
+>>>>>>> origin/Sarah
         {
             /*
             //actions 
@@ -209,10 +231,62 @@ public class Player : NetworkBehaviour {
                 Jump = true;
             }
 
+<<<<<<< HEAD
 
             /*}
             /*else // le joueur est en l'air 
             {
+=======
+        }
+      
+        // gestion de l'animation en fonction des actions de player 
+        /*inputH = Input.GetAxis("Horizontal");
+        inputV = Input.GetAxis("Vertical");
+        anim.SetFloat("InputH", inputH);
+        anim.SetFloat("InputV", inputV);
+        anim.SetBool("Run", Run);
+        anim.SetBool("Jump", Jump);
+        anim.SetBool("Attack", Attack);
+        anim.SetBool("Attack1", Attack1);
+
+       //animation
+       
+        if (Run)
+        {
+            anim.speed = 2;
+			
+
+		}
+        else
+        {
+            anim.speed = 1;
+			
+		}
+        if (Jump)
+        {
+            anim.speed = 0.5f;
+            
+        }
+        else if (!Run)
+        {
+            anim.speed = 1f;
+        }
+        if (Attack)
+        {
+            anim.speed = 2;
+        }
+        else if (!Run)
+        {
+            anim.speed = 1;
+        }
+		*/
+		// mouvements de player 
+		if (controller.isGrounded)// le player est il a sol 
+		{
+			Jump = false; // l'aniamtion saut n'as pas besoin d'etre jouée 
+			anim.SetBool("is grounded", true); // le booleen is grounded de l'animator et mis a true 
+			dubble_jump = true; // le double jump est de nouveau possible 
+>>>>>>> origin/Sarah
 
 
                 if (ddjump_allowed == true && dubble_jump == true)

@@ -119,7 +119,14 @@ public class player4 : MonoBehaviour {
 				sword.GetComponent<BoxCollider>().enabled = false;
 
 			}
+			if (Input.GetKey("joystick button 3"))
+			{
+				sword.GetComponent<BoxCollider>().enabled = true;
 
+				Attack1 = true;
+				time = anim.GetTime();
+
+			}
 			if (Input.GetKey("joystick button 2"))
 			{
 				sword.GetComponent<BoxCollider>().enabled = true;
