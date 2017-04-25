@@ -50,8 +50,12 @@ public class Global : MonoBehaviour {
 	}
 
 
+	public void instanciateIA(int type, int life, int damage, GameObject T, GameObject[] target = null)
+	{
+		AI d = new AI(type, life, damage, T,coins,  target);
+	}
 
-	
+
 
 
 
@@ -83,7 +87,7 @@ public class Global : MonoBehaviour {
 			switch (type)
 			{
 				case 0 :
-					Enemy.AddComponent<ParcourIA>();
+					//Enemy.AddComponent<ParcourIA>();
 					//Enemy.GetComponent<ParcourIA>().COINS = coins;
 					ParcourIA l = new ParcourIA();
 
@@ -95,14 +99,14 @@ public class Global : MonoBehaviour {
 					break;
 				case 1:
 					notMovingIA T = new notMovingIA();
-					Enemy.AddComponent<notMovingIA>();
+					//Enemy.AddComponent<notMovingIA>();
 					T = Enemy.GetComponent<notMovingIA>();
 					T.Damage = damage;
 					T.life = life;
 					break;
 				case 2:
 					IA h = new IA();
-					Enemy.AddComponent<IA>();
+					//Enemy.AddComponent<IA>();
 					h = Enemy.GetComponent<IA>();
 					h.life = life;
 					h.Damage = damage;
