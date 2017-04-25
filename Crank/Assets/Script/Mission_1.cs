@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Mission_1 : MonoBehaviour {
+	public AudioClip sound_first;
+	public GameObject phone;
 	bool is_jump = false;
 	bool is_Etuto_Deafed = false;
 	GameObject Etuto;
 	public GameObject[] checkpoints;
+	public GameObject start;
 	// Use this for initialization
 	void Start ()
 	{
@@ -16,20 +19,17 @@ public class Mission_1 : MonoBehaviour {
 		{
 			i.SetActive(false);
 		}
+		start.SetActive(  false);
+		phone.SetActive(true);
+		GetComponent<AudioSource>().PlayOneShot(sound_first);
+
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
 		
-		if (is_jump)
-		{
-			Etuto.SetActive(true);
-		}
-		//is_Etuto_Deafed = Etuto.active;
-		if (is_Etuto_Deafed )
-		{
-			print("won");
-		}
+
+
 	}
 }

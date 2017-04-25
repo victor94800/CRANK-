@@ -30,6 +30,7 @@ public class playerunderwtaer : MonoBehaviour {
 	private void OnEnable()
 	{
 		//playerlookat.transform.Translate(0, -3, 0);
+		Barredapnee.valeur = apnee;
 	}
 	private void OnDisable()
 	{
@@ -39,6 +40,7 @@ public class playerunderwtaer : MonoBehaviour {
 			swim = false;
 		}
 		this.GetComponent<player4>().enabled = true;
+		barre_apnee.SetActive(false);
 	}
 	void Start ()
 	{
@@ -50,6 +52,7 @@ public class playerunderwtaer : MonoBehaviour {
 		barre_apnee = GameObject.Find("apnee barre");
 		barre_apnee.SetActive(false);
 		Barredapnee.max = apnee;
+		Barredapnee.valeur = apnee;
 	}
 	
 	// Update is called once per frame
@@ -59,13 +62,13 @@ public class playerunderwtaer : MonoBehaviour {
 		if (water.GetComponent<UnderWater>().isunderwater)
 		{
 			barre_apnee.SetActive(true);
-			Barredapnee.valeur -= 0.1f;
+			Barredapnee.valeur -= 1f;
 		}
 		else
 		{
 			if (Barredapnee.valeur < Barredapnee.max)
 			{
-				Barredapnee.valeur += 1;
+				Barredapnee.valeur += 10;
 			}
 			else
 			{
