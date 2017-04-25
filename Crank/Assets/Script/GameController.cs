@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour {
 	public GameObject global;
 	public GameObject shop;
 	// player information 
+	public int mission;
 	public GameObject player;
 	public int life = 100 ;
 	public Vector3 pos ;
@@ -70,6 +71,13 @@ public class GameController : MonoBehaviour {
 		if (global != null)
 		{
 			money = global.GetComponent<Player_money>().Money;
+			if (mission == 2)
+			{
+				global.GetComponent<mission1_1_2>().enabled = true;
+				Destroy(global.GetComponent<Mission_1>());
+				Destroy(global.GetComponent<mission_1_1>());
+				Destroy(global.GetComponent<mission_1_2>());
+			}
 		}
 		if (shop != null)
 		{

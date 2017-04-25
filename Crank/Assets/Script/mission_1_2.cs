@@ -6,7 +6,7 @@ public class mission_1_2 : MonoBehaviour {
 	public GameObject enemy;
 	public GameObject[] startpoint;
 	
-	public AudioClip finish_m_1_2;
+	
 	public GameObject finish_mission;
 	
 	// Use this for initialization
@@ -21,7 +21,7 @@ public class mission_1_2 : MonoBehaviour {
 	{
 		if (enemy.active == false )
 		{
-			GetComponent<AudioSource>().PlayOneShot(finish_m_1_2);
+			
 			finish_mission.SetActive(true);
 			Destroy(this);
 		}

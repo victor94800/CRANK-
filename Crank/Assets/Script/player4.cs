@@ -10,7 +10,7 @@ public class player4 : MonoBehaviour {
 
 	// attribut de player 
 	private CharacterController controller;
-
+	public GameController global;
 	// action  de player 
 	private bool Attack = false;
 	private bool Attack1 = false;
@@ -21,7 +21,7 @@ public class player4 : MonoBehaviour {
 	private bool walk = false;
 	private Vector3 moveVector = Vector3.zero;
 	private bool Jump = false;
-	public bool dubble_jump = true;
+	
 	private bool ddjump = false;
 
 
@@ -85,7 +85,8 @@ public class player4 : MonoBehaviour {
 		{
 
 			this.transform.position = Gamecontroller.GetComponent<GameController>().pos + new Vector3(0, 6, 0);
-
+			ddjump_allowed = Gamecontroller.GetComponent<GameController>().item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "double_jump")];
+			
 		}
 
 		fireSword.SetActive(false);
@@ -109,7 +110,7 @@ public class player4 : MonoBehaviour {
 			verticalVelocity -= gravity * Time.deltaTime;
 			Jump = false; // l'aniamtion saut n'as pas besoin d'etre jouée 
 
-			dubble_jump = true; // le double jump est de nouveau possible 
+			ddjump = true; // le double jump est de nouveau possible 
 
 			if (anim.GetTime() >= time + 0.20f)
 			{
@@ -210,7 +211,14 @@ public class player4 : MonoBehaviour {
 		}
 		else // le joueur n'est pas au sol
 		{
+			if (Input.GetKeyDown("joystick button 0") && ddjump_allowed && ddjump) // si le joueur appuis sur la touche x le personnage vas sauter;
+			{
 
+				verticalVelocity = jumpForce;
+				ddjump = false;
+				//moveVector.y = jumpForce;
+
+			}
 			verticalVelocity  -= gravity * Time.deltaTime;
 			walk = false;
 		}
