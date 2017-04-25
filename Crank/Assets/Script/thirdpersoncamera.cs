@@ -9,7 +9,8 @@ public class thirdpersoncamera : MonoBehaviour {
 
 	private float currentX = 0f;
 	private float currentY = 0f;
-
+	private Transform tamera;
+	
 	private Camera cam;
 
 	public float distance;
@@ -42,6 +43,13 @@ public class thirdpersoncamera : MonoBehaviour {
 		
 		currentY = Input.GetAxis("Horizontal2");
 		target.rotation  = Quaternion.Euler(currentX, currentY, 0);
+		
 
 	}
+
+
+
+
+
+
 }

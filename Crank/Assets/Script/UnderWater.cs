@@ -9,6 +9,8 @@ public class UnderWater : MonoBehaviour {
 	public bool isunderwater;
 	private Color Normalcolor;
 	private Color UnderwaterColor;
+	
+	public GameObject player;
 
 	//private GameObject under;
 	// Use this for initialization
@@ -22,10 +24,23 @@ public class UnderWater : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
-		
+
+
+		if (isunderwater)
+		{
+			SetUnderwater();
+			player.GetComponent<playerunderwtaer>().enabled = true;
+			player.GetComponent<player4>().enabled = false;
 			
-		if (isunderwater) SetUnderwater();
-		if (!isunderwater) SetNormal();
+
+		}
+		if (!isunderwater)
+		{
+			SetNormal();
+			player.GetComponent<playerunderwtaer>().enabled = false;
+			
+			
+		}
 
 		
 
@@ -49,7 +64,7 @@ public class UnderWater : MonoBehaviour {
 	}
 	public void OnTriggerStay(Collider other)
 	{
-		print("test");
+		
 		if (other.transform.name == "Camera")
 		{
 			
