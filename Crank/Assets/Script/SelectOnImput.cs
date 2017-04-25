@@ -17,7 +17,7 @@ public class SelectOnImput : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		if (Input.GetAxisRaw ("V-Pad")!=0 || Input.GetAxisRaw ("H-Pad") !=0 && buttonSelected == false)
+		if (Input.GetAxis ("Vertical") !=0 && buttonSelected == false)
         {
             eventSystem.SetSelectedGameObject(selectedObject);
             buttonSelected = true;
