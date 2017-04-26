@@ -14,7 +14,9 @@ public class GameController : MonoBehaviour {
 	public int life = 100 ;
 	public Vector3 pos ;
 	public int money = 0 ;
-
+	public bool m_1 = true;
+	public bool m_2 = false;
+	public bool m_3 = false;
 	//bloked items
 	public string[] item_name = { "double_jump", "fire_sword", "thunder_sword" };
 	public bool[] item_allowed = { false, false, false };
@@ -33,7 +35,7 @@ public class GameController : MonoBehaviour {
 	{
 		try
 		{
-			player = GameObject.Find("Player");
+			player = GameObject.Find("player");
 			
 			
 
@@ -44,7 +46,7 @@ public class GameController : MonoBehaviour {
 		}
 		try
 		{
-			player = GameObject.Find("Player");
+			player = GameObject.Find("player");
 			global = GameObject.Find("Global");
 
 
@@ -52,6 +54,7 @@ public class GameController : MonoBehaviour {
 		catch
 		{
 			global = null;
+			player = null;
 		}
 		try
 		{
@@ -71,13 +74,8 @@ public class GameController : MonoBehaviour {
 		if (global != null)
 		{
 			money = global.GetComponent<Player_money>().Money;
-			if (mission == 2)
-			{
-				global.GetComponent<mission1_1_2>().enabled = true;
-				Destroy(global.GetComponent<Mission_1>());
-				Destroy(global.GetComponent<mission_1_1>());
-				Destroy(global.GetComponent<mission_1_2>());
-			}
+			
+			
 		}
 		if (shop != null)
 		{

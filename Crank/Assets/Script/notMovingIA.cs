@@ -37,7 +37,7 @@ public class notMovingIA : MonoBehaviour
 	{
 		mouvevector = Vector3.zero;
 		// actualisation de dirtomain
-		dirtomain = GameObject.Find("player").transform.position - transform.position;
+		dirtomain = GameObject.Find("EnemyT").transform.position - transform.position;
 
 		// verifie si L'ia est toujour en vie 
 		if (life <= 0 )
@@ -65,7 +65,7 @@ public class notMovingIA : MonoBehaviour
 			Attack = false;
 			anim.CrossFade("Idle");
 		}
-
+		//transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain), 10f);
 		mouvevector.y -= gravity * Time.deltaTime;
 		cc.Move(mouvevector * Time.deltaTime);
 	}

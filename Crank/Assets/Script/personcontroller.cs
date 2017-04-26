@@ -11,6 +11,7 @@ public class personcontroller : MonoBehaviour {
     public float speed = 10;
 	public float runspeed = 20;
     private Vector3 moveVector = new Vector3();
+
 	// Use this for initialization
 	void Start ()
     {

@@ -11,7 +11,7 @@ public class coffre : MonoBehaviour {
 	// Use this for initialization
 	void Start()
 	{
-
+		audi = GetComponent<AudioSource>();
 	}
 
 	// Update is called once per frame
@@ -28,7 +28,7 @@ public class coffre : MonoBehaviour {
 			audi.PlayOneShot(Coffre);
 			S_chekpoint.SetActive(true);
 			
-			Destroy(gameObject);
+			//Destroy(gameObject);
 			
 		}
 	}

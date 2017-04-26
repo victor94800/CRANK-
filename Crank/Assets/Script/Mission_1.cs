@@ -14,25 +14,48 @@ public class Mission_1 : MonoBehaviour {
 	GameObject Etuto;
 	public GameObject[] checkpoints;
 	public GameObject start;
+	public GameObject intello;
+	public GameObject background;
+	public GameObject camera2;
+	private GameObject camera1;
+	public GameObject player;
+	public GameObject apps;
 	int i = 0;
 	// Use this for initialization
 	void Start ()
 	{
-		
-		foreach(GameObject i in checkpoints)
+		if (GameObject.Find("GameController").GetComponent<GameController>().mission == 2)
 		{
-			i.SetActive(false);
+			foreach (GameObject i in checkpoints)
+			{
+				i.SetActive(false);
+			}
+			Destroy(this);
 		}
-		start.SetActive(  false);
-		phone.SetActive(true);
-		GameObject.Find("Camera2").SetActive(true);
-		GameObject.Find("Camera").SetActive(false);
-		GameObject.Find("Camera2").GetComponent<phonecamera>().target_p = camera_target;
-		GameObject.Find("apps").SetActive(false);
-		GameObject.Find("PhoneBackground").SetActive(false);
-		
-		GetComponent<AudioSource>().PlayOneShot(sound_first);
+		else
+		{
 
+
+			audi = GetComponent<AudioSource>();
+			foreach (GameObject i in checkpoints)
+			{
+				i.SetActive(false);
+			}
+			start.SetActive(true);
+			phone.SetActive(true);
+			intello.SetActive(true);
+			player.GetComponent<player4>().enabled = false;
+			camera2.SetActive(true);
+			camera1 = GameObject.Find("Camera");
+			camera1.SetActive(false);
+			camera2.GetComponent<phonecamera>().target_p = camera_target;
+
+			apps.SetActive(false);
+			//GameObject.Find("PhoneBackground")
+			background.SetActive(false);
+
+			GetComponent<AudioSource>().PlayOneShot(sound_first);
+		}
 	}
 	
 	// Update is called once per frame
@@ -47,12 +70,18 @@ public class Mission_1 : MonoBehaviour {
 		if (!audi.isPlaying && i == 1)
 		{
 			phonecamera.GetComponent<Camera>().fieldOfView = 60;
-			GameObject.Find("Intello").SetActive(false);
+			intello.SetActive(false);
+			
+			apps.SetActive(true);
 			phone.SetActive(false);
-			GameObject.Find("Camera1").SetActive(true);
-			GameObject.Find("Camera2").GetComponent<phonecamera>().target_p = null;
-			GameObject.Find("Camera2").SetActive(false);
-			GetComponent<mission_1_1>().enabled = true;
+			camera1.SetActive(true);
+			camera2.GetComponent<phonecamera>().target_p = null;
+			camera2.SetActive(false);
+			//GetComponent<mission_1_1>().enabled = true;
+			intello.SetActive(false);
+			background.SetActive(true);
+			phone.SetActive(false);
+			player.GetComponent<player4>().enabled = true;
 			Destroy(this);
 		}
 

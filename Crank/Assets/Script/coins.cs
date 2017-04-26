@@ -22,7 +22,7 @@ public class coins : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-
+	   transform.position = new Vector3(transform.position.x, 7, transform.position.z);
 	   time += Time.deltaTime;
        transform.Rotate(speed * 5, 0, 0);
 	   if (time >= endTime)
@@ -50,6 +50,14 @@ public class coins : MonoBehaviour {
 	private void OnCollisionEnter(Collision collision)
 	{
 		if (collision.transform.name == "player")
+		{
+			global.GetComponent<Player_money>().AddMoney(1);
+			Destroy(this.gameObject);
+		}
+	}
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.transform.name == "player")
 		{
 			global.GetComponent<Player_money>().AddMoney(1);
 			Destroy(this.gameObject);

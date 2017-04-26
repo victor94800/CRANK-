@@ -76,7 +76,7 @@ public class ChangeButtonNameWhenCilck : MonoBehaviour
 	public void changeTexte1()
     {
         button1text.text = "purchased";
-		
+		money -= 300;
 		button1.GetComponent<Image>().color = Color.green;
 		button1.interactable = false;
 		isdoublejumpallowed = true;
@@ -84,6 +84,7 @@ public class ChangeButtonNameWhenCilck : MonoBehaviour
     public void changeTexte2()
     {
         button2text.text = "purchased";
+		money -= 1000;
 		button2.GetComponent<Image>().color = Color.green;
 		button2.interactable = false;
 		ISfireswordallowed = true;
@@ -91,6 +92,7 @@ public class ChangeButtonNameWhenCilck : MonoBehaviour
     public void changeTexte3()
     {
         button3text.text = "purchased";
+		money -= 2000;
 		button3.GetComponent<Image>().color = Color.green;
 		button3.interactable = false;
 		isthunderswordallowed = true;

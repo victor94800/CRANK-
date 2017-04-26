@@ -36,7 +36,7 @@ public class playerunderwtaer : MonoBehaviour {
 	{
 		if (swim == true)
 		{
-			playerlookat.transform.Translate(0, 3, 0);
+			playerlookat.transform.Translate(0, 3f, 0);
 			swim = false;
 		}
 		this.GetComponent<player4>().enabled = true;
@@ -81,7 +81,7 @@ public class playerunderwtaer : MonoBehaviour {
 			if (swim == false)
 			{
 
-				playerlookat.transform.Translate(0, -3, 0);
+				playerlookat.transform.Translate(0, -3f, 0);
 			}
 			swim = true;
 		}
@@ -106,6 +106,11 @@ public class playerunderwtaer : MonoBehaviour {
 		{
 			movevector.y -= gravity * Time.deltaTime;
 		}
+		if (Input.GetKey("joystick button 0"))
+		{
+			movevector.y += gravity * Time.deltaTime;
+		}
+
 		movevector = transform.TransformDirection(movevector);
 		cc.Move(movevector * Time.deltaTime);
 		anim.SetBool("walk", swim);
