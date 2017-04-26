@@ -22,8 +22,9 @@ public class checkpoint : MonoBehaviour {
 	{
 		if (other.transform.name == "player" )
 		{
-			Destroy(gameObject);
 			S_chekpoint.SetActive(true);
+			Destroy(gameObject);
+			
 		}
 	}
 }
