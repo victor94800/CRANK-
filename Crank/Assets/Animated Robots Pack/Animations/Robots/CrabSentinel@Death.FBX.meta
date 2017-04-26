@@ -1,0 +1,116 @@
+fileFormatVersion: 2
+guid: b96b6460e80b34afd8d7e66fb976a9c7
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Body
+    100002: //RootNode
+    100004: CrabSentinel_Mesh
+    100006: Foot_FL
+    100008: Foot_FR
+    100010: Foot_RL
+    100012: Foot_RR
+    100014: Head
+    100016: Leg_FL
+    100018: Leg_FR
+    100020: Leg_RL
+    100022: Leg_RR
+    100024: PositionLocator
+    400000: Body
+    400002: //RootNode
+    400004: CrabSentinel_Mesh
+    400006: Foot_FL
+    400008: Foot_FR
+    400010: Foot_RL
+    400012: Foot_RR
+    400014: Head
+    400016: Leg_FL
+    400018: Leg_FR
+    400020: Leg_RL
+    400022: Leg_RR
+    400024: PositionLocator
+    2300000: CrabSentinel_Mesh
+    3300000: CrabSentinel_Mesh
+    4300000: Cylinder06
+    4300002: Box04
+    4300004: Box03
+    4300006: Cylinder05
+    4300008: Box01
+    4300010: Cylinder02
+    4300012: Box09
+    4300014: Box10
+    4300016: Box11
+    4300018: Box12
+    4300020: Box13
+    4300022: Box14
+    4300024: CrabSentinel_Mesh
+    7400000: Take 001
+    11100000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 1
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

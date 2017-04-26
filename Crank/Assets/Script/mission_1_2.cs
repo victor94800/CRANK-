@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class mission_1_2 : MonoBehaviour {
 	public GameObject enemy;
-	public AudioClip finish_m_1_2;
+	public GameObject[] startpoint;
+	
+	
 	public GameObject finish_mission;
+	
 	// Use this for initialization
 	void Start ()
 	{
 		//instenciate ia not mouve 
-		
+		GetComponent<Global>().instanciateIA(1, 50, 10, enemy,startpoint);
 	}
 	
 	// Update is called once per frame
@@ -18,7 +21,7 @@ public class mission_1_2 : MonoBehaviour {
 	{
 		if (enemy.active == false )
 		{
-			GetComponent<AudioSource>().PlayOneShot(finish_m_1_2);
+			
 			finish_mission.SetActive(true);
 			Destroy(this);
 		}

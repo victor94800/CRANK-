@@ -25,7 +25,7 @@ public class seller : MonoBehaviour {
 	{
 		
 		dirtomain = GameObject.Find("Player").transform.position - transform.position;
-		if (dirtomain.magnitude < 3 && Input.GetKey("joystick button 0"))
+		if (dirtomain.magnitude < 3 && Input.GetKey("joystick button 1"))
 		{
 			SceneManager.LoadScene(3);
 		}
