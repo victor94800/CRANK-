@@ -5,7 +5,7 @@ using UnityEngine;
 public class targetofcamera2 : MonoBehaviour {
 
 	// Use this for initialization
-	public GameObject camera;
+	public GameObject Camera;
 	void Start ()
 	{
 		
@@ -15,6 +15,6 @@ public class targetofcamera2 : MonoBehaviour {
 	void Update ()
 	{
 		transform.Translate(new Vector3(0, Input.GetAxis("Vertical2"), 0));
-		transform.RotateAround(camera.transform.position, Vector3.up, Input.GetAxis("Horizontal") * 100 * Time.deltaTime);
+		transform.RotateAround(Camera.transform.position, Vector3.up, Input.GetAxis("Horizontal") * 100 * Time.deltaTime);
 	}
 }

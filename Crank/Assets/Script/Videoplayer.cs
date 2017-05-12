@@ -8,16 +8,16 @@ using UnityEngine.SceneManagement;
 public class Videoplayer : MonoBehaviour {
 
     public MovieTexture movie;
-    private AudioSource audio;
+    private AudioSource Audio;
     
     
 	void Start ()
     {
         GetComponent<RawImage>().texture = movie as MovieTexture;
-        audio = GetComponent<AudioSource>();
-        audio.clip = movie.audioClip;
+		Audio = GetComponent<AudioSource>();
+		Audio.clip = movie.audioClip;
         movie.Play();
-        audio.Play();
+		Audio.Play();
         
 	}
 	

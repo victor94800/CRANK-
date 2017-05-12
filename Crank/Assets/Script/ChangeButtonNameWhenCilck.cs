@@ -14,12 +14,15 @@ public class ChangeButtonNameWhenCilck : MonoBehaviour
     public Button button1;
     public Button button2;
     public Button button3;
-	public GameObject Gamecontroller;
+	
 	public int money;
     public bool ISfireswordallowed;
 	public bool isthunderswordallowed;
 	public bool isdoublejumpallowed;
-	
+
+	//GAmecontroller
+	public GameObject Gamecontroller;
+	public GameController Game_Controller_script;
 	// Use this for initialization
 	void Start()
 	{
@@ -28,10 +31,11 @@ public class ChangeButtonNameWhenCilck : MonoBehaviour
 		try
 		{
 			Gamecontroller = GameObject.Find("GameController");
-			isthunderswordallowed  = Gamecontroller.GetComponent<GameController>().item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "thunder_sword")];
-			 ISfireswordallowed = Gamecontroller.GetComponent<GameController>().item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "fire_sword")];
-			isdoublejumpallowed = Gamecontroller.GetComponent<GameController>().item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "double_jump")];
-			money = Gamecontroller.GetComponent<GameController>().money;
+			Game_Controller_script = Gamecontroller.GetComponent<GameController>();
+			isthunderswordallowed  = Game_Controller_script.item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "thunder_sword")];
+			ISfireswordallowed = Game_Controller_script.item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "fire_sword")];
+			isdoublejumpallowed = Game_Controller_script.item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "double_jump")];
+			money = Game_Controller_script.money;
 		}
 		catch
 		{
@@ -80,6 +84,7 @@ public class ChangeButtonNameWhenCilck : MonoBehaviour
 		button1.GetComponent<Image>().color = Color.green;
 		button1.interactable = false;
 		isdoublejumpallowed = true;
+		Game_Controller_script.item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "double_jump")] = true;
 	}
     public void changeTexte2()
     {
@@ -88,6 +93,8 @@ public class ChangeButtonNameWhenCilck : MonoBehaviour
 		button2.GetComponent<Image>().color = Color.green;
 		button2.interactable = false;
 		ISfireswordallowed = true;
+		
+		Game_Controller_script.item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "fire_sword")] = true; 
 	}
     public void changeTexte3()
     {
@@ -96,7 +103,7 @@ public class ChangeButtonNameWhenCilck : MonoBehaviour
 		button3.GetComponent<Image>().color = Color.green;
 		button3.interactable = false;
 		isthunderswordallowed = true;
-
+		Game_Controller_script.item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "thunder_sword")] = true;
 	}
 	
 }
