@@ -38,7 +38,7 @@ public class PlayerController_res : NetworkBehaviour
 	public GameObject Gamecontroller;
 
 
-
+	private Transform MyTransform;
 
 
 
@@ -48,7 +48,12 @@ public class PlayerController_res : NetworkBehaviour
 	{
 		// initialisation dest component de player 
 		controller = GetComponent<CharacterController>();
+		MyTransform = GetComponent<Transform>();
+		if (isLocalPlayer)
+		{
+			MyTransform.FindChild("Camera").GetComponent<Camera>().enabled = true;
 
+		}
 
 	}
 

@@ -51,17 +51,14 @@ public class Global : MonoBehaviour {
 		{
 			if (!h.activeInHierarchy)
 			{
-				StartCoroutine(respawn(h));
+				Timer time = new Timer();
+				time.Reactivate(h, 10);
 
 			}
 		}
 
 	}
-	public IEnumerator respawn(GameObject h)
-	{
-		yield return new WaitForSeconds(10);
-		h.SetActive(true);
-	}
+	
 
 
 	
