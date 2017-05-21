@@ -12,7 +12,7 @@ public class mission_1_1 : MonoBehaviour {
 	private AudioSource audi;
 	public GameObject intello;
 	public GameObject background;
-	public GameObject playerrenderer;
+	public GameObject Player_Renderer;
 	private GameObject camera1;
 	private GameObject GameController;
 	public GameObject apps;
@@ -30,10 +30,10 @@ public class mission_1_1 : MonoBehaviour {
 			GameController = GameObject.Find("GameController");
 			audi = GetComponent<AudioSource>();
 			GetComponent<AudioSource>().PlayOneShot(m_1_1);
-			playerrenderer.SetActive(false);
+			Player_Renderer.SetActive(false);
 			phone.SetActive(true);
 			intello.SetActive(true);
-			player.GetComponent<player4>().enabled = false;
+			player.GetComponent<PlayerController>().enabled = false;
 			phonecamera.SetActive(true);
 			camera1 = GameObject.Find("Camera");
 			camera1.SetActive(false);
@@ -61,10 +61,10 @@ public class mission_1_1 : MonoBehaviour {
 			camera1.SetActive(true);
 			phonecamera.GetComponent<phonecamera>().target_p = null;
 			phonecamera.SetActive(false);
-			playerrenderer.SetActive(true);
+			Player_Renderer.SetActive(true);
 			//GetComponent<mission_1_1>().enabled = true;
-			
-			player.GetComponent<player4>().enabled = true;
+
+			player.GetComponent<PlayerController>().enabled = true;
 			Destroy(this);
 		}
 	}

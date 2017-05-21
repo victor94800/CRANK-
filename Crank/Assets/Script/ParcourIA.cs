@@ -20,7 +20,7 @@ public class ParcourIA : MonoBehaviour {
 
 	// player information
 	Vector3 dirtomain; // distance entre l'ia et le joueur
-	Transform pt;
+	
 
 	// bolleens relatif aux actions que l'ia peut effectuées
 	public bool Attack = false;
@@ -60,7 +60,7 @@ public class ParcourIA : MonoBehaviour {
 			{
 
 				Vector3 pos = Random.insideUnitSphere * 5 + this.gameObject.transform.position;
-				Transform newGameObj = Instantiate(COINS.transform, pos, rtn) as Transform;
+				Instantiate(COINS, pos, rtn);
 			}
 
 			// detruit l'objet enemy
@@ -104,7 +104,7 @@ public class ParcourIA : MonoBehaviour {
 		}
 		else // deplacement en suivant le joueur 
 		{
-			pt = GameObject.Find("Player").transform;
+			
 			mouvevector = dirtomain * 0.4f;
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain), 10f);
 			// verifie si l'ia peut attaquer le joueur
@@ -131,7 +131,7 @@ public class ParcourIA : MonoBehaviour {
 	{
 
 		life -= nb;
-		print(life);
+		
 
 	}
 	// verifie si l'ia doit suivre le joueur 

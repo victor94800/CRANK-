@@ -48,7 +48,7 @@ public class notMovingIA : MonoBehaviour
 			{
 
 				Vector3 pos = Random.insideUnitSphere * 5 + this.gameObject.transform.position;
-				Transform newGameObj = Instantiate(COINS.transform, pos, rtn) as Transform;
+				Instantiate(COINS, pos, rtn);
 			}
 
 			// detruit l'objet enemy

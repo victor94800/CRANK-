@@ -44,7 +44,7 @@ public class Mission_1 : MonoBehaviour {
 			start.SetActive(true);
 			phone.SetActive(true);
 			intello.SetActive(true);
-			player.GetComponent<player4>().enabled = false;
+			player.GetComponent<PlayerController>().enabled = false;
 			camera2.SetActive(true);
 			camera1 = GameObject.Find("Camera");
 			camera1.SetActive(false);
@@ -81,7 +81,7 @@ public class Mission_1 : MonoBehaviour {
 			intello.SetActive(false);
 			background.SetActive(true);
 			phone.SetActive(false);
-			player.GetComponent<player4>().enabled = true;
+			player.GetComponent<PlayerController>().enabled = true;
 			Destroy(this);
 		}
 

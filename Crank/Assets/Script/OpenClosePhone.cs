@@ -35,7 +35,7 @@ public class OpenClosePhone : MonoBehaviour
             Phone.SetActive(true);
 			camera1.SetActive(false);
 			camera2.SetActive(true);
-			player4.GetComponent<player4>().enabled = false;
+			player.GetComponent<PlayerController>().enabled = true;
 			player.SetActive(false);
 			
 		}
@@ -48,7 +48,7 @@ public class OpenClosePhone : MonoBehaviour
 			camera_button.SetActive(true);
 			quete_buton.SetActive(true);
 			enigmes_button.SetActive(true);
-			player4.GetComponent<player4>().enabled = true;
+			player.GetComponent<PlayerController>().enabled = true;
 			player.SetActive(true);
             intello.SetActive(false);
 			

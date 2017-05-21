@@ -55,7 +55,7 @@ public class IA : MonoBehaviour
         
        
         // intitailistaton des attribut ou des objets utilisés par l'IA 
-        //rtn = COINS.transform.rotation;
+        rtn = COINS.transform.rotation;
     }
 
     
