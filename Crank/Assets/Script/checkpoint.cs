@@ -12,18 +12,19 @@ public class checkpoint : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	/*void Update ()
 	{
 		transform.Rotate(new Vector3(5, 0, 0));
 
 		
-	}
+	}*/
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.transform.name == "player" )
 		{
-			Destroy(gameObject);
 			S_chekpoint.SetActive(true);
+			Destroy(gameObject);
+			
 		}
 	}
 }

@@ -23,7 +23,7 @@ public class Global : MonoBehaviour {
 	//argent du joueur 
 	public int Money;
 	public Text moneytext;
-
+	public bool enemy_active = false;
 	// list des Enemy crer par GLobal;
 	public static List<GameObject> Enemys;
 
@@ -39,14 +39,18 @@ public class Global : MonoBehaviour {
 			AI d = new AI(0, 50, 10, enemy, enemy_path[i]);
 				
 			}*/
-		AI d = new AI(0, 50, 10, enemy, coins, enemy_path);
+		
 
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		
+		if (enemy_active == true)
+		{
+			AI d = new AI(0, 50, 10, enemy, coins, enemy_path);
+			enemy_active = false;
+		}
 	}
 
 

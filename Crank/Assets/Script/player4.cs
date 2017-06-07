@@ -49,11 +49,11 @@ public class player4 : MonoBehaviour {
 	public GameObject Gamecontroller;
 
 	Vector3 dirtomain;
-
+	public bool onground;
 	// capacites de player a debloquer
 	private bool TunderSword_allowed = false;
 	private bool fireSword_allowed = false;
-	private bool ddjump_allowed = false;
+	public bool ddjump_allowed = false;
 
 
 
@@ -84,7 +84,7 @@ public class player4 : MonoBehaviour {
 		if (Gamecontroller != null && Gamecontroller.GetComponent<GameController>().pos != Vector3.zero)
 		{
 
-			this.transform.position = Gamecontroller.GetComponent<GameController>().pos + new Vector3(0, 6, 0);
+			this.transform.position = Gamecontroller.GetComponent<GameController>().pos; //+ new Vector3(0, 6, 0);
 			ddjump_allowed = Gamecontroller.GetComponent<GameController>().item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "double_jump")];
 			
 		}
@@ -107,6 +107,7 @@ public class player4 : MonoBehaviour {
 		// mouvements de player 
 		if (controller.isGrounded)// le player est il a sol 
 		{
+			onground = true;
 			verticalVelocity -= gravity * Time.deltaTime;
 			Jump = false; // l'aniamtion saut n'as pas besoin d'etre jouée 
 
@@ -200,17 +201,12 @@ public class player4 : MonoBehaviour {
 				//moveVector *= Speed;
 			// on applique la vitesse de deplacements 
 
-			if (Input.GetKeyDown("joystick button 0")) // si le joueur appuis sur la touche x le personnage vas sauter;
-			{
-
-				verticalVelocity  = jumpForce;
-				//moveVector.y = jumpForce;
-
-			}
+			
 
 		}
 		else // le joueur n'est pas au sol
 		{
+			onground = false;
 			if (Input.GetKeyDown("joystick button 0") && ddjump_allowed && ddjump) // si le joueur appuis sur la touche x le personnage vas sauter;
 			{
 
