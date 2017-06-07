@@ -5,7 +5,10 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
+	public int dmg = 10;
+
+	void Start ()
+	{
 		
 	}
 	
@@ -13,8 +16,17 @@ public class Bullet : MonoBehaviour {
 	void Update () {
 		
 	}
-	private void OnCollisionEnter(Collision collision)
+	private void OnTriggerEnter(Collider hit)
 	{
+		// dit a l'enemy qu'il a ete fappé 
+		if (hit.transform.tag == "PlayerController")
+		{
+
+			//player.GetComponent<PlayerController>().getHit(dmg);
+			hit.SendMessage("getHit", dmg);
+			Destroy(gameObject);
+
+		}
 		Destroy(gameObject);
 	}
 }

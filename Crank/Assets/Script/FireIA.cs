@@ -5,49 +5,74 @@ using UnityEngine.AI;
 
 public class FireIA : MonoBehaviour {
 	public float time;
-	public GameObject[] target;
+	
 	public int i = 1;
  	public bool attack;
 	public GameObject bullet;
-	public int Speed;
-	public int distance;
+	public float Speed;
+	public float distance;
 	public Animation anim;
 	public GameObject luncher;
 	private float fixedtime;
 	private NavMeshAgent agent;
 	// Use this for initialization
+	public bool CanAttack;
+	public Transform Player;
+
+	Vector3 dirtomain;
+	
 	void Start ()
 	{
 		fixedtime = Time.fixedTime;
 		agent = GetComponent<NavMeshAgent>();
-		agent.SetDestination(target[i].transform.position);
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		Vector3 dirtomain = agent.destination - transform.position;
-		print(agent.destination);
-		if (dirtomain.magnitude <= 4)
+		dirtomain = GameObject.Find("visé").transform.position - transform.position;
+		if (dirtomain.magnitude < 10)
 		{
-			i += 1;
-			if (i >= target.Length)
+			CanAttack = true;
+
+		}
+		else
+		{
+			CanAttack = false;
+		}
+		if (CanAttack || anim.IsPlaying("Attack_1"))
+		{
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain), 100);
+			if (!anim.IsPlaying("Attack_1"))
 			{
-				i = 0;
+				
+				agent.Stop();
+				attack = true;
+				anim.CrossFade("Attack_1");
+				fixedtime = Time.fixedTime;
+
 			}
-			agent.SetDestination(target[i].transform.position);
-		}
-		if(!anim.isPlaying )
-		{
-			attack = true;
-			anim.CrossFade("Attack_1");
-			fixedtime = Time.fixedTime;
 			
+			if (Time.fixedTime >= fixedtime + time && attack)
+			{
+				agent.Resume();
+				Fire.fire(bullet, luncher.transform.position, transform, luncher.transform.rotation, dirtomain, Speed, distance);
+				attack = false;
+			}
 		}
-		if (Time.fixedTime >= fixedtime + time && attack)
+		else if (!anim.IsPlaying("Attack_1"))
 		{
-			Fire.fire(bullet, luncher.transform.position, luncher.transform, Speed, distance);
-			attack = false;
+			
+				agent.Resume();
+
+			if (agent.velocity != Vector3.zero )
+			{
+				anim.CrossFade("Run");
+			}
+			else
+			{
+				anim.CrossFade("Idle");
+			}
 		}
 	}
 	

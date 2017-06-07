@@ -5,18 +5,21 @@ using UnityEngine;
 public class SreenShot : MonoBehaviour {
 
 	// Use this for initialization
-	void Take ()
-	{
-		Application.CaptureScreenshot("capture.png");
-		
-	}
-
-	// Update is called once per frame
+	public int d = 0;
+	
+	// Update is called once per fram
 	void Update()
 	{
-		if (Input.GetKeyDown("joystick button 5"))
+		if (Input.GetKeyDown(KeyCode.P))
 		{
 			Take();
 		}
 	}
+	void Take()
+	{
+		Application.CaptureScreenshot("capture" + d + ".png");
+		Debug.Log("test aifkjanvoinav,aoiev,oianevp,aoivnavoicnapio,vcoianzvclaoi ainvouanvhuonvaounvouavouanvoubaoioiuanlfic,naovnoiavS");
+		d++;
+	}
+
 }
