@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
+- path: Assets/scenes/test.unity
+=======
 - path: Assets/scenes/Scene1- Caverne Boss.unity
+>>>>>>> mathis
   isLoaded: 1
   isActive: 1

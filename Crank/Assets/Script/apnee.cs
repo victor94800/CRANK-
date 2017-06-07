@@ -8,8 +8,8 @@ public class apnee : MonoBehaviour {
     static Image Barre2;
     static Text Txt2;
     public float max { get; set; }
-    private float Valeur;
-    public float valeur
+    private float Valeur;// valeur de la braae de vie 
+    public float valeur // valuer public qui permet de modifier valeur
     {
         get { return Valeur; }
         set

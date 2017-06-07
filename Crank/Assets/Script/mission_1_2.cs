@@ -28,7 +28,7 @@ public class mission_1_2 : MonoBehaviour {
 		audi.PlayOneShot(enemy_clip);
 		phone.SetActive(true);
 		intello.SetActive(true);
-		player.GetComponent<player4>().enabled = false;
+		player.GetComponent<PlayerController>().enabled = true;
 		camera2.SetActive(true);
 		camera1 = GameObject.Find("Camera");
 		camera1.SetActive(false);
@@ -38,7 +38,7 @@ public class mission_1_2 : MonoBehaviour {
 		background.SetActive(false);
 
 
-		GetComponent<Global>().instanciateIA(1, 50, 10, enemy,startpoint);
+		GetComponent<IACreator>().InstentiateIA(1,startpoint[0].transform.rotation , enemy,startpoint);
 	}
 	
 	// Update is called once per frame
@@ -56,8 +56,8 @@ public class mission_1_2 : MonoBehaviour {
 			camera2.GetComponent<phonecamera>().target_p = null;
 			camera2.SetActive(false);
 			//GetComponent<mission_1_1>().enabled = true;
-			
-			player.GetComponent<player4>().enabled = true;
+
+			player.GetComponent<PlayerController>().enabled = true;
 		}
 		if (Global.GetComponent<Player_money>().Money >= 2  )
 		{

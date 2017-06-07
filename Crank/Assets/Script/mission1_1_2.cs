@@ -33,7 +33,7 @@ public class mission1_1_2 : MonoBehaviour {
 		{
 			completed = true;
 		}
-		if (completed == true && player.GetComponent<player4>().onground)
+		if (completed == true && player.GetComponent<PlayerController>().onground)
 		{
 			GetComponent<mission_1_2>().enabled = true;
 			Destroy(this);

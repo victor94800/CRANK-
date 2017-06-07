@@ -21,24 +21,17 @@ public class Global : MonoBehaviour {
 	public GameObject[] enemy_path_10;
 	public GameObject coins;
 	//argent du joueur 
-	public int Money;
-	public Text moneytext;
+	
 	public bool enemy_active = false;
 	// list des Enemy crer par GLobal;
-	public static List<GameObject> Enemys;
+	public  List<GameObject> Enemys;
 
 
 	// Use this for initialization
 	void Start ()
 	{
 		
-		//enemy = GameObject.Find("Enemy");
-		/*for (int i = 0; i < enemy_path.Count; i ++ )
-			{
-
-			AI d = new AI(0, 50, 10, enemy, enemy_path[i]);
-				
-			}*/
+		
 		
 
 	}
@@ -48,78 +41,33 @@ public class Global : MonoBehaviour {
 	{
 		if (enemy_active == true)
 		{
-			AI d = new AI(0, 50, 10, enemy, coins, enemy_path);
+			GameObject IA = GetComponent<IACreator>().InstentiateIA(0, transform.rotation, enemy, enemy_path);
 			enemy_active = false;
+			print(IA);
+			Enemys.Add(IA);
+			
 		}
-	}
-
-
-	public void instanciateIA(int type, int life, int damage, GameObject T, GameObject[] target = null)
-	{
-		AI d = new AI(type, life, damage, T,coins,  target);
-	}
-
-
-
-
-
-
-	public class AI
-	{
-		int type;
-		GameObject Enemy ;
-		int life;
-		int damage;
-		GameObject coins;
-		GameObject[]   target;
-		public AI(int type , int life , int damage , GameObject T , GameObject coins ,GameObject[] target = null  )
+		foreach (GameObject  h in Enemys)
 		{
-			this.coins = coins;
-			Enemy = T;
-			print(Enemy);
-			print(T);
-			//Enemys.Add(Enemy);
-			this.life = life;
-			this.damage = damage;
-			this.type = type;
-			this.target = target;
-			Transform newGameObj = Instantiate(Enemy.transform, target[0].transform.position, Enemy.transform.rotation) as Transform;
-			AddiAcomponent();
-		}
-		public void AddiAcomponent()
-		{
-			switch (type)
+			if (!h.activeInHierarchy)
 			{
-				case 0 :
-					//Enemy.AddComponent<ParcourIA>();
-					//Enemy.GetComponent<ParcourIA>().COINS = coins;
-					ParcourIA l = new ParcourIA();
-
-					l = Enemy.GetComponent<ParcourIA>();
-					l.life = life;
-					l.Damage = damage;
-					l.COINS = coins;
-					l.target = target;
-					break;
-				case 1:
-					notMovingIA T = new notMovingIA();
-					//Enemy.AddComponent<notMovingIA>();
-					T = Enemy.GetComponent<notMovingIA>();
-					T.Damage = damage;
-					T.life = life;
-					break;
-				case 2:
-					IA h = new IA();
-					//Enemy.AddComponent<IA>();
-					h = Enemy.GetComponent<IA>();
-					h.life = life;
-					h.Damage = damage;
-
-					break;
-				default:
-					break;
+				Timer time = new Timer();
+				time.Reactivate(h, 10);
 
 			}
 		}
+
 	}
+	
+
+
+	
+
+
+
+
+
+
+	
+	
 }
