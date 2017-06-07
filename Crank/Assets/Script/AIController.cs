@@ -89,21 +89,22 @@ public class AIController : MonoBehaviour
 				IS_Following_PLayer = true;
 				IAWhoseePLayer += 1;
 			}
-			if (Dirtomain.magnitude > 20)
+			if (Dirtomain.magnitude > 20 || !GameObject.Find("Global").GetComponent<Global>().Playeralive)
 			{
 				IS_Following_PLayer = false;
 				IAWhoseePLayer -= 1;
+				Agent.destination = Waypoints[Index].transform.position;
+
 			}
 			
-			else
-			{
+			
 				if (Agent.destination.magnitude == 0 && !IS_Following_PLayer)
 				{
 					Index += 1;
 					Agent.destination = Waypoints[Index].transform.position;
 					
 				}
-			}
+			
 		}
 
 		

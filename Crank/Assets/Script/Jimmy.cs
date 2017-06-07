@@ -9,7 +9,7 @@ public class Jimmy : MonoBehaviour {
 	public bool Run;
 	public bool jump;
 	public bool attack;
-	public Collider colliderP;
+
 	public float attack_time;
 	healthBarre Barredevie;
 	public int life;
@@ -17,7 +17,7 @@ public class Jimmy : MonoBehaviour {
 	void Start()
 	{
 		anim = GetComponent<Animator>();
-		colliderP.enabled = false;
+		
 	}
 
 	// Update is called once per frame
@@ -58,7 +58,7 @@ public class Jimmy : MonoBehaviour {
 		if (Input.GetKey("e") || Input.GetKey("joystick button 3"))
 		{
 			attack = true;
-			StartCoroutine(Wait());
+		
 			//Sword.GetComponent<BoxCollider>().enabled = true;
 
 		}
@@ -81,23 +81,6 @@ public class Jimmy : MonoBehaviour {
 			}
 			*/
 	}
-	public IEnumerator Wait()
-	{
-
-		yield return new WaitForSeconds(attack_time);
-
-		//Sword.GetComponent<BoxCollider>().enabled = true;
-
-		colliderP.enabled = true;
-		StartCoroutine(Lait());
-	}
-	public IEnumerator Lait()
-	{
-
-		yield return new WaitForSeconds(attack_time);
-
-		//Sword.GetComponent<BoxCollider>().enabled = false;
-		colliderP.enabled = false;
-	}
+	
 
 }

@@ -18,6 +18,9 @@ public class Warior : MonoBehaviour {
 	public GameObject player;
 	public bool fall;
 	public bool can_jump;
+	public bool damage;
+	public bool die = false;
+	public bool isunderwtaer;
 	// Use this for initialization
 	void Start ()
 	{
@@ -38,6 +41,7 @@ public class Warior : MonoBehaviour {
 		{
 			// Avoid any reload.
 			can_jump= true;
+			
 		}
 		else
 		{
@@ -49,6 +53,9 @@ public class Warior : MonoBehaviour {
 			jump = false;
 		}
 
+		if (anim.GetCurrentAnimatorStateInfo(0).IsName("damage_25"))
+			damage = false;
+		
 
 		if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
 		{
@@ -80,7 +87,15 @@ public class Warior : MonoBehaviour {
 			player.GetComponent<PlayerController>().Jump = true;
 			StartCoroutine(Jump());
 		}
-		
+		if ((Input.GetKey(KeyCode.Space) || Input.GetKey("joystick button 0")) && anim.GetBool("Is_underwater") )
+		{
+			jump = true;
+			
+		}
+		else
+		{
+			jump = false;
+		}
 		if (Input.GetKeyDown("e") ||Input.GetKey("joystick button 3") )
 		{
 			attack = true;
@@ -93,8 +108,10 @@ public class Warior : MonoBehaviour {
 			attack = false;
 		}
 
-			
-			anim.SetBool("fall", player.GetComponent<PlayerController>().fall);
+
+		    anim.SetBool("die", die);
+		    anim.SetBool("fall", player.GetComponent<PlayerController>().fall);
+		    anim.SetBool("damage", damage);
 			anim.SetBool("attak", attack);
 		    anim.SetBool("jump", jump);
 		    anim.SetBool("walk", walk);

@@ -18,62 +18,66 @@ public class FireIA : MonoBehaviour {
 	// Use this for initialization
 	public bool CanAttack;
 	public Transform Player;
-
+	static bool isplayerdead = false;
 	Vector3 dirtomain;
-	
-	void Start ()
+	Global Global;	
+		void Start ()
 	{
 		fixedtime = Time.fixedTime;
 		agent = GetComponent<NavMeshAgent>();
+		Global = GameObject.Find("Global").GetComponent<Global>();
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		dirtomain = GameObject.Find("visé").transform.position - transform.position;
-		if (dirtomain.magnitude < 10)
-		{
-			CanAttack = true;
-
-		}
-		else
-		{
-			CanAttack = false;
-		}
-		if (CanAttack || anim.IsPlaying("Attack_1"))
-		{
-			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain), 100);
-			if (!anim.IsPlaying("Attack_1"))
+		isplayerdead = !Global.Playeralive;
+		
+			dirtomain = GameObject.Find("visé").transform.position - transform.position;
+			if (dirtomain.magnitude < 10 && !isplayerdead)
 			{
-				
-				agent.Stop();
-				attack = true;
-				anim.CrossFade("Attack_1");
-				fixedtime = Time.fixedTime;
+				CanAttack = true;
 
-			}
-			
-			if (Time.fixedTime >= fixedtime + time && attack)
-			{
-				agent.Resume();
-				Fire.fire(bullet, luncher.transform.position, transform, luncher.transform.rotation, dirtomain, Speed, distance);
-				attack = false;
-			}
-		}
-		else if (!anim.IsPlaying("Attack_1"))
-		{
-			
-				agent.Resume();
-
-			if (agent.velocity != Vector3.zero )
-			{
-				anim.CrossFade("Run");
 			}
 			else
 			{
-				anim.CrossFade("Idle");
+				CanAttack = false;
 			}
-		}
+			if (CanAttack || anim.IsPlaying("Attack_1") && !isplayerdead)
+			{
+				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain), 100);
+				if (!anim.IsPlaying("Attack_1"))
+				{
+
+					agent.Stop();
+					attack = true;
+					anim.CrossFade("Attack_1");
+					fixedtime = Time.fixedTime;
+
+				}
+
+				if (Time.fixedTime >= fixedtime + time && attack && !isplayerdead)
+				{
+					//agent.Resume();
+					Fire.fire(bullet, luncher.transform.position, transform, luncher.transform.rotation, dirtomain, Speed, distance);
+					attack = false;
+				}
+			}
+			else if (!anim.IsPlaying("Attack_1"))
+			{
+
+				agent.Resume();
+
+				if (agent.velocity != Vector3.zero)
+				{
+					anim.CrossFade("Run");
+				}
+				else
+				{
+					anim.CrossFade("Idle");
+				}
+			}
+		
 	}
 	
 	

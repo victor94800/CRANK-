@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Fire : MonoBehaviour {
-	public GameObject bullet;
+	
 	public float Fire_speed;
 	public float distence = 10f;
 

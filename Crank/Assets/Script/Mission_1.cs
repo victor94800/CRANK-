@@ -24,6 +24,7 @@ public class Mission_1 : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
+		
 		if (GameObject.Find("GameController").GetComponent<GameController>().mission == 2)
 		{
 			foreach (GameObject i in checkpoints)
@@ -35,8 +36,8 @@ public class Mission_1 : MonoBehaviour {
 		else
 		{
 
-
 			audi = GetComponent<AudioSource>();
+
 			foreach (GameObject i in checkpoints)
 			{
 				i.SetActive(false);
@@ -56,6 +57,8 @@ public class Mission_1 : MonoBehaviour {
 
 			GetComponent<AudioSource>().PlayOneShot(sound_first);
 		}
+		audi = GetComponent<AudioSource>();
+		print(audi);
 	}
 	
 	// Update is called once per frame

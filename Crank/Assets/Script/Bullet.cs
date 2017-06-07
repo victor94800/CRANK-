@@ -6,15 +6,16 @@ public class Bullet : MonoBehaviour {
 
 	// Use this for initialization
 	public int dmg = 10;
+	public GameObject Explosion;
 
-	void Start ()
+	void Start()
 	{
-		
-	}
 	
+	}
+
 	// Update is called once per frame
-	void Update () {
-		
+	void Update() {
+
 	}
 	private void OnTriggerEnter(Collider hit)
 	{
@@ -24,9 +25,18 @@ public class Bullet : MonoBehaviour {
 
 			//player.GetComponent<PlayerController>().getHit(dmg);
 			hit.SendMessage("getHit", dmg);
-			Destroy(gameObject);
+			Explosion.SetActive(true);
+
+			
 
 		}
+		Explosion.SetActive(true);
+		StartCoroutine(wait());
+		
+	}
+	private IEnumerator wait()
+	{
+		yield return new WaitForSeconds(0.2f);
 		Destroy(gameObject);
 	}
 }
