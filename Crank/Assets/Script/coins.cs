@@ -7,43 +7,61 @@ public class coins : MonoBehaviour {
     float speed;
     
     public GameObject global;
-	private float time;
-	private float endTime;
+	private float time = 0;
+	private float endTime = 10;
+	public float time2;
     // Use this for initialization
     void Start ()
     {
-		time = Time.fixedTime;
+		time = 0;
+		time2 = 0;
 		speed = 1;
+		global = GameObject.Find("Global");
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-		print(time);
-		print(Time.deltaTime);
-		print(speed);
-
+	   transform.position = new Vector3(transform.position.x, 7, transform.position.z);
+	   time += Time.deltaTime;
        transform.Rotate(speed * 5, 0, 0);
-	   if (endTime + 5 <= Time.fixedTime)
+	   if (time >= endTime)
 		{
 			Destroy(this.gameObject);
 		}
-	   if (time + 1 <= Time.fixedTime )
+	   if (time  >= time2 + 1  )
 		{
 			speed += 1;
-			time = Time.fixedTime;
+			time2 = time;
 			
 		}
 			
            
     }
-   
-	private void OnTriggerEnter(Collider other)
+
+	/*private void 
 	{
 		if (other.transform.name == "Player")
 		{
 			global.GetComponent<Player_money>().AddMoney(1);
 			Destroy(this.gameObject);
 		}
+	}*/
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (collision.transform.name == "player")
+		{
+			global.GetComponent<Player_money>().AddMoney(1);
+			Destroy(this.gameObject);
+		}
 	}
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.transform.name == "player")
+		{
+			global.GetComponent<Player_money>().AddMoney(1);
+			Destroy(this.gameObject);
+		}
+	}
+
 }

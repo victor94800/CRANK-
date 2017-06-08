@@ -2,30 +2,51 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IACreator : MonoBehaviour {
-    public GameObject IA;
-    public static Vector3 pos;
-    Quaternion rtn;
-    private int rotation;
-    
+public class IACreator : MonoBehaviour
+{
    
-    // Use this for initialization
-    void Start ()
-    {
-		pos = Random.insideUnitSphere * 10 + new Vector3 (100,50,300);
-        rtn = IA.transform.rotation;
-        rotation = Random.Range(5, 20);
-        for (int i = 0; i < rotation; i++)
-        {
+   
+   public GameObject Not_moving_IA;
+   public GameObject Following_Path_IA;
+   public GameObject Random_moving_IA;
+   public GameObject[] IA_Type;
 
-            
-            
-            Transform newGameObj = Instantiate(IA.transform, pos, rtn) as Transform;
-        }
-    }
-	
-	// Update is called once per frame
-	void Update () {
+	public GameObject InstentiateIA(int type, Quaternion rotation, GameObject T = null ,  GameObject[] target = null)
+	{
+		GameObject IA;
+		if (T == null)
+		{
+			 IA = Instantiate(Following_Path_IA, target[0].transform.position, rotation);
+		}
+		else
+		{
+			 IA = Instantiate(T, target[0].transform.position, rotation);
+		}
 		
+		/*switch (type)
+		{
+			case 0:
+
+				ParcourIA l = new ParcourIA();
+				l = IA.GetComponent<ParcourIA>();
+				l.target = target;
+				break;
+			case 1:
+				notMovingIA L = new notMovingIA();
+			
+				L = IA.GetComponent<notMovingIA>();
+				
+				break;
+			case 2:
+				IA h = new IA();
+				h = IA.GetComponent<IA>();
+				
+
+				break;
+			default:
+				break;
+
+		}*/
+		return IA;
 	}
 }

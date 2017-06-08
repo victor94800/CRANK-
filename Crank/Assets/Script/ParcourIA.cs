@@ -4,42 +4,52 @@ using UnityEngine;
 
 public class ParcourIA : MonoBehaviour {
 	// parcour et ses attributs
-	public List<GameObject>  target;
+	public GameObject[]  target;
 	int i = 0;
+	public Transform thui;
 	Transform tt; // target transform 
-
+	public float gravity;
 	// atribut de l'IA
 	public int life;
 	public int Damage;
-	public Vector3 pos; 
-
+	
+	Animation anim;
 	// gameobject utilisés par l'ia 
 	public GameObject COINS;
 	Quaternion rtn;
 
 	// player information
 	Vector3 dirtomain; // distance entre l'ia et le joueur
-	Transform pt;
+	
 
 	// bolleens relatif aux actions que l'ia peut effectuées
-	private bool Attack = false;
+	public bool Attack = false;
+	public bool ismoving;
 	private bool follow = false;
 
-	//public static Vector3 pos;
-
+	public Vector3 mouvevector;
+	public Vector3 dirtomain_target;
+	private CharacterController cc;
 	// Use this for initialization
 	void Start()
 	{
+		anim = GetComponent<Animation>();
+		
 		// intitailistaton des attribut ou des objets utilisés par l'IA 
 		rtn = COINS.transform.rotation;
+		mouvevector = Vector3.zero;
+		cc = GetComponent<CharacterController>();
+		gravity = 40;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+
+		mouvevector = Vector3.zero;
 		// actualisation de dirtomain
 		dirtomain = GameObject.Find("Player").transform.position - transform.position;
-
+		
 
 		// verifie si L'ia est toujour en vie 
 		if (life <= 0)
@@ -50,7 +60,7 @@ public class ParcourIA : MonoBehaviour {
 			{
 
 				Vector3 pos = Random.insideUnitSphere * 5 + this.gameObject.transform.position;
-				Transform newGameObj = Instantiate(COINS.transform, pos, rtn) as Transform;
+				Instantiate(COINS, pos, rtn);
 			}
 
 			// detruit l'objet enemy
@@ -60,16 +70,24 @@ public class ParcourIA : MonoBehaviour {
 		
 		// deplacement de l'ia 
 
-		
+		if (dirtomain.magnitude <= 3)
+		{
+			follow = true;
+		}
+		else
+		{
+			follow = false;
+		}
 		if (follow == false)// deplacement normal
 		{
-			if (i >= target.Count)
+			if (i >= target.Length )
 				i = 0;
-			tt = GameObject.Find(target[i].name).transform;
-			pos = GameObject.Find(target[i].name).transform.position - transform.position;
-			transform.position = Vector3.Lerp(transform.position, tt.position, 0.05f);
-			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(pos), 10f);
-			if (pos.magnitude <= 2)
+			
+			dirtomain_target = target[i].transform.position - transform.position;
+			dirtomain_target.y = 0;
+			mouvevector = dirtomain_target * 0.2f;
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain_target), 10f);
+			if (dirtomain_target.magnitude <= 10)
 			{
 				// changement de direction
 				i += 1;
@@ -86,19 +104,26 @@ public class ParcourIA : MonoBehaviour {
 		}
 		else // deplacement en suivant le joueur 
 		{
-			pt = GameObject.Find("Player").transform;
-			transform.position = Vector3.Lerp(transform.position, pt.position, 0.05f);
+			
+			mouvevector = dirtomain * 0.4f;
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain), 10f);
 			// verifie si l'ia peut attaquer le joueur
 			if (dirtomain.magnitude < 1.5)
 			{
+				
 				Attack = true;
+				anim.CrossFade("Attack_1");
 			}
 			else
 			{
 				Attack = false;
+				anim.CrossFade("Run");
 			}
 		}
+		
+		//mouvevector = transform.TransformDirection(mouvevector);
+		mouvevector.y -= gravity * Time.deltaTime;
+		cc.Move(mouvevector * Time.deltaTime);
 
 	}
 	// inflige des domage a l'ia 
@@ -106,6 +131,7 @@ public class ParcourIA : MonoBehaviour {
 	{
 
 		life -= nb;
+		
 
 	}
 	// verifie si l'ia doit suivre le joueur 

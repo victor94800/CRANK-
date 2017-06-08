@@ -7,7 +7,7 @@ public class notMovingIA : MonoBehaviour
 // atribut de l'IA
 	public int life;
 	public int Damage;
-
+	private Animation anim;
 
 // gameobject utilisés par l'ia 
 	public GameObject COINS;
@@ -17,14 +17,17 @@ public class notMovingIA : MonoBehaviour
 	Vector3 dirtomain; // distance entre l'ia et le joueur
 
 // bolleens relatif aux actions que l'ia peut effectuées
-	private bool Attack = false;
-
-
+	public bool Attack = false;
+	public CharacterController cc;
+	private Vector3 mouvevector;
+	public float gravity = 40f;
 	//public static Vector3 pos;
 
 	// Use this for initialization
 	void Start ()
 	{
+		anim = GetComponent<Animation>();
+		cc = GetComponent<CharacterController>();
 		// intitailistaton des attribut ou des objets utilisés par l'IA 
 		rtn = COINS.transform.rotation;
 	}
@@ -32,8 +35,9 @@ public class notMovingIA : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		mouvevector = Vector3.zero;
 		// actualisation de dirtomain
-		dirtomain = GameObject.Find("Player").transform.position - transform.position;
+		dirtomain = GameObject.Find("EnemyT").transform.position - transform.position;
 
 		// verifie si L'ia est toujour en vie 
 		if (life <= 0 )
@@ -44,23 +48,26 @@ public class notMovingIA : MonoBehaviour
 			{
 
 				Vector3 pos = Random.insideUnitSphere * 5 + this.gameObject.transform.position;
-				Transform newGameObj = Instantiate(COINS.transform, pos, rtn) as Transform;
+				Instantiate(COINS, pos, rtn);
 			}
 
 			// detruit l'objet enemy
 			this.gameObject.SetActive(false);
 		}
 	// verifie si l'ia peut attaquer le joueur
-		if (dirtomain.magnitude < 1.5)
+		if (dirtomain.magnitude < 2)
 		{
 			Attack = true;
+			anim.CrossFade("Attack_1");
 		}
 		else
 		{
 			Attack = false;
+			anim.CrossFade("Idle");
 		}
-	
-	
+		//transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain), 10f);
+		mouvevector.y -= gravity * Time.deltaTime;
+		cc.Move(mouvevector * Time.deltaTime);
 	}
 	private void getHit(int nb)
 	{

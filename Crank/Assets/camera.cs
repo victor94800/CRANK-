@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class camera : MonoBehaviour
 {
-	private Transform Target;
+	
 	public GameObject target;
 	Vector3 dirtomain;
 	// Use this for initialization
 	void Start()
 	{
-		Target = target.transform;
+		
 	}
 
 	// Update is called once per frame
