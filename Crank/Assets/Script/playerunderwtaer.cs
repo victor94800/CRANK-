@@ -29,7 +29,7 @@ public class playerunderwtaer : MonoBehaviour {
 	
 	private void OnEnable()
 	{
-		//playerlookat.transform.Translate(0, -3, 0);
+	
 		Barredapnee = new apnee();
 		Barredapnee.max = apnee;
 		Barredapnee.valeur = apnee;
@@ -37,11 +37,7 @@ public class playerunderwtaer : MonoBehaviour {
 	}
 	private void OnDisable()
 	{
-		if (swim == true)
-		{
-			//playerlookat.transform.Translate(0, 3f, 0);
-			swim = false;
-		}
+		
 		GetComponent<PlayerController>().enabled = true;
 		barre_apnee.SetActive(false);
 	}
@@ -80,24 +76,7 @@ public class playerunderwtaer : MonoBehaviour {
 			}
 		}
 		
-		if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
-		{
-			if (swim == false)
-			{
-
-				//playerlookat.transform.Translate(0, -3f, 0);
-			}
-			swim = true;
-		}
-		else
-		{
-			if (swim == true)
-			{
-				//playerlookat.transform.Translate(0, 3, 0);
-			}
-			swim = false;
-			
-		}
+		
 		if (Input.GetAxis("Horizontal2") > 0.5 || Input.GetAxis("Horizontal2") < -0.5)
 		{
 			transform.Rotate(new Vector3(0f, Input.GetAxis("Horizontal2") * Time.deltaTime * sensibility, 0f));

@@ -71,7 +71,7 @@ public class PlayerController_test : MonoBehaviour {
 
 			moveVector = transform.TransformDirection(moveVector);
 
-			//moveVector *= Speed; // on applique la vitesse de deplacements 
+			moveVector *= Speed; // on applique la vitesse de deplacements 
 
 
 			transform.RotateAround(Third_Camera.transform.position, Vector3.up, Input.GetAxis("Horizontal") * rotatespeed * Time.deltaTime);//la rotation se fait autour de la camera 

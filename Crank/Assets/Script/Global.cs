@@ -26,7 +26,7 @@ public class Global : MonoBehaviour {
 	// list des Enemy crer par GLobal;
 	public  List<GameObject> Enemys;
 
-
+	public bool Playeralive = true;
 	// Use this for initialization
 	void Start ()
 	{
