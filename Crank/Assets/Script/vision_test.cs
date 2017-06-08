@@ -23,7 +23,7 @@ public class vision_test : MonoBehaviour {
 	int row;
 	Vector3[] points;
 	int[] indices;
-
+	
 	// Use this for initialization
 	void Start()
 	{
@@ -94,7 +94,13 @@ public class vision_test : MonoBehaviour {
 			if (Physics.Raycast(m_Transform.position, dir, out hit, distance, mask))
 			{// Si on touche, on rétrécit le rayon
 				dist = hit.distance;
-				print(hit.transform.name);
+				
+				if (hit.transform.tag == "PlayerController")
+				{
+					print(hit.transform.tag);
+					GetComponentInParent<AIController>().IS_Following_PLayer = true;
+					
+				}
 			}
 			if (debug) Debug.DrawRay(m_Transform.position, dir * dist);
 			//print(hit.transform.name);

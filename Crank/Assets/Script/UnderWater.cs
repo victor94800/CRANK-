@@ -101,7 +101,7 @@ public class UnderWater : MonoBehaviour {
 		}
 		if (other.transform.name == "PlayerHead")
 		{
-			print("enter");
+			print("enter"); 
 			is_player_underwater = false;
 			Player_anim.SetBool("Is_underwater", false);
 			

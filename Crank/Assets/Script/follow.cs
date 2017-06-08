@@ -17,7 +17,7 @@ public class follow : MonoBehaviour {
 	public Vector3 dirtomain;
 	public Quaternion late_rotation;
 	public bool stoped;
-
+	
 	public bool Keep_last_moving_rotation;
 	// Use this for initialization
 	void Start()
@@ -36,11 +36,21 @@ public class follow : MonoBehaviour {
 			Vector3 dir = new Vector3(0, -1, -distance);
 			Quaternion rotation = Quaternion.Euler(0, 0, 0);
 			camTransform.position = target.position + rotation * dir;
-	
+	if (water == null)
+		{
+			if (target.GetComponent<CharacterController>().isGrounded )
+			{
+
+				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain), follow_speed);
+			}
+		}
+	else
+		{ 
 		if (target.GetComponent<CharacterController>().isGrounded || water.GetComponent<UnderWater>().is_player_underwater)
 		{
 			
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain), follow_speed);
+		}
 		}
 		if (Keep_last_moving_rotation)
 		{
@@ -56,6 +66,7 @@ public class follow : MonoBehaviour {
 
 	}
 
-	
-	
+
+
+
 }

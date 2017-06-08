@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour {
 	
 	public int life;
 	public int apnee;
-
-
+	private bool damage = false;
+	public int playertype = 0;
 	// action  de player 
 	private bool Attack = false;
 	private bool Attack1 = false;
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour {
 	private float Speed;
 	private bool walk = false;
 	private Vector3 moveVector = Vector3.zero;
-	private bool Jump = false;
+	public bool Jump = false;
 
 	private bool ddjump = false;
 
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour {
 	
 
 	// pysique de player 
-	private float verticalVelocity;
+	public  float verticalVelocity;
 	public float gravity = 80f;
 	public float jumpForce = 13f;
 	public float speed = 5f;
@@ -50,8 +50,10 @@ public class PlayerController : MonoBehaviour {
 	public GameController Game_controller_script;
 	// autres 
 	double time;
-	
-	
+
+	public bool fall;
+
+
 
 	Vector3 dirtomain;
 	public bool onground;
@@ -62,11 +64,14 @@ public class PlayerController : MonoBehaviour {
 
 	public GameObject player;
 
-
+	public GameObject Crank;
+	public GameObject jimmy;
+	public GameObject golem;
 
 	// Use this for initialization
 	void Start()
 	{
+		selectplayer();
 		// initialisation dest component de player 
 		player = GameObject.FindWithTag("Player");
 		controller = GetComponent<CharacterController>();
@@ -106,7 +111,7 @@ public class PlayerController : MonoBehaviour {
 		
 		// on cree une nouvelle barre de vie et d'apnee 
 
-		Barredevie = new healthBarre();
+	    Barredevie = new healthBarre();
 
 
      	if (Gamecontroller != null)
@@ -126,7 +131,16 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
-
+				if (Input.GetKeyDown(KeyCode.C))
+		{
+			
+			playertype += 1;
+			if (playertype == 4)
+			{
+				playertype = 0;
+			}
+			selectplayer();
+		}
 
 
 		// mouvements de player 
@@ -134,7 +148,7 @@ public class PlayerController : MonoBehaviour {
 		{
 			onground = true;
 			verticalVelocity -= gravity * Time.deltaTime;
-			Jump = false; // l'aniamtion saut n'as pas besoin d'etre jouée 
+			//Jump = false; // l'aniamtion saut n'as pas besoin d'etre jouée 
 
 			ddjump = true; // le double jump est de nouveau possible 
 
@@ -180,16 +194,20 @@ public class PlayerController : MonoBehaviour {
 				player.GetComponent<follow>().stoped = true;
 			}
 
-			if (Input.GetKeyDown("joystick button 0")) // si le joueur appuis sur la touche x le personnage vas sauter;
+			/*if (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Space)) // si le joueur appuis sur la touche x le personnage vas sauter;
 			{
-				verticalVelocity = jumpForce;
+				//verticalVelocity = jumpForce;
+				StartCoroutine(jump());
 
-
-			}
+			}*/
 
 			moveVector = new Vector3(0, 0, Input.GetAxis("Vertical") * Speed); // le deplacement du joueur 
 
 			moveVector = transform.TransformDirection(moveVector);
+
+			transform.RotateAround(Third_Camera.transform.position, Vector3.up, Input.GetAxis("Horizontal") * rotatespeed * Time.deltaTime);//la rotation se fait autour de la camera 
+
+
 
 
 
@@ -208,18 +226,9 @@ public class PlayerController : MonoBehaviour {
 			}
 			verticalVelocity -= gravity * Time.deltaTime;
 			walk = false;
+			moveVector.x = Input.GetAxis("Horizontal") * Speed;
+			
 		}
-
-
-		
-
-
-
-
-		transform.RotateAround(Third_Camera.transform.position, Vector3.up, Input.GetAxis("Horizontal") * rotatespeed * Time.deltaTime);//la rotation se fait autour de la camera 
-
-
-
 
 		moveVector = Vector3.zero;
 
@@ -227,27 +236,93 @@ public class PlayerController : MonoBehaviour {
 		moveVector.z = Input.GetAxis("Vertical") * Speed;
 		moveVector = transform.TransformDirection(moveVector);
 		controller.Move(moveVector * Time.deltaTime); // on effectue les deplacements
+
+
 		if (Game_controller_script != null)
 		{
 			Game_controller_script.pos = transform.position;
 		}
-		
-		
+
+
+		if (verticalVelocity > -5)
+		{
+			fall = true;
+		}
+		else
+		{
+			fall = false;
+		}
+
+
+
+
+
+
+
+
+
+
 
 
 
 	}
 
-	private void getHit(int nb)
+	public void getHit(int nb)
 	{
 
 		life -= nb;
-		Barredevie.valeur -= 1;
-		Game_controller_script.life = life;
-
+		Barredevie.valeur -= nb;
+		
+		if (Gamecontroller != null)
+		{
+			Game_controller_script.life = life;
+		}
+		if (playertype == 0)
+		{
+			if (life <= 0)
+			{
+				Crank.GetComponent<Warior>().die = true;
+				
+				GameObject.Find("Global").GetComponent<Global>().Playeralive = false;
+				this.enabled = false;
+			}
+			Crank.GetComponent<Warior>().damage = true;
+		}
+			
+		
 	}
 
-
+	private void selectplayer()
+	{
+		if (playertype == 0)
+		{
+			Crank.SetActive(true);
+			player.SetActive(false);
+			player.gameObject.transform.parent = this.transform;
+			Crank.gameObject.transform.parent = null;
+			player = Crank;
+			
+		}
+		else if(playertype == 1)
+		{
+			jimmy.SetActive(true);
+			player.SetActive(false);
+			player.gameObject.transform.parent = this.transform;
+			jimmy.gameObject.transform.parent = null;
+			player = jimmy;
+			
+		}
+		else if (playertype == 2)
+		{
+			golem.SetActive(true);
+			player.SetActive(false);
+			player.gameObject.transform.parent = this.transform;
+			golem.gameObject.transform.parent = null;
+			player = golem;
+			
+		}
+	}
+	
 
 
 
