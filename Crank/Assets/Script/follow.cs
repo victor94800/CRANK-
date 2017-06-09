@@ -17,7 +17,8 @@ public class follow : MonoBehaviour {
 	public Vector3 dirtomain;
 	public Quaternion late_rotation;
 	public bool stoped;
-	
+	public bool mid_air_lookat;
+
 	public bool Keep_last_moving_rotation;
 	// Use this for initialization
 	void Start()
@@ -45,12 +46,21 @@ public class follow : MonoBehaviour {
 			}
 		}
 	else
-		{ 
-		if (target.GetComponent<CharacterController>().isGrounded || water.GetComponent<UnderWater>().is_player_underwater)
 		{
 			
-			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain), follow_speed);
-		}
+				/*if (/*(target.GetComponent<CharacterController>().isGrounded || water.GetComponent<UnderWater>().is_player_underwater) /*&& ( ! Input.GetKey("joystick button 0") && !Input.GetKey("joystick button 5")))
+				{*/
+				mid_air_lookat = true;
+				dirtomain.y = 0;
+				
+				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain), follow_speed);
+				/*}
+				else
+			    {
+				mid_air_lookat = false;
+			    }*/
+			 
+			
 		}
 		if (Keep_last_moving_rotation)
 		{

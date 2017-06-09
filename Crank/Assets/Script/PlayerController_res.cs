@@ -11,19 +11,19 @@ public class PlayerController_res : NetworkBehaviour
 	// attribut de player 
 	private CharacterController controller;
 
-
+	
 	// deplacements de player
 	private bool Run = false;
 	public float Speed;
 	private Vector3 moveVector = Vector3.zero;
-	private bool Jump = false;
+	
 	public float rotatespeed = 100;
 
 	// animation de player 
 	public Animator anim;
 
 	// pysique de player 
-	private float verticalVelocity;
+	public float verticalVelocity;
 	public float gravity = 60f;
 	public float jumpForce = 15f;
 	public float speed = 5;
@@ -37,13 +37,13 @@ public class PlayerController_res : NetworkBehaviour
 	double time;
 	double time2;
 	public GameObject Gamecontroller;
-
+	public bool fall;
 
 	private Transform MyTransform;
 	public GameObject Third_Camera;
 	public GameObject Crank;
 	public GameObject player;
-
+	public bool Jump;
 
 	// Use this for initialization
 	void Start()
@@ -72,7 +72,14 @@ public class PlayerController_res : NetworkBehaviour
 		
 		// update de controller 
 		controller = GetComponent<CharacterController>();
-
+		if (verticalVelocity > -5)
+		{
+			fall = true;
+		}
+		else
+		{
+			fall = false;
+		}
 		if (isLocalPlayer)
 		{
 
@@ -123,12 +130,7 @@ public class PlayerController_res : NetworkBehaviour
 					player.GetComponent<follow>().stoped = true;
 				}
 				 
-				if (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Space)) // si le joueur appuis sur la touche x le personnage vas sauter;
-				{
-					//	verticalVelocity = jumpForce;
-
-					StartCoroutine(jump());
-				}
+				
 
 				moveVector = new Vector3(0, 0, Input.GetAxis("Vertical") * Speed); // le deplacement du joueur 
 
@@ -140,15 +142,8 @@ public class PlayerController_res : NetworkBehaviour
 			}
 			else // le joueur n'est pas au sol
 			{
+			  
 				
-				if (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Space)) // si le joueur appuis sur la touche x le personnage vas sauter;
-				{
-
-					//verticalVelocity = jumpForce;
-					StartCoroutine(jump());
-					//moveVector.y = jumpForce;
-
-				}
 				verticalVelocity -= gravity * Time.deltaTime;
 				
 			}
@@ -180,13 +175,6 @@ public class PlayerController_res : NetworkBehaviour
 
 		}
 	}
-	public IEnumerator jump()
-	{
-
-		yield return new WaitForSeconds(0.5f);
-		verticalVelocity = jumpForce;
-
-
-	}
+	
 
 }

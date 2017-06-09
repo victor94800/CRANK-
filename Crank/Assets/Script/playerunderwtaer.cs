@@ -24,7 +24,7 @@ public class playerunderwtaer : MonoBehaviour {
 	public float rotY;
 	public float rotatespeed;
 	public bool swim =false;
-	public float sensibility;
+	public float verticalVelocity;
 	
 	
 	private void OnEnable()
@@ -77,24 +77,33 @@ public class playerunderwtaer : MonoBehaviour {
 		}
 		
 		
-		if (Input.GetAxis("Horizontal2") > 0.5 || Input.GetAxis("Horizontal2") < -0.5)
+		/*if (Input.GetAxis("Horizontal2") > 0.5 || Input.GetAxis("Horizontal2") < -0.5)
 		{
 			transform.Rotate(new Vector3(0f, Input.GetAxis("Horizontal2") * Time.deltaTime * sensibility, 0f));
-		}
+		}*/
 		transform.RotateAround(Camera.transform.position, Vector3.up, Input.GetAxis("Horizontal") * rotatespeed * Time.deltaTime);
 		//cc.Move(Vector3.up * -gravity);
 		movevector.z = Input.GetAxis("Vertical") * water_speed;
 		//movevector.x = Input.GetAxis("Horizontal");
 		if (Input.GetKey("joystick button 5"))
 		{
-			movevector.y -= gravity * Time.deltaTime;
+			verticalVelocity = -gravity * Time.deltaTime;
 		}
-		if (Input.GetKey("joystick button 0"))
+		else if (Input.GetKey("joystick button 0")|| Input.GetKey(KeyCode.Space))
 		{
-			movevector.y += gravity * Time.deltaTime;
+			verticalVelocity = gravity * Time.deltaTime ;
+		}
+		else
+		{
+			verticalVelocity = 0;
 		}
 
 		movevector = transform.TransformDirection(movevector);
+		if (verticalVelocity != 0)
+		{
+			movevector.y = verticalVelocity;
+		}
+		
 		cc.Move(movevector * Time.deltaTime);
 		
 		

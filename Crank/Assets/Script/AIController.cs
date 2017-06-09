@@ -25,7 +25,7 @@ public class AIController : MonoBehaviour
 	bool moving;
 
 	public bool IS_Following_PLayer;
-
+	public int life;
 	
 	// Use this for initialization
 	void Start ()
@@ -129,6 +129,13 @@ public class AIController : MonoBehaviour
 	public void Folowing()
 	{
 		IS_Following_PLayer = true;
+	}
+	public void getHit(int nb)
+	{
+
+		life -= nb;
+		
+
 	}
 
 }
