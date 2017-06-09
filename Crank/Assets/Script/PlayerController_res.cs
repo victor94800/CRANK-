@@ -10,7 +10,7 @@ public class PlayerController_res : NetworkBehaviour
 
 	// attribut de player 
 	private CharacterController controller;
-
+	
 	
 	// deplacements de player
 	private bool Run = false;
@@ -44,14 +44,19 @@ public class PlayerController_res : NetworkBehaviour
 	public GameObject Crank;
 	public GameObject player;
 	public bool Jump;
-
+	public Warrior_res W;
 	// Use this for initialization
 	void Start()
 	{
-		
+		if (!isLocalPlayer)
+		{
+			this.enabled = false;
+			//W.enabled = false;
+		}
 		// initialisation dest component de player 
 		controller = GetComponent<CharacterController>();
 		MyTransform = GetComponent<Transform>();
+		Third_Camera.gameObject.transform.parent = null;
 		if (isLocalPlayer)
 		{
 			Third_Camera.gameObject.transform.parent = null;

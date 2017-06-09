@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Warrior_res : MonoBehaviour {
+public class Warrior_res : NetworkBehaviour {
 
 	private Animator anim;
 	public bool walk;
@@ -25,8 +26,7 @@ public class Warrior_res : MonoBehaviour {
 	// Use this for initialization
 	void Start()
 	{
-
-
+		
 		anim = GetComponent<Animator>();
 		Sword = GameObject.Find("warriorS");
 		//colliderS = Sword.GetComponent<Collider>();
