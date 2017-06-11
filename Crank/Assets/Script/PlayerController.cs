@@ -200,7 +200,7 @@ public class PlayerController : MonoBehaviour {
 				StartCoroutine(jump());
 
 			}*/
-
+			
 			moveVector = new Vector3(0, 0, Input.GetAxis("Vertical") * Speed); // le deplacement du joueur 
 
 			moveVector = transform.TransformDirection(moveVector);
@@ -288,8 +288,30 @@ public class PlayerController : MonoBehaviour {
 			}
 			Crank.GetComponent<Warior>().damage = true;
 		}
-			
-		
+		if (playertype == 1)
+		{
+			if (life <= 0)
+			{
+				jimmy.GetComponent<Jimmy>().die = true;
+
+				GameObject.Find("Global").GetComponent<Global>().Playeralive = false;
+				this.enabled = false;
+			}
+			jimmy.GetComponent<Jimmy>().damage = true;
+		}
+		if (playertype == 2)
+		{
+			if (life <= 0)
+			{
+				golem.GetComponent<Golem>().die = true;
+
+				GameObject.Find("Global").GetComponent<Global>().Playeralive = false;
+				this.enabled = false;
+			}
+		golem.GetComponent<Golem>().damage = true;
+		}
+
+
 	}
 
 	private void selectplayer()

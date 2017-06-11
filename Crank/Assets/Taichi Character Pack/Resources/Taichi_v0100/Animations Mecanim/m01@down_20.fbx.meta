@@ -376,7 +376,21 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "Copied Avatar Rig Configuration mis-match. Inbetween
+      bone rotation in copied configuration does not match rotation in animation file\nm01@down_20\nClip
+      'Take 001' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Spine1'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Spine3'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'LeftArmRoll'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'LeftForeArm'
+      has translation animation that will be discarded.\n\t'LeftForeArmRoll' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'RightArmRoll'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'RightForeArm'
+      has translation animation that will be discarded.\n\t'RightForeArmRoll' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'RightHandIndex3'
+      has scale animation that will be discarded.\n\t'RightHandMiddle3' has scale
+      animation that will be discarded.\n\t'RightHandRing3' has scale animation that
+      will be discarded.\n\t'RightHandPinky3' has scale animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 3
@@ -397,7 +411,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1

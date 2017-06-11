@@ -19,17 +19,18 @@ public class damaged : MonoBehaviour {
     private void OnTriggerEnter(Collider hit)
     {
 		// dit a l'enemy qu'il a ete fappé 
-		if (hit.transform.tag == "PlayerController")
-		{
-
-			hit.SendMessage("getHit", dmg);
-
-		}
-		else if (hit.transform.tag == "enemy" )
+		
+	    if (hit.transform.tag == "enemy" )
 		{
 			hit.SendMessage("getHit", dmg);
+			print(hit.transform.tag);
 		}
-    }
+		print(hit.transform.tag);
+		print(hit.transform.name);
+	}
+	
+
+
 }
 
 
