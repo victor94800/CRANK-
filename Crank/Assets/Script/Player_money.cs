@@ -46,7 +46,8 @@ public class Player_money : MonoBehaviour {
     {
         Money += a;
         moneytext.text = Money.ToString();
-		Game_controller_script.money = Money;
+		if (Game_controller_script != null)
+			Game_controller_script.money = Money;
 
 
 	}

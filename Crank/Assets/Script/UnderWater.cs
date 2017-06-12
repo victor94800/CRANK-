@@ -15,7 +15,7 @@ public class UnderWater : MonoBehaviour {
 	//player
 	public GameObject player;
 	private Animator Player_anim;
-
+	public bool jump;
 	
 	// Use this for initialization
 	void Start()

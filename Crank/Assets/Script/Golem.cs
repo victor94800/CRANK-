@@ -12,8 +12,15 @@ public class Golem : MonoBehaviour {
 	public float attack_time;
 	healthBarre Barredevie;
 	public int life;
+	public float jumpforce;
+	public GameObject player;
+	public GameObject jet;
+	public bool damage;
+	public bool die;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
+
 		anim = GetComponent<Animator>();
 		colliderP.enabled = false;
 	}
@@ -21,6 +28,12 @@ public class Golem : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
+		if (player.GetComponent<PlayerController>().fall == false)
+		{
+			jet.SetActive(false);
+		}
+		if (player.GetComponent<PlayerController>().onground == true)
+		{ 
 		if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
 		{
 			walk = true;
@@ -45,30 +58,65 @@ public class Golem : MonoBehaviour {
 		{
 			Run = false;
 		}
-		if (Input.GetKey(KeyCode.Space) || Input.GetKey("joystick button 0"))
+		if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
 		{
 			jump = true;
+			jet.SetActive(true);
+			player.GetComponent<PlayerController>().Jump = true;
+			
+			player.GetComponent<PlayerController>().verticalVelocity = jumpforce;
+			
 		}
 		else
 		{
 			jump = false;
+			//jet.SetActive(false);
+			player.GetComponent<PlayerController>().Jump = false;
 		}
 		if (Input.GetKey("e") || Input.GetKey("joystick button 3"))
 		{
 			attack = true;
-			StartCoroutine(Wait());
-			//Sword.GetComponent<BoxCollider>().enabled = true;
+			
+			
 
 		}
 		else
 		{
 			attack = false;
 		}
-
+		if (anim.GetCurrentAnimatorStateInfo(0).IsName("punch_21"))
+		{
+			// Avoid any reload.
+			colliderP.enabled = true;
+		}
+		else
+		{
+			colliderP.enabled = false;
+		}
+			if (anim.GetCurrentAnimatorStateInfo(0).IsName("GetHit02"))
+			{
+				player.GetComponent<PlayerController>().enabled = false;
+				damage = false;
+			}
+			else
+			{
+				player.GetComponent<PlayerController>().enabled = true;
+			}
 		anim.SetBool("attak", attack);
+		anim.SetBool("damage", damage);
+		anim.SetBool("die", die);
 		anim.SetBool("jump", jump);
 		anim.SetBool("walk", walk);
 		anim.SetBool("run", Run);
+
+		}
+		else
+		{
+			anim.SetBool("attak", false);
+		
+			anim.SetBool("walk",false);
+			anim.SetBool("run", false);
+		}
 		/*	if (is_sword_active)
 			{
 				Sword.GetComponent<BoxCollider>().enabled = true;
@@ -79,23 +127,5 @@ public class Golem : MonoBehaviour {
 			}
 			*/
 	}
-	public IEnumerator Wait()
-	{
-
-		yield return new WaitForSeconds(attack_time);
-
-		//Sword.GetComponent<BoxCollider>().enabled = true;
-		
-		colliderP.enabled = true;
-		StartCoroutine(Lait());
-	}
-	public IEnumerator Lait()
-	{
-
-		yield return new WaitForSeconds(attack_time);
-
-		//Sword.GetComponent<BoxCollider>().enabled = false;
-		colliderP.enabled = false;
-	}
-
+	
 }
