@@ -8,12 +8,14 @@ public class camera2target : MonoBehaviour {
 	public GameObject Camera;
 	public float rotatespeed1;
 	public float 	rotatespeed2;
-	void Start()
-	{
-
-	}
-
-	// Update is called once per frame
+	public GameObject player;
+	public GameObject crank;
+	public GameObject jimmy;
+	public GameObject golem;
+	
+		
+		
+	
 	void Update()
 	{
 		if (Input.GetAxis("Vertical2") == 1 || Input.GetAxis("Vertical2") == -1)

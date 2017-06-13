@@ -5,7 +5,9 @@ using UnityEngine.AI;
 
 public class FireIA : MonoBehaviour {
 	public float time;
-	
+	public GameObject COINS;
+	Quaternion rtn;
+	public Vector3 pos;
 	public int i = 1;
  	public bool attack;
 	public GameObject bullet;
@@ -20,8 +22,9 @@ public class FireIA : MonoBehaviour {
 	public Transform Player;
 	static bool isplayerdead = false;
 	Vector3 dirtomain;
-	Global Global;	
-		void Start ()
+	Global Global;
+	public bool die;
+	void Start ()
 	{
 		fixedtime = Time.fixedTime;
 		agent = GetComponent<NavMeshAgent>();
@@ -31,6 +34,11 @@ public class FireIA : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
+		if (GetComponent<AIController>().life <= 0)
+		{
+			anim.CrossFade("Death_1");
+			StartCoroutine(Die());
+		}
 		isplayerdead = !Global.Playeralive;
 		
 			dirtomain = GameObject.Find("visé").transform.position - transform.position;
@@ -79,6 +87,22 @@ public class FireIA : MonoBehaviour {
 			}
 		
 	}
-	
-	
+	private IEnumerator Die()
+	{
+		yield return new WaitForSeconds(2);
+		money();
+		
+	}
+	public void money()
+	{
+		int nbcoins = Random.Range(2, 7);
+		for (int i = 0; i < nbcoins; i++)
+		{
+
+			pos = Random.insideUnitSphere * 5 + this.gameObject.transform.position;
+			Transform newGameObj = Instantiate(COINS.transform, pos, Quaternion.identity) as Transform;
+		}
+		gameObject.SetActive(false);
+	}
+
 }

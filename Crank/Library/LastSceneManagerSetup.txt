@@ -1,6 +1,6 @@
 sceneSetups:
-<<<<<<< HEAD
 - path: Assets/scenes/scene1.unity
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 - path: Assets/scenes/scene1.unity
@@ -12,5 +12,7 @@ sceneSetups:
 >>>>>>> mathis
 >>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/master
+=======
+>>>>>>> master
   isLoaded: 1
   isActive: 1
