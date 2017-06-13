@@ -1,6 +1,9 @@
 sceneSetups:
 <<<<<<< HEAD
 - path: Assets/scenes/scene1.unity
+=======
+<<<<<<< HEAD
+- path: Assets/scenes/scene1.unity
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -22,5 +25,6 @@ sceneSetups:
 - path: Assets/scenes/Network/MenuRes.unity
 >>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/mathis
+>>>>>>> origin/mathis
   isLoaded: 1
   isActive: 1
