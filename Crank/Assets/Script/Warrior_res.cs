@@ -113,7 +113,7 @@ public class Warrior_res : NetworkBehaviour {
 			player.GetComponent<PlayerController>().enabled = false;
 			damage = false;
 		}
-		else
+		else if (damage = false)
 		{
 			player.GetComponent<PlayerController_res>().enabled = true;
 		}
