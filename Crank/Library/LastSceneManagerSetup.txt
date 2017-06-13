@@ -1,4 +1,5 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/scenes/scene1.unity
 <<<<<<< HEAD
 =======
@@ -14,5 +15,12 @@ sceneSetups:
 >>>>>>> refs/remotes/origin/master
 =======
 >>>>>>> master
+=======
+<<<<<<< HEAD
+- path: Assets/scenes/QG.unity
+=======
+- path: Assets/scenes/Network/MenuRes.unity
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/mathis
   isLoaded: 1
   isActive: 1
