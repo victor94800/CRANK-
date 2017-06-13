@@ -53,8 +53,7 @@ public class Warior : MonoBehaviour {
 			jump = false;
 		}
 
-		if (anim.GetCurrentAnimatorStateInfo(0).IsName("damage_25"))
-			damage = false;
+		
 		
 
 		if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
@@ -87,10 +86,10 @@ public class Warior : MonoBehaviour {
 			player.GetComponent<PlayerController>().Jump = true;
 			StartCoroutine(Jump());
 		}
-		if ((Input.GetKey(KeyCode.Space) || Input.GetKey("joystick button 0")) && anim.GetBool("Is_underwater") )
+		else if ((Input.GetKey(KeyCode.Space) || Input.GetKey("joystick button 0")) && anim.GetBool("Is_underwater") )
 		{
 			jump = true;
-			
+
 		}
 		else
 		{
@@ -108,8 +107,17 @@ public class Warior : MonoBehaviour {
 			attack = false;
 		}
 
+		if (anim.GetCurrentAnimatorStateInfo(0).IsName("damage_25"))
+		{
+			player.GetComponent<PlayerController>().enabled = false;
+			damage = false;
+		}
+		else
+		{
+			player.GetComponent<PlayerController>().enabled = true ;
+		}
 
-		    anim.SetBool("die", die);
+			anim.SetBool("die", die);
 		    anim.SetBool("fall", player.GetComponent<PlayerController>().fall);
 		    anim.SetBool("damage", damage);
 			anim.SetBool("attak", attack);
@@ -124,7 +132,7 @@ public class Warior : MonoBehaviour {
 			}
 			else
 			{
-				colliderS.enabled = false;
+				//colliderS.enabled = false;
 			}
 		
 	/*	if (is_sword_active)

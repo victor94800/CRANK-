@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/scenes/QG.unity
+=======
+- path: Assets/scenes/Network/MenuRes.unity
+>>>>>>> refs/remotes/origin/master
   isLoaded: 1
   isActive: 1
