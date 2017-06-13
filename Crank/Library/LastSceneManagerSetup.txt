@@ -1,4 +1,26 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/scenes/scene1.unity
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+- path: Assets/scenes/scene1.unity
+=======
+<<<<<<< HEAD
+- path: Assets/scenes/test.unity
+=======
+- path: Assets/scenes/Scene1- Caverne Boss.unity
+>>>>>>> mathis
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/master
+=======
+>>>>>>> master
+=======
+<<<<<<< HEAD
+- path: Assets/scenes/QG.unity
+=======
+- path: Assets/scenes/Network/MenuRes.unity
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/mathis
   isLoaded: 1
   isActive: 1
