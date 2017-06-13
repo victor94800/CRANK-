@@ -15,6 +15,9 @@ public class OpenClosePhone : MonoBehaviour
 	public GameObject player;
 	public GameObject player4;
     public GameObject intello;
+    public GameObject PhoneCamera;
+    public GameObject FpCamera;
+    public GameObject NormalCamera;
 	// Update is called once per frame
 	private void Start()
 	{
@@ -32,6 +35,9 @@ public class OpenClosePhone : MonoBehaviour
     {
         if (Phone.activeInHierarchy == false)
         {
+            NormalCamera.SetActive(false);
+            FpCamera.SetActive(true);
+            PhoneCamera.SetActive(true);
             Phone.SetActive(true);
 			camera1.SetActive(false);
 			camera2.SetActive(true);
@@ -41,6 +47,9 @@ public class OpenClosePhone : MonoBehaviour
 		}
         else
         {
+            NormalCamera.SetActive(true);
+            FpCamera.SetActive(false);
+            PhoneCamera.SetActive(false);
             Phone.SetActive(false);
 			camera2.SetActive(false);
 			camera1.SetActive(true);
