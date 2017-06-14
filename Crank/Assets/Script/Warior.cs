@@ -112,7 +112,7 @@ public class Warior : MonoBehaviour {
 			player.GetComponent<PlayerController>().enabled = false;
 			damage = false;
 		}
-		else
+		else if (!anim.GetBool("Is_underwater"))
 		{
 			player.GetComponent<PlayerController>().enabled = true ;
 		}

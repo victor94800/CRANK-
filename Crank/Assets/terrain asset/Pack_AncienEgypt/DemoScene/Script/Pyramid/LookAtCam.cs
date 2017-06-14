@@ -4,17 +4,35 @@ using System.Collections;
 public class LookAtCam : MonoBehaviour {
 
 
-	private Transform cam;
+	public GameObject cam;
+	private Vector3 dirtomain;
+	public bool zoom;
+	
 	// Use this for initialization
 	void Start () {
 
-		cam = GameObject.Find ("PlayerCamera").transform;
+		cam.SetActive(true);
+		
+
 	
 	}
 	
+	
 	// Update is called once per frame
 	void Update () {
-		transform.LookAt(transform.position + cam.rotation * Vector3.forward,
-		                 cam.rotation * Vector3.up);
+		dirtomain = cam.transform.position - transform.position;
+		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain), 100);
+		if (zoom)
+		{
+			if (Input.GetAxis("Vertical") > 0 && GetComponent<Camera>().fieldOfView > 5)
+			{
+				GetComponent<Camera>().fieldOfView -= Input.GetAxis("Vertical");
+			}
+			if (Input.GetAxis("Vertical") < 0 && GetComponent<Camera>().fieldOfView < 60)
+			{
+				GetComponent<Camera>().fieldOfView -= Input.GetAxis("Vertical");
+			}
+		}
+		
 	}
 }
