@@ -10,7 +10,7 @@ public class playerunderwtaer : MonoBehaviour {
 	// player physique
 	public float water_speed;
 	public float gravity;
-
+	public GameObject Global;
 	apnee Barredapnee;
 	public GameObject barre_apnee;
 	public GameObject water;
@@ -61,7 +61,7 @@ public class playerunderwtaer : MonoBehaviour {
 	{
 		if (Barredapnee.valeur <= 0)
 		{
-		    
+			Global.GetComponent<Global>().Playeralive = false;
 		}
 		cc = GetComponent<CharacterController>();
 		movevector = Vector3.zero;

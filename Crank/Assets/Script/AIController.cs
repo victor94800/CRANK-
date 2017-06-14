@@ -94,7 +94,10 @@ public class AIController : MonoBehaviour
 				IS_Following_PLayer = false;
 				IAWhoseePLayer -= 1;
 				Agent.destination = Waypoints[Index].transform.position;
-
+				if (!GameObject.Find("Global").GetComponent<Global>().Playeralive)
+				{
+					IAWhoseePLayer = 0;
+				}
 			}
 			
 			
