@@ -31,7 +31,8 @@ public class LeverLogic : MonoBehaviour {
 		}
 
 	}
-	void OnTriggerStay(){
+	void OnTriggerStay()
+	{
 
 		if((Vector3.Distance(Player.position,this.transform.position) < Distance) && canActivate && !finish){
 			Show();

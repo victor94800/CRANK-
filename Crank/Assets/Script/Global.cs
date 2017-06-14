@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class Global : MonoBehaviour {
 
-	
+
 	// Gameoject utilisés par Global
+	public GameObject player;
 	public GameObject enemy;
 	public GameObject[] enemy_path;
 	public GameObject[] enemy_path_2;
@@ -21,11 +22,11 @@ public class Global : MonoBehaviour {
 	public GameObject[] enemy_path_10;
 	public GameObject coins;
 	//argent du joueur 
-	
+	public GameObject desthimg;
 	public bool enemy_active = false;
 	// list des Enemy crer par GLobal;
 	public  List<GameObject> Enemys;
-
+	public Transform spawnpoint;
 	public bool Playeralive = true;
 	// Use this for initialization
 	void Start ()
@@ -56,7 +57,11 @@ public class Global : MonoBehaviour {
 
 			}
 		}
-
+		if (!Playeralive)
+		{
+			player.SetActive(false);
+			desthimg.SetActive(true);
+		}
 	}
 	
 

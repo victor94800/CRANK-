@@ -6,22 +6,16 @@ public class OpenClosePhone : MonoBehaviour
 {
 
     public GameObject Phone;
-	public GameObject camera1;
-	public GameObject camera2;
-	public GameObject backgtound;
-	public GameObject camera_button;
-	public GameObject quete_buton;
-	public GameObject enigmes_button;
-	public GameObject player;
-	public GameObject player4;
     public GameObject intello;
     public GameObject PhoneCamera;
     public GameObject FpCamera;
     public GameObject NormalCamera;
+	public GameObject apps;
+	public GameObject player;
 	// Update is called once per frame
 	private void Start()
 	{
-		player = GameObject.Find("Player");
+		
 	}
 	void Update()
     {
@@ -39,31 +33,54 @@ public class OpenClosePhone : MonoBehaviour
             FpCamera.SetActive(true);
             PhoneCamera.SetActive(true);
             Phone.SetActive(true);
-			camera1.SetActive(false);
-			camera2.SetActive(true);
-			player.GetComponent<PlayerController>().enabled = true;
-			player.SetActive(false);
+			player.GetComponent<PlayerController>().stop = true;
+			
 			
 		}
         else
         {
-            NormalCamera.SetActive(true);
+			for (int i = 0; i < apps.transform.childCount; i++)
+			{
+				apps.transform.GetChild(i).gameObject.SetActive(true);
+			}
+			NormalCamera.SetActive(true);
             FpCamera.SetActive(false);
             PhoneCamera.SetActive(false);
             Phone.SetActive(false);
-			camera2.SetActive(false);
-			camera1.SetActive(true);
-			backgtound.SetActive(true);
-			camera_button.SetActive(true);
-			quete_buton.SetActive(true);
-			enigmes_button.SetActive(true);
-			player.GetComponent<PlayerController>().enabled = true;
-			player.SetActive(true);
-            intello.SetActive(false);
+		    player.GetComponent<PlayerController>().stop = false;
+			intello.SetActive(false);
 			
 			
 		}
     }
+	public void PhoneMission()
+	{
+		if (Phone.activeInHierarchy == false)
+		{
+			NormalCamera.SetActive(false);
+			FpCamera.SetActive(true);
+			PhoneCamera.SetActive(true);
+			Phone.SetActive(true);
+			player.GetComponent<PlayerController>().stop = true;
+			
+
+		}
+		else
+		{
+			for (int i = 0; i < apps.transform.childCount; i++)
+			{
+				apps.transform.GetChild(i).gameObject.SetActive(true);
+			}
+			NormalCamera.SetActive(true);
+			FpCamera.SetActive(false);
+			PhoneCamera.SetActive(false);
+			Phone.SetActive(false);
+			player.GetComponent<PlayerController>().stop = false;
+			intello.SetActive(false);
+
+
+		}
+	}
 
 }
 

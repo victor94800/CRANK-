@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
 	// action  de player 
 	private bool Attack = false;
 	private bool Attack1 = false;
-
+	public bool stop;
 	// deplacements de player
 	private bool Run = false;
 	private float Speed;
@@ -131,7 +131,9 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
-				if (Input.GetKeyDown(KeyCode.C))
+		if (stop)
+			return;
+		if (Input.GetKeyDown(KeyCode.C))
 		{
 			
 			playertype += 1;
