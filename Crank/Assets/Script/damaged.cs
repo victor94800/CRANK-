@@ -13,9 +13,7 @@ public class damaged : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
-    {
-    }
+   
     private void OnTriggerEnter(Collider hit)
     {
 		// dit a l'enemy qu'il a ete fappé 
@@ -23,10 +21,9 @@ public class damaged : MonoBehaviour {
 	    if (hit.transform.tag == "enemy" )
 		{
 			hit.SendMessage("getHit", dmg);
-			print(hit.transform.tag);
+			print(hit.transform.tag + " enemy");
 		}
-		print(hit.transform.tag);
-		print(hit.transform.name);
+		
 	}
 	
 
