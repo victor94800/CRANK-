@@ -82,9 +82,6 @@
 -define:UNITY_TEAM_LICENSE
 -define:ENABLE_VSTU
 -define:CROSS_PLATFORM_INPUT
-"Assets/EndlessCaveAmbience/demos/demo scripts/DebugConsole.cs"
-"Assets/EndlessCaveAmbience/demos/demo scripts/MixControl.cs"
-"Assets/EndlessCaveAmbience/demos/demo scripts/RandomMusicDemo.cs"
 Assets/EndlessCaveAmbience/scripts/RandomMusic.cs
 Assets/GUIConsole/Commands/AboutCommand.cs
 Assets/GUIConsole/Commands/ClearCommand.cs
@@ -114,6 +111,13 @@ Assets/PhotonChatApi/ChatState.cs
 Assets/PhotonChatApi/ChatUserStatus.cs
 Assets/PhotonChatApi/IChatClientListener.cs
 Assets/Prefab/healthbarre/healthBarre.cs
+Assets/PyroParticles/Prefab/Script/FireBaseScript.cs
+Assets/PyroParticles/Prefab/Script/FireCollisionForwardScript.cs
+Assets/PyroParticles/Prefab/Script/FireConstantBaseScript.cs
+Assets/PyroParticles/Prefab/Script/FireLightScript.cs
+Assets/PyroParticles/Prefab/Script/FireProjectileScript.cs
+Assets/PyroParticles/Prefab/Script/MeteorSwarmScript.cs
+Assets/PyroParticles/Prefab/Script/SingleLineAttribute.cs
 Assets/SampleScenes/Menu/Scripts/MenuSceneLoader.cs
 Assets/SampleScenes/Scripts/CameraSwitch.cs
 Assets/SampleScenes/Scripts/LevelReset.cs
@@ -133,6 +137,7 @@ Assets/Script/Crank.cs
 Assets/Script/CreateElements.cs
 Assets/Script/DataManager.cs
 Assets/Script/Datas.cs
+Assets/Script/Enemy_damage.cs
 Assets/Script/Fire.cs
 Assets/Script/FireIA.cs
 Assets/Script/GameController.cs
@@ -166,6 +171,7 @@ Assets/Script/UnderWater.cs
 Assets/Script/Videoplayer.cs
 Assets/Script/Vision.cs
 Assets/Script/Warior.cs
+Assets/Script/Warrior_res.cs
 Assets/Script/Wheel.cs
 Assets/Script/apnee.cs
 Assets/Script/buying.cs
@@ -210,6 +216,7 @@ Assets/Script/vision_test.cs
 "Assets/_DLNK/Armored Golem/Armored Golem Demo/Scripts/buttonleft.cs"
 "Assets/_DLNK/Armored Golem/Armored Golem Demo/Scripts/buttonright.cs"
 Assets/camera.cs
+Assets/scenes/Network/Race.cs
 "Assets/terrain asset/Pack_AncienEgypt/DemoScene/Script/Door_SceneChange.cs"
 "Assets/terrain asset/Pack_AncienEgypt/DemoScene/Script/GameManager.cs"
 "Assets/terrain asset/Pack_AncienEgypt/DemoScene/Script/Pyramid/LeverLogic.cs"

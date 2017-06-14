@@ -29,7 +29,7 @@
 -r:Assets/Plugins/WebSocket/websocket-sharp.dll
 -r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll"
 -r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll"
--r:"C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll"
+-r:"C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/2015/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll"
 -define:UNITY_5_3_OR_NEWER
 -define:UNITY_5_4_OR_NEWER
 -define:UNITY_5_5_OR_NEWER
@@ -104,6 +104,7 @@
 "Assets/Parabox Primitives/Editor/CustomEditors/ParaboxPlaneEditor.cs"
 "Assets/Parabox Primitives/Editor/CustomEditors/ParaboxPrismEditor.cs"
 "Assets/Parabox Primitives/Editor/InteractivePrimitiveEditor.cs"
+Assets/PyroParticles/Prefab/Editor/PyroParticlesEditor.cs
 -r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\2.0-api\System.Runtime.Serialization.dll"
 -r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\2.0-api\System.Xml.Linq.dll"
 -r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\2.0-api\UnityScript.dll"
