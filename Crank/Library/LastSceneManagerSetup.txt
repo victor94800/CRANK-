@@ -1,4 +1,12 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/scenes/Ancient_Egypt_U5.unity
+=======
+<<<<<<< HEAD
+- path: Assets/scenes/Network/Game.unity
+=======
+- path: Assets/scenes/Network/MenuRes.unity
+>>>>>>> refs/remotes/origin/master
+>>>>>>> Donia
   isLoaded: 1
   isActive: 1
