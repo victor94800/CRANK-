@@ -54,11 +54,14 @@ public class Global : MonoBehaviour {
 			player.SetActive(false);
 			desthimg.SetActive(true);
 		}
+<<<<<<< HEAD
 	}
 	public IEnumerator respawn(GameObject h)
 	{
 		yield return new WaitForSeconds(30);
 		h.SetActive(true);
+=======
+>>>>>>> master
 	}
 	
 

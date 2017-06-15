@@ -90,7 +90,21 @@ public class AIController : MonoBehaviour
 			Dirtomain = Player.position - transform.position;
 			if (path != null)
 			{
+<<<<<<< HEAD
 				if (IAWhoseePLayer > 0 && Dirtomain.magnitude < 20)
+=======
+				IS_Following_PLayer = false;
+				IAWhoseePLayer -= 1;
+				Agent.destination = Waypoints[Index].transform.position;
+				if (!GameObject.Find("Global").GetComponent<Global>().Playeralive)
+				{
+					IAWhoseePLayer = 0;
+				}
+			}
+			
+			
+				if (Agent.destination.magnitude == 0 && !IS_Following_PLayer)
+>>>>>>> master
 				{
 					IS_Following_PLayer = true;
 					IAWhoseePLayer += 1;

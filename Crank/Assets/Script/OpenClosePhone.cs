@@ -57,7 +57,10 @@ public class OpenClosePhone : MonoBehaviour
 	{
 		if (Phone.activeInHierarchy == false)
 		{
+<<<<<<< HEAD
 			apps.SetActive(false);
+=======
+>>>>>>> master
 			NormalCamera.SetActive(false);
 			FpCamera.SetActive(true);
 			PhoneCamera.SetActive(true);
@@ -72,7 +75,10 @@ public class OpenClosePhone : MonoBehaviour
 			{
 				apps.transform.GetChild(i).gameObject.SetActive(true);
 			}
+<<<<<<< HEAD
 			apps.SetActive(true);
+=======
+>>>>>>> master
 			NormalCamera.SetActive(true);
 			FpCamera.SetActive(false);
 			PhoneCamera.SetActive(false);

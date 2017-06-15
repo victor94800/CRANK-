@@ -131,10 +131,15 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
+<<<<<<< HEAD
 	
 		if (stop)
 			return;
 		
+=======
+		if (stop)
+			return;
+>>>>>>> master
 		if (Input.GetKeyDown(KeyCode.C))
 		{
 			
