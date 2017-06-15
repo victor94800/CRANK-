@@ -24,7 +24,7 @@ public class Enemy_damage : MonoBehaviour {
 		{
 
 			hit.SendMessage("getHit", dmg);
-
+			print(hit.transform.tag + " touché");
 		}
 		
 	}

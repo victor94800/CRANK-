@@ -10,7 +10,7 @@ public class playerunderwtaer : MonoBehaviour {
 	// player physique
 	public float water_speed;
 	public float gravity;
-
+	public GameObject Global;
 	apnee Barredapnee;
 	public GameObject barre_apnee;
 	public GameObject water;
@@ -25,14 +25,15 @@ public class playerunderwtaer : MonoBehaviour {
 	public float rotatespeed;
 	public bool swim =false;
 	public float verticalVelocity;
-	
+	public int life;
 	
 	private void OnEnable()
 	{
-	
+		life = GetComponent<life>().Life;
 		Barredapnee = new apnee();
 		Barredapnee.max = apnee;
 		Barredapnee.valeur = apnee;
+
 	
 	}
 	private void OnDisable()
@@ -43,7 +44,7 @@ public class playerunderwtaer : MonoBehaviour {
 	}
 	void Start ()
 	{
-	
+		life = GetComponent<life>().Life;
 		cc = GetComponent<CharacterController>();
 		Barredapnee = new apnee();
 
@@ -52,11 +53,16 @@ public class playerunderwtaer : MonoBehaviour {
 		barre_apnee.SetActive(false);
 		Barredapnee.max = apnee;
 		Barredapnee.valeur = apnee;
+
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+		if (Barredapnee.valeur <= 0)
+		{
+			Global.GetComponent<Global>().Playeralive = false;
+		}
 		cc = GetComponent<CharacterController>();
 		movevector = Vector3.zero;
 		if (water.GetComponent<UnderWater>().is_player_underwater)

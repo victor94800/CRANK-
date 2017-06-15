@@ -41,7 +41,8 @@ public class follow : MonoBehaviour {
 		{
 			if (target.GetComponent<CharacterController>().isGrounded )
 			{
-
+				
+				dirtomain.y = 0;
 				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirtomain), follow_speed);
 			}
 		}

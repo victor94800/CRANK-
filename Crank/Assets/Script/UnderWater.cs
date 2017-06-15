@@ -39,14 +39,14 @@ public class UnderWater : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	/*void Update()
+	void Update()
 	{
 
 
-		
-		
+		Player_anim = GameObject.FindWithTag("Player").GetComponent<Animator>();
 
-	}*/
+
+	}
 
 	void SetNormal()
 	{
