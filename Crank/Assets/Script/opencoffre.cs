@@ -8,7 +8,7 @@ public class opencoffre : MonoBehaviour {
 	public GameObject player;
 	public GameObject global;
 	public Vector3 dirtomain;
-	
+	public int gains = 400;
 	void Start ()
 	{
 		
@@ -22,7 +22,7 @@ public class opencoffre : MonoBehaviour {
 		{
 			if (Input.GetKey("joystick button 1"))
 			{
-				global.GetComponent<Player_money>().AddMoney(300);
+				global.GetComponent<Player_money>().AddMoney(gains);
 				Destroy(gameObject);
 			}
 		}

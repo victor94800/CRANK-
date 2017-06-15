@@ -40,11 +40,10 @@ public class PlayerController : MonoBehaviour {
 
 	// game object associer a player
 	GameObject sword;
-	GameObject thundersword;
-	GameObject fireSword;
+	
 	public GameObject Third_Camera;
 	public GameObject global;
-	healthBarre Barredevie;
+	public healthBarre Barredevie;
 	//gamecontroller
 	public GameObject Gamecontroller;
 	public GameController Game_controller_script;
@@ -88,6 +87,7 @@ public class PlayerController : MonoBehaviour {
 		{
 			Gamecontroller = GameObject.Find("GameController");
 			Game_controller_script = Gamecontroller.GetComponent<GameController>();
+			playertype = Gamecontroller.GetComponent<GameController>().playertype;
 		}
 		catch
 		{
@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour {
 		{
 
 			this.transform.position = Gamecontroller.GetComponent<GameController>().pos; //+ new Vector3(0, 6, 0);
-			ddjump_allowed = Gamecontroller.GetComponent<GameController>().item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "double_jump")];
+			
 
 		}
 
@@ -110,8 +110,8 @@ public class PlayerController : MonoBehaviour {
 
 		
 		// on cree une nouvelle barre de vie et d'apnee 
-
-	    Barredevie = new healthBarre();
+		if (Barredevie == null)
+			Barredevie = new healthBarre();
 
 
      	if (Gamecontroller != null)
@@ -131,8 +131,10 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
+	
 		if (stop)
 			return;
+		
 		if (Input.GetKeyDown(KeyCode.C))
 		{
 			
@@ -283,6 +285,7 @@ public class PlayerController : MonoBehaviour {
 		{
 			if (life <= 0)
 			{
+				print("test");
 				Crank.GetComponent<Warior>().die = true;
 				
 				GameObject.Find("Global").GetComponent<Global>().Playeralive = false;
@@ -316,7 +319,7 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-	private void selectplayer()
+	public void selectplayer()
 	{
 		if (playertype == 0)
 		{
@@ -345,6 +348,13 @@ public class PlayerController : MonoBehaviour {
 			player = golem;
 			
 		}
+	}
+	public void respawn()
+	{
+		Barredevie.max = 100;
+		Barredevie.valeur = 100;
+		damage = false;
+
 	}
 	
 

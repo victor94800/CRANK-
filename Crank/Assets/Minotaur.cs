@@ -16,16 +16,16 @@ public class Minotaur : MonoBehaviour {
 	public bool Walk;
 	AudioClip attak;
 	AudioClip walk;
-	void Start ()
+	void Start()
 	{
-		
+
 		Dirtomain = Player.transform.position - transform.position;
 		anim = GetComponent<Animator>();
 		agent = GetComponent<NavMeshAgent>();
 	}
-	
+
 	// Update is called once per frame
-	void Update ()
+	void Update()
 	{
 		if (life == 0)
 		{
@@ -34,7 +34,7 @@ public class Minotaur : MonoBehaviour {
 			StartCoroutine(death());
 		}
 		Dirtomain = Player.transform.position - transform.position;
-	    if (Dirtomain.magnitude < 10)
+		if (Dirtomain.magnitude < 10)
 		{
 			agent.destination = Player.transform.position;
 		}
@@ -47,7 +47,7 @@ public class Minotaur : MonoBehaviour {
 		{
 			CanAttack = false;
 		}
-		if (CanAttack )
+		if (CanAttack)
 		{
 			if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
 			{
@@ -55,8 +55,8 @@ public class Minotaur : MonoBehaviour {
 				agent.Stop();
 				Walk = false;
 				attack = true;
-			
-			
+
+
 
 			}
 			else
@@ -72,11 +72,11 @@ public class Minotaur : MonoBehaviour {
 			if (agent.velocity != Vector3.zero)
 			{
 				Walk = true;
-				
+
 			}
 			attack = false;
-			
-			
+
+
 		}
 
 		if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
@@ -99,7 +99,7 @@ public class Minotaur : MonoBehaviour {
 			}
 
 		}
-		
+
 		anim.SetBool("attack", attack);
 		anim.SetBool("walk", Walk);
 

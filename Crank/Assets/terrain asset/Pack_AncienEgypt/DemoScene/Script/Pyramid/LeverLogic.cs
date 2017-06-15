@@ -9,7 +9,7 @@ public class LeverLogic : MonoBehaviour {
 	private float Distance = 3;
 	public GameObject PopUp;
 
-	private bool canActivate = false;
+	public bool canActivate = false;
 	private bool finish = false;
 
 	void OnBecameVisible(){
@@ -26,8 +26,10 @@ public class LeverLogic : MonoBehaviour {
 	}
 
 	void LateUpdate(){
-		if(canActivate && Input.GetKeyUp(KeyCode.E)){
+		
+		if(canActivate && Input.GetKey(KeyCode.E)){
 			Activate();
+			print("test");
 		}
 
 	}
@@ -42,9 +44,12 @@ public class LeverLogic : MonoBehaviour {
 		}
 	}
 
-	void Activate(){
+	void Activate()
+	{
+		print("test");
 		canActivate = false;
-		if(!canActivate){
+		if(!canActivate)
+		{
 			finish = true;
 			canActivate = false;
 			LeverAnimator.SetTrigger("ActivateLever");

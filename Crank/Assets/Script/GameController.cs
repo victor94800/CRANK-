@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour {
 
 	//scene
 	public int Level;
-
+	public int playertype;
 	//
 	// Use this for initialization
 	void Start ()

@@ -9,17 +9,7 @@ public class Global : MonoBehaviour {
 	// Gameoject utilisés par Global
 	public GameObject player;
 	public GameObject enemy;
-	public GameObject[] enemy_path;
-	public GameObject[] enemy_path_2;
-	public GameObject[] enemy_path_3;
-	public GameObject[] enemy_path_4;
-	public GameObject[] enemy_path_5;
-	public GameObject[] enemy_path_6;
-
-	public GameObject[] enemy_path_7;
-	public GameObject[] enemy_path_8;
-	public GameObject[] enemy_path_9;
-	public GameObject[] enemy_path_10;
+	public GameObject[] enemys;
 	public GameObject coins;
 	//argent du joueur 
 	public GameObject desthimg;
@@ -42,18 +32,20 @@ public class Global : MonoBehaviour {
 	{
 		if (enemy_active == true)
 		{
-			GameObject IA = GetComponent<IACreator>().InstentiateIA(0, transform.rotation, enemy, enemy_path);
-			enemy_active = false;
-			print(IA);
-			Enemys.Add(IA);
+			foreach (GameObject h in enemys)
+			{
+				h.SetActive(true);
+			}
 			
 		}
-		foreach (GameObject  h in Enemys)
+		foreach (GameObject  h in enemys)
 		{
 			if (!h.activeInHierarchy)
 			{
+				/*print(h);
 				Timer time = new Timer();
-				time.Reactivate(h, 10);
+				time.Reactivate(h, 10);*/
+				StartCoroutine(respawn(h));
 
 			}
 		}
@@ -62,6 +54,11 @@ public class Global : MonoBehaviour {
 			player.SetActive(false);
 			desthimg.SetActive(true);
 		}
+	}
+	public IEnumerator respawn(GameObject h)
+	{
+		yield return new WaitForSeconds(30);
+		h.SetActive(true);
 	}
 	
 

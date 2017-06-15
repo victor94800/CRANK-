@@ -10,6 +10,7 @@ public class coins : MonoBehaviour {
 	private float time = 0;
 	private float endTime = 10;
 	public float time2;
+	public int height = 7;
     // Use this for initialization
     void Start ()
     {
@@ -22,7 +23,7 @@ public class coins : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-	   transform.position = new Vector3(transform.position.x, 7, transform.position.z);
+	   transform.position = new Vector3(transform.position.x, height, transform.position.z);
 	   time += Time.deltaTime;
        transform.Rotate(speed * 5, 0, 0);
 	   if (time >= endTime)

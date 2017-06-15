@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class Warior : MonoBehaviour {
+	public GameObject thundersword;
+	public GameObject fireSword;
 	private Animator anim;
 	public bool walk;
 	public bool Run;
@@ -21,10 +23,18 @@ public class Warior : MonoBehaviour {
 	public bool damage;
 	public bool die = false;
 	public bool isunderwtaer;
+	public GameObject Gamecontroller;
 	// Use this for initialization
 	void Start ()
 	{
-		
+		try
+		{
+			Gamecontroller = GameObject.Find("GameController");
+		}
+		catch
+		{
+
+		}
 		
 		anim = GetComponent<Animator>();
 		Sword = GameObject.Find("warriorS");
@@ -37,10 +47,39 @@ public class Warior : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
+		if (Gamecontroller.GetComponent<GameController>().item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "fire_sword")] && Input.GetKeyDown("joystick button 4"))
+		{
+			
+			if (fireSword.activeInHierarchy)
+			{
+				fireSword.SetActive(false);
+				Sword.GetComponent<damaged>().dmg = 10;
+			}
+			else
+			{
+				fireSword.SetActive(true);
+				Sword.GetComponent<damaged>().dmg = 20;
+			}
+		}
+		if (Gamecontroller.GetComponent<GameController>().item_allowed[Array.IndexOf(Gamecontroller.GetComponent<GameController>().item_name, "thunder_sword")] && Input.GetKeyDown("joystick button 5") && Input.GetKey("joystick button 2"))
+		{
+
+			if (thundersword.activeInHierarchy)
+			{
+				thundersword.SetActive(false);
+				Sword.GetComponent<damaged>().dmg = 10;
+			}
+			else
+			{
+				thundersword.SetActive(true);
+				Sword.GetComponent<damaged>().dmg = 100;
+			}
+
+		}
 		if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") || anim.GetCurrentAnimatorStateInfo(0).IsName("Walk") || anim.GetCurrentAnimatorStateInfo(0).IsName("Sprint"))
 		{
 			// Avoid any reload.
-			can_jump= true;
+			can_jump = true;
 			
 		}
 		else

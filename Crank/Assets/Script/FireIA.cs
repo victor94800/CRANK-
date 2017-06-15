@@ -36,13 +36,18 @@ public class FireIA : MonoBehaviour {
 	{
 		if (GetComponent<AIController>().life <= 0)
 		{
+			if (die)
+			{
+				return;
+			}
 			anim.CrossFade("Death_1");
 			StartCoroutine(Die());
+			die = true;
 		}
 		isplayerdead = !Global.Playeralive;
 		
 			dirtomain = GameObject.Find("visé").transform.position - transform.position;
-			if (dirtomain.magnitude < 10 && !isplayerdead)
+			if (dirtomain.magnitude < 10 && !isplayerdead && GetComponent<AIController>().IS_Following_PLayer)
 			{
 				CanAttack = true;
 
@@ -102,6 +107,8 @@ public class FireIA : MonoBehaviour {
 			pos = Random.insideUnitSphere * 5 + this.gameObject.transform.position;
 			Transform newGameObj = Instantiate(COINS.transform, pos, Quaternion.identity) as Transform;
 		}
+		GetComponent<AIController>().life = 60;
+		die = false;
 		gameObject.SetActive(false);
 	}
 

@@ -5,21 +5,17 @@ using UnityEngine;
 public class Mission_1 : MonoBehaviour {
 	public AudioClip sound_first;
 	public AudioClip sound_2;
-	public GameObject phone;
-	public GameObject phonecamera;
-	public GameObject camera_target;
+	
 	private AudioSource audi;
 	bool is_jump = false;
 	bool is_Etuto_Deafed = false;
 	GameObject Etuto;
-	public GameObject[] checkpoints;
-	public GameObject start;
-	public GameObject intello;
-	public GameObject background;
-	public GameObject camera2;
-	private GameObject camera1;
-	public GameObject player;
-	public GameObject apps;
+	public GameObject checkpoint;
+	public GameObject phonecamera;
+	public GameObject FPcamera;
+	public GameObject canvas;
+	
+
 	int i = 0;
 	// Use this for initialization
 	void Start ()
@@ -27,38 +23,23 @@ public class Mission_1 : MonoBehaviour {
 		
 		if (GameObject.Find("GameController").GetComponent<GameController>().mission == 2)
 		{
-			foreach (GameObject i in checkpoints)
-			{
-				i.SetActive(false);
-			}
-			Destroy(this);
+
+			checkpoint.SetActive(false);
+			
 		}
 		else
 		{
-
+			checkpoint.SetActive(true);
 			audi = GetComponent<AudioSource>();
-
-			foreach (GameObject i in checkpoints)
-			{
-				i.SetActive(false);
-			}
-			start.SetActive(true);
-			phone.SetActive(true);
-			intello.SetActive(true);
-			player.GetComponent<PlayerController>().enabled = false;
-			camera2.SetActive(true);
-			camera1 = GameObject.Find("Camera");
-			camera1.SetActive(false);
-			camera2.GetComponent<phonecamera>().target_p = camera_target;
-
-			apps.SetActive(false);
-			//GameObject.Find("PhoneBackground")
-			background.SetActive(false);
+			canvas.GetComponent<OpenClosePhone>().PhoneMission();
+			FPcamera.GetComponent<LookAtCam>().target = checkpoint;
+		    //GameObject.Find("PhoneBackground")
+			
 
 			GetComponent<AudioSource>().PlayOneShot(sound_first);
 		}
 		audi = GetComponent<AudioSource>();
-		print(audi);
+		
 	}
 	
 	// Update is called once per frame
@@ -73,18 +54,9 @@ public class Mission_1 : MonoBehaviour {
 		if (!audi.isPlaying && i == 1)
 		{
 			phonecamera.GetComponent<Camera>().fieldOfView = 60;
-			intello.SetActive(false);
+			canvas.GetComponent<OpenClosePhone>().PhoneMission();
+			FPcamera.GetComponent<LookAtCam>().target = null;
 			
-			apps.SetActive(true);
-			phone.SetActive(false);
-			camera1.SetActive(true);
-			camera2.GetComponent<phonecamera>().target_p = null;
-			camera2.SetActive(false);
-			//GetComponent<mission_1_1>().enabled = true;
-			intello.SetActive(false);
-			background.SetActive(true);
-			phone.SetActive(false);
-			player.GetComponent<PlayerController>().enabled = true;
 			Destroy(this);
 		}
 

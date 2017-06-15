@@ -19,6 +19,7 @@ public class Respawn : MonoBehaviour {
 	public void respawn()
 	{
 		player.GetComponent<PlayerController>().life = 100;
+		player.GetComponent<PlayerController>().respawn();
 		player.transform.position = global.GetComponent<Global>().spawnpoint.position;
 		global.GetComponent<Global>().Playeralive = true;
 		

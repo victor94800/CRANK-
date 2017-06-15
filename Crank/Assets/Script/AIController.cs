@@ -6,19 +6,19 @@ using UnityEngine.AI;
 public class AIController : MonoBehaviour
 {
 	public static int IAWhoseePLayer; // est -ce qu'une ia est en train de voir le joueur 
-
+	public bool AllowedF;
 	public GameObject path;
 	public Transform Player;
 	private NavMeshAgent Agent;
-	private GameObject[] Waypoints;
+	public GameObject[] Waypoints;
 	private GameObject eyes;
 	// 
 	public bool lookatplayer;
-		
+	public bool stopmove;
 
 	private Vector3 Dirtomain;
 	// 
-	int Index = 1;
+	int Index = 0;
 
 	
 	//
@@ -26,7 +26,7 @@ public class AIController : MonoBehaviour
 
 	public bool IS_Following_PLayer;
 	public int life;
-	
+	public bool stop;
 	// Use this for initialization
 	void Start ()
 	{
@@ -76,43 +76,56 @@ public class AIController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (IS_Following_PLayer == true)
+		if (stop)
 		{
-			Agent.destination = Player.position;
-			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Dirtomain), 100);
+			return;
 		}
-		Dirtomain = Player.position - transform.position;
-		if (path != null)
-		{
-			if (IAWhoseePLayer > 0 && Dirtomain.magnitude < 20)
+		
+			if (IS_Following_PLayer == true && AllowedF )
 			{
-				IS_Following_PLayer = true;
-				IAWhoseePLayer += 1;
+				Agent.destination = Player.position;
+			Dirtomain.y = 0;
+				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Dirtomain), 100);
 			}
-			if (Dirtomain.magnitude > 20 || !GameObject.Find("Global").GetComponent<Global>().Playeralive)
+			Dirtomain = Player.position - transform.position;
+			if (path != null)
 			{
-				IS_Following_PLayer = false;
-				IAWhoseePLayer -= 1;
-				Agent.destination = Waypoints[Index].transform.position;
-				if (!GameObject.Find("Global").GetComponent<Global>().Playeralive)
+				if (IAWhoseePLayer > 0 && Dirtomain.magnitude < 20)
 				{
-					IAWhoseePLayer = 0;
+					IS_Following_PLayer = true;
+					IAWhoseePLayer += 1;
 				}
-			}
-			
-			
-				if (Agent.destination.magnitude == 0 && !IS_Following_PLayer)
+				if (Dirtomain.magnitude > 20 || !GameObject.Find("Global").GetComponent<Global>().Playeralive)
 				{
-					Index += 1;
+					IS_Following_PLayer = false;
+					IAWhoseePLayer -= 1;
 					Agent.destination = Waypoints[Index].transform.position;
-					
+					if (!GameObject.Find("Global").GetComponent<Global>().Playeralive)
+					{
+						IAWhoseePLayer = 0;
+					}
 				}
+
+			}
+
+
 			
+		
+
+		
+		
+		if (Vector3.Distance(Agent.destination, transform.position)< 1.0f && !IS_Following_PLayer && !stopmove)
+		{
+			Index += 1;
+			if (Index > Waypoints.Length -1)
+			{
+				Index = 0;
+			}
+			Agent.destination = Waypoints[Index].transform.position;
+			Agent.Resume();
 		}
 
-		
 
-		
 	}
 	private void SetSpeed(float speed)
 	{
